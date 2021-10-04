@@ -36,6 +36,10 @@ li a:hover {
     color: black;        
 }
 
+#small {
+    height: 200px;
+}
+
 .flex-container {
     display: flex;
     flex-wrap: wrap;
@@ -70,3 +74,59 @@ li a:hover {
 .flex-container3 > div {
     padding-right: 3px;
 } 
+
+#square-choices {
+    object-fit: cover;
+    width:100px;
+    height:100px
+}
+
+.flex-container-choices {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container-choices > div {
+    background-color: lightskyblue;
+    margin: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+} 
+
+.wrapper { 
+	width: 200px; 
+	height: 200px; 
+	position: relative; 
+    justify-content: center;
+    align-items: center;
+} 
+ 
+.wrapper img { 
+	width: 100%; 
+	height: 100%; 
+    justify-content: center;
+    align-items: center;
+} 
+ 
+.wrapper a { 
+	width: 100%; 
+	height: 100%; 
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper button { 
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color:black;
+    color: white;
+    font-size: 16px;
+    padding: 6px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
