@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<link rel="stylesheet" type="text/css" href="sub2.css">
+<title>FitsPy Info</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<!-- Note -->
+
+<!-- Header -->
+<div class="header">
+    <div class="dropdown">
+      <button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+      <div class="dropdown-content">
+        <a href="AstroImageTools.html">Home</a>
+        <a href="AstroMosaicInfo.html">Astro Mosaic</a>
+        <a href="AutoIntegrateInfo.html">AutoIntegrate</a>
+        <a href="DownloadFitInfo.html">Download .fit</a>
+        <a href="FitsPyInfo.html">FITS utility</a>
+      </div>
+    </div>
+    <div class="h1text">
+    <h1>Python FITS file utility</h1>
+    </div>
+</div>
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+    <h2>Download links</h2>
+    <p>Download Python source file.</p>
+    <div>        
+            <a href="FitsPy.py"><div>Source file</div></a>
+    </div>
+  </div>
+  <div class="main">
+    <h2>INFO</h2>
+
+<p>
+  Python utility for FITS file handling.
+
+</p><p>
+    This tool needs Python 3.
+  </p><p>
+    Other requirements:
+    <ul>
+    <li>NumPy - pip install numpy</li>
+    <li>AstroPy - pip install astropy [--no-deps]</li>
+    </ul>
+  </p><p>
+
+  Usage: python FitsPy.py {list|move|header|coordinates|filter|summary|decompress} [file]
+</p><p>
+  File name can have wildcards. Default is *.fit*.
+  </p><p>
+  Options:
+  <ul>
+    <li>list - list some interesting FITS header info</li>
+    <li>move - move files to XRESxYRES directory, directory is created automatically</li>
+    <li>header - print all FITS header values</li>
+    <li>coordinates - recursively find coordinates from FITS file names, result can be copied to Astro Mosaic target box</li>
+    <li>filter - print FILTER header value</li>
+    <li>summary - generate summary information from FITS files like telescopes, filters and exposure times</li>
+    <li>decompress - decompress FITS images so they can be loaded into PixInsight. Decompressed files will have dc_ prefix.</li>
+    <li>radecfix - Fix ra/dec coordinates in files. Can fix problems like 33 54 60.00 -> 33 55 00.00. Fixed files will 
+        have rdf_ prefix. Coordinates are assumed to be with names OBJCTRA and OBJCTDEC. Works only with coordinate format 
+        shown in the example.</li>
+  </ul>
+  </p>
+
+  <h3>Move option</h3>
+  <p>
+    If you are mixing images with different resolution and are using a tool like Pixinsight Blink then 
+    move option can be useful. Blink process does not seem to like images with different resolutions.
+  </p><p>
+    Command ‘python FitsPy.py move’ finds X and Y resolution of .fit image from FITS keywords, automatically 
+    creates a XRESxYRES directory for each found resolution and moves .fit files to directory matching that 
+    resolution. After that it is easy to find images by resolution and run Blink on those.
+  </p>
+
+  <h3>Coordinates option</h3>
+  <p>
+    If you have a set of coordinate missions for example for mosaic but do not know what area they actually 
+    cover then coordinates option can be useful. Command ‘python FitsPy.py coordinates’ recursively goes through 
+    subdirectories and finds all .fit files where coordinate information is encoded into the file name in format 
+    HHMMDD{p|n}HHMMDD.
+  </p><p>
+    Found coordinates are printed as a comma separated list. That list can be copied into Astro Mosaic tool 
+    target box to see what panels are available.
+  </p><p>
+    If you are mixing different telescopes then some panels are not correct since telescope information is not 
+    available at this format.
+  </p>
+
+  </div>
+</div>
+
+<div class="footer">
+    <p><small class="normal">Feedback:  <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or <a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FV9GG7V9PM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FV9GG7V9PM');
+</script>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<link rel="stylesheet" type="text/css" href="sub2.css">
+<title>MoonRiseSet Info</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<!-- Note -->
+
+<!-- Header -->
+<div class="header">
+    <div class="dropdown">
+      <button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+      <div class="dropdown-content">
+        <a href="AstroImageTools.html">Home</a>
+        <a href="AstroMosaicInfo.html">Astro Mosaic</a>
+        <a href="AutoIntegrateInfo.html">AutoIntegrate</a>
+        <a href="DownloadFitInfo.html">Download .fit</a>
+        <a href="FitsPyInfo.html">FITS utility</a>
+      </div>
+    </div>
+    <div class="h1text">
+    <h1>Moon Rise and Set Calculator</h1>
+    </div>
+</div>
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+      <p>Link to Moon Rise and Set Calculator page.</p>
+      <div>        
+              <a href="MoonRiseSet.html"><div>MoonRiseSet</div></a>
+      </div>
+      <p>Source code in GitHub.</p>
+      <div>        
+              <a href="https://github.com/jarmoruuth/AstroMosaic"><div>GitHub</div></a>
+      </div>       
+  </div>
+  <div class="main">
+    <h2>INFO</h2>
+
+<p>
+    Moon Rise and Set Calculator is a simple calculator that shows moon rise and set times at a given location.
+    Rise and set times are shown for 90 days starting from given date. Default is current date. 
+    </p><p>
+      Moon rise and set times are not exact and may differ several minutes from actual times. Also moon phase is 
+      just an approximate number. Always check the times using a proper calender.
+    </p>
+    <h3>Filtering</h3>
+    <p>
+      Two time ranges can be given to filter moon rise and set times. Idea with the filtering 
+    is to show only times when you can go and photograph the moon (like before and after office hours).
+    If both time ranges are empty then the whole day is shown. If time range 1 is given the time
+    range 2 can be left empty.
+  </p><p>
+    In addition to time filtering it is possible to filter by moon phase, either full moon or new moon.
+    Also it is possible to show only those moon rise and set times that are 30 minutes before sunrise or
+    after sunset. 
+    </p>
+    <h3>Location</h3>
+    <p>
+      A Get location button automatically fills location coordinates (lat, lng) using the current location. 
+      Time zone field (tz) is filled automatically with the current time zone. Location and time zone can be 
+      entered also manually to check rise and set times at any location. Time zone is given as hours from 
+      GMT time. Note that daylight saving time is not calculated automatically when the time zone is given manually.
+    </p>
+    <h3>Url parameters</h3>
+    <p>
+      Default values for most fields can be given as url parameters:
+      <ul>
+          <li>date</li>
+          <li>time1start</li>
+          <li>time1end</li>
+          <li>time2start</li>
+          <li>time2end</li>
+          <li>lat</li>
+          <li>lng</li>
+          <li>tz</li>
+        </ul>
+        Example to show times in New York City, USA:<br>
+        https://www.ruuth.xyz/MoonRiseSet.html?lat=40.7116895&lng=-74.0586233&tz=-4
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+    <p><small class="normal">Feedback:  <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or <a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></small></p>
+</div>
+
+</body>
+</html>
