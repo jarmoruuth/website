@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xri version="1.0">
+  <description>
+     <p>
+        PixInsight AutoIntegrate script.
+     </p>
+  </description>
+   <platform os="all" arch="noarch" version="1.8.9:9.9.9">
+      <package fileName="autointegrate.zip"
+               sha1="XXX SHA1 XXX"
+               type="script"
+               releaseDate="XXX RELEASE DATE XXX">
+         <title>
+            AutoIntegrate XXX VERSION XXX - XXX INFO XXX
+         </title>
+         <remove>
+         src/scripts/AutoIntegrate.js
+         </remove>
+         <description>
+            <p>
+               This update installs AutoIntegrate.js XXX VERSION XXX
+            </p>
+            <p>
+            Version history between releases with detailed info can be seen from the following link: 
+            </p>
+            <p>
+            https://github.com/jarmoruuth/AutoIntegrate/releases
+            </p>
+            <p>
+                For generic information about AutoIntegrate script please check AutoIntegrate web page:
+            </p>
+            <p>
+               https://ruuth.xyz/AutoIntegrateInfo.html
+            </p>
+            <p>
+                This product is based on software from the PixInsight project, developed
+                by Pleiades Astrophoto and its contributors (https://pixinsight.com/).
+            </p>
+            <p>
+                <ul>
+                    <li>Copyright (c) 2018-2024 Jarmo Ruuth</li>
+                    <li>Copyright (c) 2022 Jean-Marc Lugrin</li>
+                    <li>Copyright (c) 2021 rob pfile</li>
+                    <li>Copyright (c) 2013 Andres del Pozo</li>
+                    <li>Copyright (c) 2019 Vicent Peris (OAUV). All Rights Reserved.</li>
+                    <li>Copyright (c) 2003-2020 Pleiades Astrophoto S.L. All Rights Reserved.</li>
+                </ul>
+            </p>
+         </description>
+      </package>
+   </platform>
+</xri>

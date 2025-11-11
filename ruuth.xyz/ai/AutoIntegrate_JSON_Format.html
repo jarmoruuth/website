@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoIntegrate JSON Format Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-bottom: 2px solid #95a5a6;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c7254e;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        .type-badge {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>AutoIntegrate JSON File Format Documentation</h1>
+    
+    <div class="section">
+        <h2>Overview</h2>
+        <p>The AutoIntegrate script for PixInsight uses a JSON file to store calibration files and processing options. This file is used to save and restore the script's configuration, including all input files and settings.</p>
+        <p>The JSON format allows users to:</p>
+        <ul>
+            <li>Save their file selections and settings</li>
+            <li>Load previous configurations</li>
+            <li>Share setups between different processing sessions</li>
+            <li>Automate processing by using predefined configurations</li>
+            <li>Enable or disable specific files without removing them</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Root Level Structure</h2>
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>version</code></td>
+                <td><span class="type-badge">Number</span></td>
+                <td>Yes</td>
+                <td>Format version number (currently 3)</td>
+            </tr>
+            <tr>
+                <td><code>fileinfo</code></td>
+                <td><span class="type-badge">Array</span></td>
+                <td>Yes</td>
+                <td>Array of file information objects for each frame type</td>
+            </tr>
+            <tr>
+                <td><code>settings</code></td>
+                <td><span class="type-badge">Array</span></td>
+                <td>Yes</td>
+                <td>Array of setting name/value pairs</td>
+            </tr>
+            <tr>
+                <td><code>window_prefix</code></td>
+                <td><span class="type-badge">String</span></td>
+                <td>No</td>
+                <td>Prefix added to generated window names (e.g., "test_")</td>
+            </tr>
+            <tr>
+                <td><code>output_dir</code></td>
+                <td><span class="type-badge">String</span></td>
+                <td>No</td>
+                <td>Script output directory</td>
+            </tr>
+            <tr>
+                <td><code>star_alignment_image</code></td>
+                <td><span class="type-badge">String</span></td>
+                <td>No</td>
+                <td>The star alignment image file</td>
+            </tr>
+        </table>
+
+        <div class="info">
+            <strong>Note:</strong> Additional properties may be added during processing (such as <code>best_image</code>, <code>reference_image</code>, <code>saved_measurements</code>, and <code>flowchartData</code>), but these are not part of the input configuration.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>FileInfo Array Structure</h2>
+        <p>The <code>fileinfo</code> array contains objects describing each frame type. There are typically four entries corresponding to the four tabs in the AutoIntegrate interface:</p>
+        
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>pageindex</code></td>
+                <td><span class="type-badge">Number</span></td>
+                <td>Tab index (0=Lights, 1=Bias, 2=Darks, 3=Flats)</td>
+            </tr>
+            <tr>
+                <td><code>pagename</code></td>
+                <td><span class="type-badge">String</span></td>
+                <td>Name of the frame type ("Lights", "Bias", "Darks", "Flats")</td>
+            </tr>
+            <tr>
+                <td><code>files</code></td>
+                <td><span class="type-badge">Array</span></td>
+                <td>Array of file entries (format varies by page type)</td>
+            </tr>
+            <tr>
+                <td><code>filterset</code></td>
+                <td><span class="type-badge">Null</span></td>
+                <td>Reserved for filter set information (typically null)</td>
+            </tr>
+        </table>
+
+        <h3>Lights Frame File Entry (5 elements)</h3>
+        <p>Each light frame entry is an array with 5 elements:</p>
+        <div class="code-block">["Light-001-L.fit", true, 0, false, false]</div>
+        
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td><span class="type-badge">String</span></td>
+                <td>Filename (can be full path or relative path)</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><span class="type-badge">Boolean</span></td>
+                <td>Enabled flag - whether the file will be processed</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><span class="type-badge">Number</span></td>
+                <td>Weight score (0 initially, normally populated by SubframeSelector during processing)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><span class="type-badge">Boolean</span></td>
+                <td>If true this is the best image of all light images</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><span class="type-badge">Boolean</span></td>
+                <td>If true this is the reference image for the filter</td>
+            </tr>
+        </table>
+
+        <h3>Calibration Frame File Entry (2 elements)</h3>
+        <p>For Bias, Darks, and Flats, each file entry is a simpler array with 2 elements:</p>
+        <div class="code-block">["Bias-001.fit", true]</div>
+        
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td><span class="type-badge">String</span></td>
+                <td>Filename (can be full path or relative path)</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><span class="type-badge">Boolean</span></td>
+                <td>Enabled flag - whether the file will be used in calibration</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Settings Array Structure</h2>
+        <p>The <code>settings</code> array contains configuration options as name/value pairs. 
+            Possible names are listed in AutoIntegrate file AutoIntegrateGlobal.js in an array 
+            <code>this.par</code>.
+            The value type depends on the the parameter type.</p>
+        <p>
+            Each entry is a two-element array:</p>
+        <div class="code-block">["Setting Name", value]</div>
+        
+        <h3>Sample Settings</h3>
+        <table>
+            <tr>
+                <th>Setting Name</th>
+                <th>Type</th>
+                <th>Example Value</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Use StarXTerminator</td>
+                <td><span class="type-badge">Boolean</span></td>
+                <td>true</td>
+                <td>Enable StarXTerminator processing</td>
+            </tr>
+            <tr>
+                <td>Use SPCC for color calibration</td>
+                <td><span class="type-badge">Boolean</span></td>
+                <td>true</td>
+                <td>Whether to use SPCC for color calibration</td>
+            </tr>
+            <tr>
+                <td>Image stretching</td>
+                <td><span class="type-badge">String</span></td>
+                <td>"Masked+Histogram Stretch"</td>
+                <td>Name of the image stretching method</td>
+            </tr>
+            <tr>
+                <td>Narrowband mapping</td>
+                <td><span class="type-badge">String</span></td>
+                <td>"HOS"</td>
+                <td>Narrowband mapping palette name</td>
+            </tr>
+            <tr>
+                <td>Narrowband R mapping</td>
+                <td><span class="type-badge">String</span></td>
+                <td>"H"</td>
+                <td>Narrowband mapping for the Red channel</td>
+            </tr>
+            <tr>
+                <td>Narrowband G mapping</td>
+                <td><span class="type-badge">String</span></td>
+                <td>"O"</td>
+                <td>Narrowband mapping for the Green channel</td>
+            </tr>
+            <tr>
+                <td>Narrowband B mapping</td>
+                <td><span class="type-badge">String</span></td>
+                <td>"S"</td>
+                <td>Narrowband mapping for the Blue channel</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Note:</strong> These are just sample settings, additional settings should be used depending on the
+            AutoIntegrate configuration. The settings array is extensible and can contain any script option.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Complete Example</h2>
+        <div class="code-block">{
+  "version": 3,
+  "fileinfo": [
+    {
+      "pageindex": 0,
+      "pagename": "Lights",
+      "files": [
+        ["Light-001-L.fit", true, 0, true, true],
+        ["Light-002-L.fit", true, 0, false, false],
+        ["Light-003-L.fit", true, 0, false, false],
+        ["Light-001-R.fit", true, 0, false, true],
+        ["Light-002-R.fit", true, 0, false, false],
+        ["Light-003-R.fit", true, 0, false, false],
+        ["Light-001-G.fit", true, 0, false, false],
+        ["Light-002-G.fit", true, 0, false, true],
+        ["Light-003-G.fit", true, 0, false, false],
+        ["Light-001-B.fit", true, 0, false, false],
+        ["Light-002-B.fit", true, 0, false, true],
+        ["Light-003-B.fit", true, 0, false, false]
+      ],
+      "filterset": null
+    },
+    {
+      "pageindex": 1,
+      "pagename": "Bias",
+      "files": [
+        ["Bias-001.fit", true],
+        ["Bias-002.fit", true]
+      ],
+      "filterset": null
+    },
+    {
+      "pageindex": 2,
+      "pagename": "Darks",
+      "files": [
+        ["Dark-001.fit", true],
+        ["Dark-002.fit", true]
+      ],
+      "filterset": null
+    },
+    {
+      "pageindex": 3,
+      "pagename": "Flats",
+      "files": [
+        ["Flat-001.fit", true],
+        ["Flat-002.fit", true]
+      ],
+      "filterset": null
+    }
+  ],
+  "settings": [
+    ["Use StarXTerminator", true],
+    ["Use NoiseXTerminator", true],
+    ["Use SPCC for color calibration", true],
+    ["Image stretching", "Masked+Histogram Stretch"]
+  ],
+  "window_prefix": "test_"
+}</div>
+    </div>
+
+    <div class="section">
+        <h2>Usage Tips</h2>
+        <ul>
+            <li><strong>Enabling/Disabling Files:</strong> Set the enabled flag (index 1) to false to temporarily exclude a file without removing it from the list</li>
+            <li><strong>File Paths:</strong> Can be absolute paths or relative to the script's working directory</li>
+            <li><strong>Weight Scores:</strong> Initially set to 0 for light frames; populated automatically by SubframeSelector during processing</li>
+            <li><strong>Window Prefix:</strong> Useful for keeping multiple processing sessions organized</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Creating JSON Files</h2>
+        <p>JSON files can be created in several ways:</p>
+        <ol>
+            <li><strong>From AutoIntegrate:</strong> Use the script's save function to export current settings</li>
+            <li><strong>Manual Creation:</strong> Create using a text editor following the format above</li>
+            <li><strong>Programmatic:</strong> Generate using scripts or tools that output JSON format</li>
+        </ol>
+        
+        <div class="note">
+            <strong>Important:</strong> Ensure proper JSON syntax (quoted strings, comma placement, bracket matching). Use a JSON validator if creating files manually.
+        </div>
+    </div>
+
+</body>
+</html>
