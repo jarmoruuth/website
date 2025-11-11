@@ -20,143 +20,14 @@
         <li><a href="other.html">Other</a></li> 
     </ul>
 
-    <h1>Astro images</h1>         
-
-    <div class="flex-container-choices">
-
-        <div class="wrapper"> 
-            <a href="javascript:showNebulae();"> <img src="images/Trifid_Nebula.jpg"></a>      
-            <button onclick="javascript:showNebulae();">Nebulae</button>
-        </div> 
-        <div class="wrapper"> 
-            <a href="javascript:showGalaxies();"> <img src="images/Pinwheel_Galaxy.jpg"></a>      
-            <button onclick="javascript:showGalaxies();">Galaxies</button>
-        </div> 
-        <div class="wrapper"> 
-            <a href="javascript:showStarClusters();"> <img src="images/m15.jpg"></a>      
-            <button onclick="javascript:showStarClusters();">Star Clusters</button>
-        </div> 
-        <div class="wrapper"> 
-            <a href="javascript:showSolarSystem();"> <img src="images/SunFlare2-2.jpg"></a>  
-            <button onclick="javascript:showSolarSystem();">Solar System</button>
-        </div> 
-        <div class="wrapper"> 
-            <a href="javascript:showMessier_1_55();"> <img src="images/M1.jpg"></a>  
-            <button onclick="javascript:showSolarSystem();">Messier 1-55</button>
-        </div> 
-        <div class="wrapper"> 
-            <a href="javascript:showMessier_56_110();"> <img src="images/M56.jpg"></a>  
-            <button onclick="javascript:showSolarSystem();">Messier 56-110</button>
-        </div> 
-    </div>
-
-    <h2 id="h2">Nebulae</h2>
+    <h2 id="h2">Messier Catalog</h2>
 
     <div id="mainDiv" class="flex-container3">
     </div>
 
     <script>
 
-        function showNebulae()
-        {
-            var images = [
-                [ 'Trifid_Nebula.jpg', 'Trifid Nebula', 'Messier 20', 'i' ],
-                [ 'Eagle_Nebula_pano_PS_v3.jpg', 'Eagle Nebula', 'Messier 16', 'i' ],
-                [ 'Pillars2.jpg', 'Eagle Nebula - Pillars of Creation', 'Messier 16', 'i' ],
-                [ 'Cocoon_Nebula2.jpg', 'Cocoon Nebula', 'IC 5146', 'i' ],
-                [ 'Crab_Nebula.jpg', 'Crab Nebula - Supernova remnant', 'Messier 1', 'i' ],
-                [ 'Lagoon_Nebula.jpg', 'Lagoon Nebula', 'Messier 8', 'i' ],
-                [ 'Orion_Nebula.jpg', 'Orion Nebula', 'Messier 42', 'i' ],
-                [ 'M42_Mosaic_Large_Filled_PS_PI.jpg', 'Orion and Running man Nebula', 'Messier 42 and NGC 1977', 'i' ],
-                [ 'Western_Veil_Nebula.jpg', 'Veil Nebula West', 'NGC 6960', 'i' ],
-                [ 'VeilNebulaEastNGC6992.jpg', 'Veil Nebula East', 'NGC 6992', 'i' ],
-                [ 'Bubble_Nebula4.jpg', 'Bubble Nebula', 'NGC 7635', 'i' ],
-                [ 'Horsehead_Nebula.jpg', 'Horsehead Nebula', 'Barnard 33', 'i' ],
-                [ 'Dumbbell_Nebula.jpg', 'Dumbbell Nebula', 'Messier 27', 'i' ],
-                [ 'Horsehead_Mosaic.jpg', 'Flame and Horsehead Nebula', 'NGC 2024 and Barnard 33', 'i' ],
-                [ 'Cone_Nebula.jpg', 'Cone nebula', 'NGC 2264', 'i' ],
-                [ 'Christmas_Tree_Cluster.jpg', 'Christmas Tree Cluster', 'NGC 2264', 'i' ],
-                [ 'Jellyfish_Nebula.jpg', 'Jellyfish Nebula', 'IC 443', 'i' ],
-                [ 'Owl_Nebula.jpg', 'Owl Nebula', 'Messier 97', 'i' ],
-                [ 'Wizard_Nebula2.jpg', 'Wizard Nebula', 'NGC 7380', 'i' ],
-                [ 'Iris_Nebula.jpg', 'Iris Nebula', 'NGC 7023', 'i' ],
-                [ 'NGC2359_v4.jpg', "Thor's Helmet", 'NGC 2359', 'i' ],
-                [ 'Eta_Carinae.jpg', 'Eta Carinae Nebula', 'NGC 3372', 'i' ],
-                [ 'Heart_Nebula.jpg', 'Heart Nebula', 'IC 1805', 'i' ],
-                [ 'Helix_Nebula.jpg', 'Helix Nebula', 'NGC 7293', 'i' ],
-                [ 'Rosette_Nebula.jpg', 'Rosette Nebula', 'NGC 2238', 'i' ],
-                [ 'Crescent_Nebula.jpg', 'Crescent Nebula', 'NGC 6888', 'i' ],
-                [ 'Tarantula_Nebula.jpg', 'Tarantula Nebula', 'NGC 2070', 'i' ],
-                [ 'NGC3576-2.jpg', 'The Statue of Liberty Nebula', 'NGC 3576', 'i' ],
-                [ 'North_America_Pelican_Nebula-2.jpg', 'North America and Pelican Nebula', 'NGC 7000 and IC 5070', 'i' ],
-                [ 'NGC6559.jpg', 'Star-forming region', 'NGC 6559', 'i' ],
-                [ 'NGC2467.jpg', 'Skull and Crossbones Nebula', 'NGC 2467', 'i' ],
-                [ 'IC4603.jpg', 'Rho Ophiuchi Region', 'IC 4603', 'i' ],
-                [ 'NGC6726-v2.jpg', 'Reflection nebula and Globular Cluster', 'NGC 6726 and NGC 6723', 'i' ],
-                [ 'Sh2-136-wide.jpg', 'Ghost Nebula', 'Sh2-136', 'i' ],
-                [ 'NGC246__2.jpg', 'Skull Nebula', 'NGC 246', 'i' ],
-                [ 'NGC1761_v3.jpg', 'Nebula in Large Magellanic Cloud', 'NGC 1761', 'i' ],
-                [ 'Rosette_Nebula_SHO_v6.jpg', 'Rosette Nebula in SHO', 'NGC 2238', 'i' ],
-                [ 'Eagle_Nebula_full_auto_PS2.jpg', 'Eagle_Nebula in SHO', 'Messier 16', 'i' ],
-                [ 'Gabriela_Mistral_Nebula_v4.jpg', 'Gabriela Mistral Nebula in SHO', 'NGC 3324', 'i' ],
-                [ 'Running_Chiken_SHO_extra_PS.jpg', 'Running Chicken Nebula in SHO', 'IC 2944', 'i' ],
-                [ 'Statue_of_Liberty_Nebula_v2.jpg', 'The Statue of Liberty Nebula in SHO', 'NGC 3576', 'i' ]
-            ];
-
-            showImages('Nebulae', images);
-            sessionStorage.setItem('Visible', 'Nebulae');
-        }
-
-        function showGalaxies()
-        {
-            var images = [
-                [ 'Pinwheel_Galaxy.jpg', 'Pinwheel Galaxy', 'Messier 101', 'i' ],
-                [ 'm81m82.jpg', "Bode's Galaxy and The Cigar Galaxy", 'Messier 81 and 82', 'i' ],
-                [ 'Andromeda.jpg', 'Andromeda Galaxy', 'Messier 31', 'i' ],
-                [ 'm33.jpg', 'Triangulum Galaxy', 'Messier 33', 'i' ],
-                [ 'm51.jpg', 'Whirlpool Galaxy', 'Messier 51', 'i' ],
-                [ 'Grand_Design_Galaxy.jpg', 'Grand Design Galaxy', 'Messier 74', 'i' ],
-                [ 'M83.jpg', 'Southern Pinwheel Galaxy', 'Messier 83', 'i' ],
-                [ 'M64.jpg', 'Black-Eye Galaxy', 'Messier 83', 'i' ],
-                [ 'IC342.jpg', 'The Hidden Galaxy', 'IC 342', 'i' ],
-                [ 'M106_NGC4217.jpg', 'Méchain Galaxy', 'Messier 106 and NGC 4217', 'i' ],
-                [ 'Silver_Coin_Galaxy.jpg', 'Silver Coin Galaxy', 'NGC 253', 'i' ],
-                [ 'Fireworks_Galaxy_v2.jpg', 'Fireworks Galaxy', 'NGC 5128', 'i' ],
-                [ 'CentaurusA_v3.jpg', 'Centaurus A', 'NGC 6946', 'i' ],
-                [ 'Virgo_Cluster.jpg', 'Virgo Cluster', 'Messier 84, 86, 87, etc.', 'i' ],
-                [ 'NGC4945.jpg', 'Spiral Galaxy', 'NGC 4945', 'i' ],
-                [ 'NGC1291.jpg', 'Ring Galaxy', 'NGC 1291', 'i' ]
-            ];
-
-            showImages('Galaxies', images);
-        }
-
-        function showStarClusters()
-        {
-            var images = [
-                [ 'm15.jpg', 'Great Pagasus Cluster', 'Messier 15', 'i' ],
-                [ 'Comet21PandMessier37.jpg', "Comet 21P and Messier 37", 'Messier 37', 'i' ],
-                [ 'Pleiades_m45.jpg', "Pleiades", 'Messier 45', 'i' ],
-                [ 'Omega_Centauri.jpg', "Omega Centauri", 'NGC 5139', 'i' ],
-                [ 'NGC3532.jpg', "Wishing Well Cluster", 'NGC 3532', 'i' ],
-                [ 'NGC4755.jpg', "Jewel Box Open Cluster", 'NGC 4755', 'i' ]
-            ];
-
-            showImages('Star Clusters', images);
-        }
-
-        function showSolarSystem()
-        {
-            var images = [
-                [ 'Sun2.jpg', 'Sun', '', 'i' ],
-                [ 'Sun2-2.jpg', "Sun flares", '', 'i' ],
-                [ 'SunFlare2-2.jpg', "Sun flare", '', 'i' ]
-            ];
-
-            showImages('Solar System', images);
-        }
-
-        function showMessier_1_55()
+        function showMessier()
         {
             var images = [
                 [ 'M1.jpg', 'Messier 1',"Crab Nebula", 'i' ],
@@ -213,16 +84,8 @@
                 [ 'M52.jpg', 'Messier 52',"Open (galactic) Cluster", 'i' ],
                 [ 'M53.jpg', 'Messier 53',"Globular Cluster", 'i' ],
                 [ 'M54.jpg', 'Messier 54',"Globular Cluster", 'i' ],
-                [ 'M55.jpg', 'Messier 55',"Globular Cluster", 'i' ]
-            ];
-
-            showImages('Messier 1-55', images);
-        }
-
-        function showMessier_56_110()
-        {
-            var images = [
-            [ 'M56.jpg', 'Messier 56',"Globular Cluster", 'i' ],
+                [ 'M55.jpg', 'Messier 55',"Globular Cluster", 'i' ],
+                [ 'M56.jpg', 'Messier 56',"Globular Cluster", 'i' ],
                 [ 'M57.jpg', 'Messier 57',"Ring Nebula", 'i' ],
                 [ 'M58.jpg', 'Messier 58',"Seyfert Galaxy", 'i' ],
                 [ 'M59.jpg', 'Messier 59',"Galaxy in Group of Galaxies", 'i' ],
@@ -279,34 +142,12 @@
                 [ 'M110.jpg', 'Messier 110',"Galaxy in Group of Galaxies", 'i' ]
             ];
 
-            showImages('Messier 56-110', images);
+            showImages('Messier Catalog', images);
         }
 
         function restoreState()
         {
-            switch (sessionStorage.getItem('heading')) {
-                case 'Nebulae':
-                    showNebulae();
-                    break;
-                case 'Galaxies':
-                    showGalaxies();
-                    break;
-                case 'Star Clusters':
-                    showStarClusters();
-                    break;
-                case 'Solar System':
-                    showSolarSystem();
-                    break;
-                case 'Messier 1-55':
-                    showMessier_1_55();
-                    break;
-                case 'Messier 56-110':
-                    showMessier_56_110();
-                    break;
-                default:
-                    showNebulae();
-                    break;
-            }
+            showMessier();
         }
 
         restoreState();
