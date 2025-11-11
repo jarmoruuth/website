@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FV9GG7V9PM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FV9GG7V9PM');
+</script>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<title>AstroMosaic Telescope Planner Info</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Astro Mosaic Telescope Planner" />
+<meta property="og:url" content="https://ruuth.xyz/AstroMosaicInfo.html" />
+<meta property="og:image" content="https://ruuth.xyz/astromosaicscreen.jpg" />
+<meta property="og:description" content="Astro Mosaic is a tool for planning telescope observations." />
+<meta property="og:type" content="website" />
+
+</head>
+<body>
+
+<!-- Note -->
+
+<!-- Header -->
+<div class="header">
+  <div class="dropdown">
+    <button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+    <div class="dropdown-content">
+      <a href="AstroImageTools.html">Home</a>
+      <a href="AstroMosaicInfo.html">Astro Mosaic</a>
+      <a href="AutoIntegrateInfo.html">AutoIntegrate</a>
+      <a href="DownloadFitInfo.html">Download .fit</a>
+      <a href="FitsPyInfo.html">FITS utility</a>
+    </div>
+  </div>
+  <div class="h1text">
+    <h1>Astro Mosaic Telescope Planner</h1>
+  </div>
+</div>
+
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+    <h2>Links</h2>
+    <p>Link to AstroMosaic page.</p>
+    <div>        
+            <a href="AstroMosaic.html"><div>AstroMosaic</div></a>
+    </div>
+    <p>Source code in GitHub.</p>
+    <div>        
+            <a href="https://github.com/jarmoruuth/AstroMosaic"><div>GitHub</div></a>
+    </div>       
+  </div>
+  <div class="main">
+    <h2>INFO</h2>
+
+    <p>
+      <a href="AstroMosaic.html">Astro Mosaic</a> is a tool for planning telescope observations. It shows a visual view of the target using 
+      a selected telescope, visibility during the night and it can calculate mosaic coordinates.
+    </p>
+
+    <a href="astromosaicscreen.jpg"><img src="astromosaicscreen.jpg" height="300"></a>
+
+    <p>
+        Tool includes 
+      <ul>
+        <li>Visual view of target using Aladin Sky Atlas</li>
+        <li>Target name resolution using Sesame interface</li>
+        <li>Field of View (FoV) view of target with a chosen remote telescope</li>
+        <li>View and calculate mosaics coordinates up to 10x10 size</li>
+        <li>Target visibility during the night with altitude and optional azimuth view</li>
+        <li>Moon altitude and distance from the target</li>
+        <li>Target and moon altitude over next 12 months</li>
+        <li>Optional planet visibility during the night over next 12 months</li>
+        <li>Moon path during the night is shown in the sky atlas</li>
+        <li>Optionally planet path for the following four weeks is shown in the sky atlas</li>
+        <li>Multiple telescope services are are available by default</li>
+        <li>Possibility to add own telescopes</li>
+        <li>Catalog lists for selecting the target</li>
+        <li>Filtering of catalog list based on altitude, time and distance from the moon</li>
+        <li>Multiple target coordinate formats are supported:</li>
+            <ul>
+              <li>Hours and degrees:</li>
+                  <ul>
+                  <li>HH:MM:SS DD:MM:SS</li>
+                  <li>HH MM SS DD MM SS</li>
+                  <li>HH:MM:SS/DD:MM:SS</li>
+                  <li>HH MM SS/DD MM SS</li>
+                  <li>HHMMSS DDMMSS</li>
+                  <li>HH.dec DD.dec</li>
+                  </ul>
+              <li>Decimal degrees:</li>
+                  <ul>
+                  <li>d DD.dec DD.dec</li>
+                  </ul>
+            </ul>
+        <li>A comma separated list can be given to show multiple targets</li>
+        <li>A panel view to show multiple catalog objects</li>
+        <li>Optionally catalog objects can be sorted by altitude</li>
+        <li>Wiki interface to show target information</li>
+        <li>Messier, NGC, IC, Sharpless, RCW, LDN, LBN, Barnard, Cederblad, Slooh 500, Simbad and NED catalog names on a map (optional)</li>
+        <li>Object markers are clickable and print short info or a Wiki page</li>
+        <li>Full screen control to show a bigger view of the map</li>
+        <li>Control to change the map view</li>
+        <li>Current seeing conditions on telescope location</li>
+        <li>Current location view to show the sky map at the current location</li>
+        </ul>
+    </p>
+
+    <h3>Multiple telescope services</h3>
+    <p>
+      Currently Astro Mosaic supports Telescope Live, Slooh, RoboScopes, SkyGems, Hubble and 
+      James Webb Space Telescope (JWST) telescopes. Seestar, Vaonis, Unistellar Equinox and 
+      Dwarflab II smart telescopes are also listed.
+      You can also add your own telescope 
+      (see page <a href="AstroMosaicConfigurationInfo.html">Astro Mosaic Configuration</a>).
+    </p>
+    <p>
+      Direct links to telescope services are below.
+    </p>
+    <ul>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Telescope%20Live">https://ruuth.xyz/AstroMosaic.html?service=Telescope%20Live</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Slooh">https://ruuth.xyz/AstroMosaic.html?service=Slooh</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=RoboScopes">https://ruuth.xyz/AstroMosaic.html?service=RoboScopes</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=SkyGems">https://ruuth.xyz/AstroMosaic.html?service=SkyGems</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Hubble">https://ruuth.xyz/AstroMosaic.html?service=Hubble</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=JWST">https://ruuth.xyz/AstroMosaic.html?service=JWST</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Seestar">https://ruuth.xyz/AstroMosaic.html?service=Seestar</a></li>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Vaonis">https://ruuth.xyz/AstroMosaic.html?service=Vaonis</a></li>
+      </ul>
+
+    <h3>Tutorials</h3>
+
+    <p>
+    There are several interactive tutorials available that guide you through the main features of Astro Mosaic.
+    You can find buttons that start tutorials at the bottom of the Astro Mosaic page.
+    </p>
+
+    <h3>Add own telescope</h3>
+    <p>
+    Own telescope can be added to Astro Mosaic with the Add telescope option. Telescope information includes
+    telescope field of view and location. Telescopes added with the Add telescope option are not persistent
+    so they disappear when Astro Mosaic is restarted. 
+    </p>
+    <p>
+    To make the added telescope permanent you can use URL parameters to add the telescope each time
+    Astro Mosaic is started. Using an Info button you can get a URL that includes the telescope information.
+    That URL can be bookmarked to be able to quickly access your telescope settings in the future.
+    </p>
+    <p>
+    For other options to add your own telescope see
+    a separate document <a href="AstroMosaicConfigurationInfo.html">Astro Mosaic Configuration</a>.
+    </p>
+  
+    <h3>Telescope field of view</h3>
+    <p>
+      AstroMosaic can show telescope field of view and mosaic grid view.
+    </p>
+
+      <a href="astromosaic_fov.jpg"><img src="astromosaic_fov.jpg" height="300"></a>
+      <a href="astromosaic_grid.jpg"><img src="astromosaic_grid.jpg" height="300"></a>
+
+    <h3>Night and year visibility</h3>
+    <p>
+      AstroMosaic can show target altitude for a given night and also midnight altitude for next 12 months. 
+      Optionally it is possible to show target azimuth.
+      Also moon altitude, phase and distance from the target is shown.
+    </p>
+
+      <a href="astromosaic_dayvisibility.jpg"><img src="astromosaic_dayvisibility.jpg" height="300"></a>
+      <p><small>Target altitude and moon altitude.</small></p>
+
+      <a href="astromosaic_yearvisibility.jpg"><img src="astromosaic_yearvisibility.jpg" height="300"></a>
+      <p><small>Target altitude and moon altitude at midnight for the next 12 months.</small></p>
+
+      <a href="astromosaic_azimuth.jpg"><img src="astromosaic_azimuth.jpg" height="300"></a>
+      <p><small>Target altitude, azimuth and moon altitude.</small></p>
+
+    <h3>Multiple catalogs</h3>
+    <p>
+      Astro Mosaic supports the following catalogs.
+    </p>
+    <ul>
+      <li>Messier</li>
+      <li>NGC</li>
+      <li>IC</li>
+      <li>Sharpless</li>
+      <li>RCW</li>
+      <li>LDN</li>
+      <li>LBN</li>
+      <li>Barnard</li>
+      <li>Cederblad</li>
+      <li>Slooh 500 (only with Slooh service)</li>
+      <li>Simbad (one degree view)</li>
+      <li>NED (one degree view)</li>
+    </ul>
+    <p>
+      All catalog object names are added as a catalog layer to the map view. Each catalog object name is written next to 
+      that object on a map to make it easier to identify major objects in a map. Catalog map layers are disabled by default.
+    </p><p>
+      There are a total of 13959 NGC and IC objects that can be shown on the map. 
+      The Sharpless catalog has 313 objects listed mostly from the northern hemisphere. 
+      The RCW catalog has 182 objects listed mostly from the southern hemisphere. RCW catalog also includes objects from the Gum catalog.
+    </p><p>
+      Catalog object markers are clickable. When you click on a marker a short info is written on the panel to the right 
+      side of the map. If the Wiki check box is checked then the Wikipedia page of that object is shown when possible.
+    </p>
+
+    <h3>Filtering in catalog list</h3>
+
+    <a href="am_filtering.jpg"><img src="am_filtering.jpg"></a>
+    
+    <p>
+      It is possible to filter catalog lists in a few ways.
+    </p><p>
+      <ul>
+      <li>First filter is altitude where you decide how high the target needs to be during the night to be shown in the list.</li>
+      <li>Then it is possible to filter by time. If there is for example only a specific time slot available the time filter 
+      can be used to show what other filter conditions are met at that specific time.</li>
+      <li>With a moon filter it is possible to show only those targets that have at least the given distance from the moon. 
+      If the moon is up it can be useful for example to pick only targets that are at least 90 degrees from the moon.</li>
+    </ul>
+    </p><p>
+      Filtering points are calculated at midnight and then two and four hours before and after midnight. So in some cases 
+      it is possible that a target is not listed if it will match the filter only between those calculated points.
+    </p>
+
+    <h3>Sorting catalog list</h3>
+    <p>
+      It is possible to sort catalog lists by altitude when an altitude filter is enabled. It should help find those
+      targets that have the best visibility at a selected time.
+    </p>
+
+    <h3>Panel view of catalog</h3>
+    <p>
+      Panel view shows 25 first catalog objects as separate panels. It allows an easy visual view to 
+      targets with the chosen telescope.
+    </p>
+
+    <a href="astromosaic_catalogpanels.jpg"><img src="astromosaic_catalogpanels.jpg" height="300"></a>
+    
+    <h3>Controls on the map</h3>
+    <ul>
+      <li>
+      Catalog layer control button on the upper left corner can be used to enable or disable map layers. 
+      Also the base map can be changed there. 
+      </li>
+      <li>
+      A button to control full screen mode is at the upper right corner of the map. This makes it easier to see a 
+      bigger picture when browsing the map.    
+      </li>
+    </ul>
+
+    <h3>Hovering and clicking</h3>
+    <p>
+      Most objects with a marker on the sky atlas respond to hovering and clicking. Hovering on the object shows an
+      info line above the sky atlas. Clicking on the object shows a more detailed info table at the bottom of the screen.
+    </p>
+
+    <h3>Simbad pointer</h3>
+
+    <a href="am_simbad_pointer.jpg"><img src="am_simbad_pointer.jpg"></a>
+    
+    <p>
+      Simbad pointer in the sky atlas can be used to click on any point in the sky and show the Simbad info of that point.
+    </p>
+
+    <h3>Visual reposition of the target</h3>
+    <p>
+      Reposition mode can be used to visually move current framing using the mouse. Reposition mode
+      can be chosen by checking the Reposition box in the interface.
+    </p><p>
+      Reposition is useful also when searching for targets in the sky map. It is possible to center the
+      current Aladin view position by checking the Reposition box and moving the image with the mouse.
+      Note that if you have moved far away from the original position you need to click the Refresh button
+      to update visibility charts.
+    </p>
+
+    <h3>Planet view</h3>
+
+    <a href="am_planet_view.jpg"><img src="am_planet_view.jpg"></a>
+
+    <p>
+      It is possible to choose a planet to be shown in the visibility charts.
+      Planet path is also shown in the sky atlas.
+    </p>
+
+    <a href="am_planet_visibility.jpg"><img src="am_planet_visibility.jpg" height="300"></a>
+
+    <h3>Moon and planet path on a map</h3>
+
+    <a href="am_moon_planet_path.jpg"><img src="am_moon_planet_path.jpg" height="300"></a>
+
+    <p>
+      Moon and planet path is shown in the sky atlas. Moon path is shown for the selected night.
+      If a planet is selected then the planet path is shown for the next four weeks. By clicking 
+      on the path it is possible to see a more detailed info table at the bottom of the screen.
+    </p>
+
+    <h3>Current location view</h3>
+    <p>
+      By selecting the Current location service it is possible to see the current night sky at a selected time.
+      Current location requires access to the location service in the browser. With the Current location view
+      no telescope FoV is shown. Instead a 45 degree radius circle is drawn on the sky map to make it easier to keep 
+      track of the location on the map.
+    </p>
+    <p>
+      The Current location view accepts also time in the date field. So it is possible to check the sky at a
+      specific time.
+    </p>
+    <p>
+      Current location view has two virtual telescopes. Telescope Visual uses the date and time in the date field. 
+      Telescope Now uses the current time. Telescope now is useful when you want to check the sky
+      at the current time without entering it to the data field. Both telescopes always overwrite the target
+      field with the current sky location. Telescope now overwrites also the date field with the current date
+      and time.
+    </p>
+    <p>
+      Current location assumes that the date field is given in local time.
+    </p>
+
+    <h3>Markers</h3>
+    <p>
+      It is possible to add one or more markers to the view by preceding coordinates with a special keyword marker.
+      Markers work only with the ra/dec coordinate list and cannot be the first entry in the list.
+    </p><p>
+      Example of a target with a marked added: d 338.8958 39.4908, marker 22:35:52.28275 +39:38:03.5868
+    </p><p>
+      <a href="https://ruuth.xyz/AstroMosaic.html?target=d%20338.8958%2039.4908,marker%2022:39:15.67864%20+39:03:00.9712&telescope=SPA-1">https://ruuth.xyz/AstroMosaic.html?target=d%20338.8958%2039.4908,marker%2022:39:15.67864%20+39:03:00.9712&telescope=SPA-1</a>
+    </p>
+
+    <hr>
+
+    <h3>Configuring Astro Mosaic</h3>
+      <p>
+        Configuring Astro Mosaic using URL parameters is described in a document  
+        <a href="AstroMosaicConfigurationInfo.html">Astro Mosaic Configuration</a>. It is possible  
+        for example to add your own camera and lens or telescope to Astro Mosaic.
+      </p>
+
+      <h3>Embedding Astro Mosaic</h3>
+      <p>
+        Embedding Astro Mosaic to a page is described in a document  
+        <a href="AstroMosaicConfigurationInfo.html">Astro Mosaic Configuration</a>. It is possible  
+        to embed parts of Astro Mosaic in an Iframe by calling AstroMosaic.html with URL parameters or in a user given 
+        div section by loading script file AstroMosaicEngine.js and calling function AstroMosaicEngine.
+      </p>
+
+    <hr>
+
+    <h3>Aladin API for visual view of target</h3>
+    <p>
+      Astro Mosaic would not be possible without <a href="http://aladin.u-strasbg.fr/aladin.gml">Aladin Sky Atlas</a>
+      and <a href="https://aladin.u-strasbg.fr/AladinLite/doc/">Aladin Lite</a>. Aladin Sky Atlas is a great interactive 
+      map created from digitized astronomical images. It is simply amazing that such a great resource is 
+      available. And it is totally free!
+      <p></p>
+      Aladin Lite provides HTML5 and programmable Javascript API interface to Aladin Sky Atlas. It makes it 
+      very easy to integrate into a web page. There are great examples and documentation to get started very quickly.
+      <p></p>
+      For displaying images Aladin Lite uses preprocessed data from <a href="http://aladin.u-strasbg.fr/hips/">HiPS</a>. 
+      HiPS (Hierarchical Progressive Surveys) is the hierarchical tiling mechanism which allows users to access, 
+      visualize and browse seamlessly image, catalog and cube data. There is 250TB of data available from 
+      different HiPS surveys.
+    </p>
+
+
+    <h3>Sesame Name Resolver</h3>
+    <p>
+      Astro Mosaic uses <a href="http://cds.u-strasbg.fr/cgi-bin/Sesame">Sesame</a> service for resolving names. When a name 
+      like m101 is written into the target input box, a query is sent to the Sesame server to resolve the name. As a result 
+      Sesame server will return an XML page that contains target RA/DEC coordinates among other things. Sesame is 
+      actually an interface to other name resolvers: Simbad, NED and VizierR.
+    </p>
+
+    <h3>Calculating position of sun, moon and planets</h3>
+    <p>
+      There are very good resources available to calculate sun, moon and planet positions at a 
+      certain time and place. In Astro Mosaic that information is used to calculate for example moon position and altitude during 
+      the night, sun rise and set times and moon phase.
+    </p><p>
+      Perhaps the best resource is a page <a href="https://stjarnhimlen.se/comp/ppcomp.html">How to compute planetary positions</a>
+      written by Paul Schlyter. 
+      It has a lot of good and practical information. He has also another page <a href="http://stjarnhimlen.se/comp/tutorial.html">
+      Computing planetary positions - a tutorial</a> with worked examples that has similar information. Those pages 
+      have all required information on orbital elements, 
+      coordinate transformations and such.
+    </p>
+
+    <h3>Moon phase</h3>
+    <p>
+      Moon phase shown in Astro Mosaic is based on its own calculations so it may not be exactly correct. It was very difficult
+      to find a good example of that so Astro Mosaic just calculates the angle between sun and moon as seen from earth. That angle is then used to 
+      calculate moon phase.
+    </p><p>
+      When the moon and sun are on the same side angle is zero degrees and moon phase is 0%, when they are on opposite 
+      sides the moon phase is 100% and when angle is 90 degrees phase is 50%. And other values are between those.
+    </p>
+
+    <h3>Wiki interface</h3>
+    <p>
+      Astro Mosaic can optionally show a Wiki page of the target. Wikipedia has an <a href="https://en.wikipedia.org/w/api.php">API</a>
+      that can be used to find a page id based on a search text. A surprisingly large number of Messier, NGC and IC targets 
+      has its own page at Wikipedia. If a page id is found then a mobile version of that page is shown in its own frame.
+    </p><p>
+      Astro Mosaic does some basic parsing on names before they are sent to Wikipedia search. For example messier objects 
+      can be written as m101 but they are translated to Messier 101. Also NGC and IC objects are formatted slightly before 
+      sending to Wikipedia.
+    </p>
+
+    <h3>History</h3>
+    <p>
+      Sometimes in 2018, very early in my astrophotography hobby, I wanted to image Western Veil Nebula. It did not fit into the 
+      telescope field of view so I started working on a three panel mosaic. I used Stellarium to approximately find correct 
+      coordinates. I managed to get the mosaic done but it was a very random process. I started to look for some tools to 
+      calculate mosaic coordinates but failed to find any free ones. So I decided to learn something new and do the coordinate 
+      calculations myself. I did the first version in Python but soon found out about Aladin Sky Atlas. With that I could do even 
+      better and see the actual framing on the sky atlas on a web page. After that I have added more functionality like visibility 
+      charts and different catalogs for finding targets.
+    </p>
+
+    <h3 id="credits">Credits</h3>
+      <p>
+        <ul>
+          <li>Many thanks to Daniele Risolo for the ideas and testing with planet view.</li>
+          <li>Many thanks to Nick R for the ideas and code contributions to the visual reposition of the target.</li>
+          <li>Interactive sky map is from <a href="http://aladin.u-strasbg.fr/aladin.gml">Aladin Sky Atlas</a>
+            and <a href="https://aladin.u-strasbg.fr/AladinLite/doc">Aladin Lite</a></li>
+          <li>Name resolving by <a href="http://cds.u-strasbg.fr/cgi-bin/Sesame">Sesame</a> service</li>
+          <li>Calculating position of sun and moon from Paul Schlyter <a href="https://stjarnhimlen.se/comp/ppcomp.html">How to compute planetary positions</a></li>
+          <li>NGC and IC data from <a href="https://github.com/mattiaverga/OpenNGC">OpenNGC</a> by Mattia Verga</li>
+          <li>NGC and IC object distances are from <a href="http://www.klima-luft.de/steinicke/ngcic/ngcic_e.htm">Revised NGC/IC Data</a> by Dr. Wolfgang Steinicke</li>
+          <li>Sharpless data from <a href="http://www.sharplesscatalog.com/otherlinks.aspx">The Best of Sharpless Catalog</a></li>
+          <li>RCW data from <a href="https://cdsarc.unistra.fr/viz-bin/cat/VII/216">Vizier</a></li>
+          <li>RCW catalog B1950 coordinates converted to J2000 using info from <a href="http://www.robertmartinayers.org/tools/coordinates.html">Astronomical Coordinate Calculator version 0.31</a></li>
+          <li>Messier catalog info from <a href="http://cds.u-strasbg.fr/cgi-bin/Sesame">Sesame</a></li>
+          <li>LDN data from <a href="http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=VII%2F7A">Vizier</a></li>
+          <li>LBN data from <a href="https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=VII/9">Vizier</a></li>
+          <li>Barnard data from <a href="http://cdsarc.u-strasbg.fr/viz-bin/Cat?VII/220A#/browse">Vizier</a></li>
+          <li>Cederblad data from <a href="https://cdsarc.cds.unistra.fr/viz-bin/cat/VII/231#/browse">Vizier</a></li>
+          <li>Slooh 500 catalog list is from <a href="https://www.slooh.com">Slooh</a></li>
+          <li>Catalog object type info from <a href="http://cds.u-strasbg.fr/cgi-bin/Sesame">Sesame</a></li>
+          <li>Seeing widget from <a href="https://www.meteoblue.com/">meteoblue</a></li>
+          <li>Telescope Live telescope info from <a href="https://telescope.live/">Telescope Live</a></li>
+          <li>RoboScopes telescope info from <a href="https://www.roboscopes.com/">RoboScopes</a></li>
+          <li>Slooh telescope info from <a href="https://www.slooh.com">Slooh</a></li>
+        </ul>
+      </p>
+
+      <h3 id="links">Links</h3>
+      <p>
+        Other useful or interesting links.
+      </p>
+      <ul>
+        <li><a href="https://astronomy.stackexchange.com/questions/24859/local-sidereal-time">Local Sidereal Time</a></li>
+        <li><a href="http://www.stjarnhimlen.se/comp/tutorial.html">Computing planetary positions - a tutorial with worked examples</a></li>
+        <li><a href="http://www.stargazing.net/kepler/altaz.html">Converting RA and DEC to ALT and AZ</a></li>
+      </ul>
+
+  </div>
+</div>
+
+<div class="footer">
+  <p><small class="normal">Feedback:  <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or <a href="mailto:astroimagetools@gmail.com">astroimagetools@gmail.com</a></p>
+</div>
+
+</body>
+</html>

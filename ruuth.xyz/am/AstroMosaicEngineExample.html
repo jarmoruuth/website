@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head></head>
+<link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+</head>
+
+<body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js" charset="utf-8"></script>
+<!-- script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script -->
+<script type="text/javascript" src="https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="target-div" style="width:300px;height:300px;"></div>
+<div id="radec-div" style="width:300px;"></div>
+<div id="day-div" style="width:300px;height:300px;"></div>
+<div id="year-div" style="width:300px;height:300px;"></div>
+
+<script type="text/javascript" src="AstroMosaicEngine.js"></script>
+
+<script>
+
+var viewer_params = {
+    fov_x : 37,                 // x fov in degrees
+    fov_y : 43,                 // y fov in degrees
+    grid_type : "mosaic",          // grid type, "fov" or "mosaic", if not set, "fov" is used
+    grid_size_x : 3,            // number of grid panels in x direction, if not set, 1 is used
+    grid_size_y : 3,            // number of grid panels y direction, if not set, 1 is used
+    grid_overlap : 20,          // grid overlap in percentage, if not set, 20 is used
+    location_lat : 28.29970,    // location latitude (here Teide)
+    location_lng : -16.50826,   // location longitude (here Teide)
+    horizonSoft : null,         // soft horizon limit or null
+    horizonHard : [30],         // hard horizon limit or null
+    meridian_transit : null,    // meridian transit or null
+    UTCdate_ms : null,          // UTC date in milliseconds at the start of the day, null for current date
+    timezoneOffset: null,       // difference between UTC time and local time, in hours, null for UTC, should match with lat/lng
+    isCustomMode : true,        // use custom colors
+    chartTextColor : "white",   // custom chart text color
+    gridlinesColor : "gray",    // custom chart grid lines color
+    backgroundColor : "black"   // custom chart background color
+};
+
+// we could use local time zone but it should match with lat/lng
+// var d = new Date();
+// viewer_params.timezoneOffset = d.getTimezoneOffset() / 60;
+
+AstroMosaicEngine("M82", viewer_params, "target-div", "day-div", "year-div", "radec-div");
+
+</script>
+</body>
+</html>

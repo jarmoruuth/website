@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FV9GG7V9PM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FV9GG7V9PM');
+</script>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<link rel="stylesheet" type="text/css" href="sub2.css">
+<title>Configuring and Embedding AstroMosaic </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="AstroMosaicEngine.js"></script>
+<body>
+
+<!-- Note -->
+
+<!-- Header -->
+<div class="header">
+  <div class="dropdown">
+    <button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+    <div class="dropdown-content">
+      <a href="AstroImageTools.html">Home</a>
+      <a href="AstroMosaicInfo.html">Astro Mosaic</a>
+      <a href="AutoIntegrateInfo.html">AutoIntegrate</a>
+      <a href="DownloadFitInfo.html">Download .fit</a>
+      <a href="FitsPyInfo.html">FITS utility</a>
+    </div>
+  </div>
+  <div class="h1text">
+    <h1>Configuring and Embedding AstroMosaic</h1>
+  </div>
+</div>
+
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+    <h2>Links</h2>
+    <p>Link to AstroMosaic page.</p>
+    <div>        
+            <a href="AstroMosaic.html"><div>AstroMosaic</div></a>
+    </div>
+    <p>Source code in GitHub.</p>
+    <div>        
+            <a href="https://github.com/jarmoruuth/AstroMosaic"><div>GitHub</div></a>
+    </div>       
+  </div>
+  <div class="main">
+    <h2>INFO</h2>
+
+    <p>
+      <a href="#Configuring">Configuring Astro Mosaic</a>
+      <br>
+      <a href="#Embedding">Embedding Astro Mosaic</a>
+    </p>
+
+    <h2 id="Configuring">Configuring Astro Mosaic</h2>
+
+      <p>
+      <a href="AstroMosaic.html">Astro Mosaic</a> is configurable using URL parameters. With URL parameters it is possible to 
+      specify target, default telescope, add your own telescope and a few other settings.
+    </p>
+
+    <h3>Basic setting with URL parameters</h3>
+    <p>
+      Astro Mosaic accepts several parameters from URL string. Below are listed basic settings using URL parameters with some examples.
+    </p>
+    <p>
+      Url parameter descriptions:
+      <ul>
+        <li>target - Target name or ra/dec.</li>
+        <li>add_catalog - Add a new catalog, this option requires two comma separated 
+             parameters: catalog-name,url-to-catalog-json. Multiple catalog can be given separated by
+            semicolon.</li>
+        <li>add_service - Add a new service, see description below.</li>
+        <li>set_service - Set service, see description below.</li>
+        <li>service - Select the current service.</li>
+        <li>telescope - Select the current telescope in the current service.</li>
+        <li>name - Name displayed in the title.</li>
+        <li>grid_type - Select fov|panels.</li>
+        <li>overlap - Mosaic overlap percentage.</li>
+        <li>grid_size - Mosaic grid size as x,y.</li>
+        <li>date - View date in ISO format.</li>
+        <li>services_json - Set services from a json file, see description below.</li>
+        <li>view - Select target|day|year. Default is show all.</li>
+        <li>offaxis - Set offaxis guiding view, see description below.</li>
+      </ul>
+    </p>
+    <p>
+      Examples:
+      <ul>
+        <li>Set the target at startup: target=<i>name-or-ra-dec</i></li>
+          <ul>
+            <li><a href="https://ruuth.xyz/AstroMosaic.html?target=Orion%20nebula">https://ruuth.xyz/AstroMosaic.html?target=Orion%20nebula</a></li>
+            <li><a href="https://ruuth.xyz/AstroMosaic.html?target=05:35:17.29%20-05:23:27.9">https://ruuth.xyz/AstroMosaic.html?target=05:35:17.29%20-05:23:27.9</a></li>
+          </ul>
+        <li>Set the service at startup: service=<i>name</i></li>
+          <ul>
+            <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Hubble">https://ruuth.xyz/AstroMosaic.html?service=Hubble</a></li>
+          </ul>
+        <li>Set the telescope at startup: telescope=<i>name</i></li>
+          <ul>
+            <li><a href="https://ruuth.xyz/AstroMosaic.html?telescope=CHI-6">https://ruuth.xyz/AstroMosaic.html?telescope=CHI-6</a></li>
+            <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Telescope%20Live&telescope=CHI-3">https://ruuth.xyz/AstroMosaic.html?service=Telescope%20Live&telescope=CHI-3</a></li>
+          </ul>
+        <li>Set the date at startup: date=<i>date</i></li>
+          <ul>
+            <li><a href="https://ruuth.xyz/AstroMosaic.html?date=2021-03-21&target=M51">https://ruuth.xyz/AstroMosaic.html?date=2021-03-21&target=M51</a></li>
+          </ul>
+    </ul>
+    </p>
+
+    <h3>Add your own telescope or camera and lens</h3>
+    <p>
+      You can add your own telescope or camera with set_service and add_service URL parameters. 
+      Parameter set_service removes built in services and adds a new one.
+      Parameter add_service creates a new service if service-name
+      is not found. Then it adds a new telescope to a given service.
+    </p>
+    <p>
+      Parameter descriptions for set_service and add_service:
+      <ul>
+        <li>service-name - Service name.</li>
+        <li>telescope-name - Telescope name.</li>
+        <li>fov-x-minutes - Horizontal field of view in arcminutes.</li>
+        <li>fov-y-minutes - Vertical field of view in arcminutes.</li>
+        <li>latitude - Latitude of telescope location in degrees.</li>
+        <li>longitude - Longitude of telescope location in degrees.</li>
+        <li>weather:detect_location - Optional weather service view will try to detect the location for weather information.
+            This of course may or may not match the telescope location</li>
+        <li>tz:timezone - Timezone in hours from UTC to be used in time display. If not given then UTC is used.</li>
+      </ul>
+    </p>
+    <p>
+      Syntax:
+      <ul>
+        <li>set_service=<i>service-name,telescope-name,fov-x-minutes,fov-y-minutes,latitude,longitude[,tz:timezone][,weather:detect_location]</i></li>
+        <li>add_service=<i>service-name,telescope-name,fov-x-minutes,fov-y-minutes,latitude,longitude[,tz:timezone][,weather:detect_location]</i></li>
+      </ul>
+    <p>
+      Examples:
+      <ul>
+        <li><a href="https://ruuth.xyz/AstroMosaic.html?set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452,tz:2,weather:detect_location">https://ruuth.xyz/AstroMosaic.html?set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452,tz:2,weather:detect_location</a></li>
+        <li><a href="https://ruuth.xyz/AstroMosaic.html?add_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452,tz:2,weather:detect_location">https://ruuth.xyz/AstroMosaic.html?add_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452,tz:2,weather:detect_location</a></li>
+      </ul>
+    </p>
+    <p>
+      If you want to add your own camera and lens, you can check camera/lens field of view in degrees for example from 
+      <a href="https://www.scantips.com/lights/fieldofview.html">Field of View Calculator (FoV) of a Camera and Lens</a>.
+      You can then convert degrees to arcminutes for example here 
+      <a href="http://www.kylesconverter.com/angle/degrees-to-arcminutes">Convert Degrees to Arcminutes</a>.
+    </p>
+
+    <h3>Offaxis guiding view</h3>
+    <p>
+      Parameter descriptions for add_offaxis. This parameter sets offaxis guiding view outside of telescope FoV. It can be added to any
+      service and telescope. (NOTE! If someone knows how offaxis view should be configured please let me know.)
+      <ul>
+        <li>service-name - Service name.</li>
+        <li>telescope-name - Telescope name.</li>
+        <li>fov-x-minutes - Horizontal field of view in arcminutes.</li>
+        <li>fov-y-minutes - Vertical field of view in arcminutes.</li>
+        <li>offset - Offset from main Fov in arcminutes.</li>
+        <li>Position - Position of offaxis view, one of T, B, L, R for top, bottom, left or right axis.</li>
+      </ul>
+    </p>
+    <p>
+      Syntax:
+      <ul>
+        <li>add_offaxis=<i>service-name,telescope-name,fov-x-minutes,fov-y-minutes,offset-in-minutes,position</i></li>
+    </ul>
+    <p>
+      Examples:
+      <ul>
+        <li><a href="https://ruuth.xyz/AstroMosaic.html?set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452,tz:2,weather:detect_location&add_offaxis=Fuji%20X-T3,400mm,5,5,5,L">https://ruuth.xyz/AstroMosaic.html?set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452,tz:2,weather:detect_location&add_offaxis=Fuji%20X-T3,400mm,5,5,5,L</a></li>
+    </ul>
+    </p>
+
+    <h3>Set multiple services and telescopes using a Json file</h3>
+      <p>
+        You can replace built in services with services_json URL parameter. The json file gives more
+        control and options than set_service and add_service URL parameters.
+      </p>
+      <p>
+        <ul>
+          <li>services_json=<i>url-to-json-file</i></li>
+            <ul>
+              <li><a href="https://ruuth.xyz/AstroMosaic.html?services_json=https://ruuth.xyz/am_test_services.json">https://ruuth.xyz/AstroMosaic.html?services_json=https://ruuth.xyz/am_test_services.json</a></li>
+            </ul>
+      </ul>
+      </p>
+      <h4>Sample services_json file</h4>
+      <p><code>
+        {<br>
+          &nbsp;"telescope_services": [<br>
+          &nbsp;&nbsp;{<br> 
+          &nbsp;&nbsp;&nbsp;"name": "Fuji X-T3", "radec_format": 0, <br>
+          &nbsp;&nbsp;&nbsp;"telescopes": [<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ "name": "400mm", "fov_x": 206, "fov_y": 137, "lat": 60.04298, "lng": 24.24452, timezoneOffset: 2,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"alt": 0, "weather": null, "horizon_limits": [10], "meridian_transit": 0 },<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ "name": "135mm", "fov_x": 609, "fov_y": 406, "lat": 60.04298, "lng": 24.24452, timezoneOffset: 2,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"alt": 0, "weather": null, "horizon_limits": [10], "meridian_transit": 0 }<br>
+          &nbsp;&nbsp;&nbsp;]<br>
+          &nbsp;&nbsp;},<br>
+          &nbsp;&nbsp;{<br>
+          &nbsp;&nbsp;&nbsp;"name": "My telescope", "radec_format": 0,<br>
+          &nbsp;&nbsp;&nbsp;"telescopes": [<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ "name": "Takahashi FSQ-106ED", "fov_x": 324, "fov_y": 324, "lat": 60.04298, "lng": 24.24452, timezoneOffset: 2,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"alt": 0, "weather": null, "horizon_limits": [10], "meridian_transit": 10 }<br>
+          &nbsp;&nbsp;&nbsp;]<br>
+          &nbsp;&nbsp;}<br>
+          &nbsp;]<br>
+      }
+    </code></p>
+
+    <h2 id="Embedding">Embedding Astro Mosaic</h2>
+
+        <p>
+          Astro Mosaic can be embedded to a page. With embedding it is possible to select which view is 
+          shown. It is possible to show target view, day visibility view or year visibility view.
+          Embedded view can be shown in an Iframe or in a user defined div section using AstroMosaicEngine.js
+          script file. 
+        </p>
+
+      <h3>Embedding using Javascript function AstroMosaicEngine </h3>
+
+        <p>
+          Astro Mosaic engine is available as a separate AstroMosaicEngine.js Javascript file. By callling AstroMosaicEngine function it is possible
+          to show target view, or day or year visibility graphs in a user given div section. With Javascript functions user can also control
+          some more options like custom colors for text and background.
+        </p>
+  
+  
+      <h4>Javascript embedding examples</h4>
+        <div class="row">
+          <div id="target-div" style="width:300px;height:300px;"></div>
+          <div id="day-div" style="width:300px;height:300px;"></div>
+          <div id="year-div" style="width:300px;height:300px;"></div>
+        </div>
+  
+        <h4>Example code for embedding using AstroMosaicEngine.js</h4>
+        <p>
+          See <a href="AstroMosaicEngineExample.html">AstroMosaicEngineExample.html</a>
+        </p>
+  
+        <h3>Embedding in an Iframe</h3>
+        <p>
+            With URL parameter view it is possible to select target view, or day or year visibility graphs.
+            By default Astro Mosaic detects the window size and adjusts the content to that window.
+          </p>
+          <p>
+            <ul>
+              <li>view=<i>{target|day|year}[,width-px[,height-px]]</i></li>
+                <ul>
+                  <li>https://ruuth.xyz/AstroMosaic.html?view=target&target=horsehead%20nebula&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452</li>
+                  <li>https://ruuth.xyz/AstroMosaic.html?view=day&target=5.68305%20-2.45831&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452</li>
+                  <li>https://ruuth.xyz/AstroMosaic.html?view=year&target=05:40:58.99%20-02:27:29.90&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452</li>
+                </ul>
+          </ul>
+          </p>
+  
+      <h4>Iframe embedding examples</h4>
+      <div class="row">
+        <iframe src="https://ruuth.xyz/AstroMosaic.html?view=target&target=horsehead%20nebula&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452" height="300px" width="300px" title="FoV"></iframe>
+        <iframe src="https://ruuth.xyz/AstroMosaic.html?view=day&target=5.68305%20-2.45831&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452" height="300px" width="300px" title="Day vibility"></iframe>
+        <iframe src="https://ruuth.xyz/AstroMosaic.html?view=year&target=05:40:58.99%20-02:27:29.90&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452" height="300px" width="300px" title="Year vibility"></iframe>
+      </div>
+
+      <h4>Example code for embedding in an Iframe</h4>
+      <p>
+        &lt;iframe src="https://ruuth.xyz/AstroMosaic.html?view=target&target=horsehead%20nebula&set_service=Fuji%20X-T3,400mm,206,137,60.04298,24.24452" height="300px" width="300px" title="FoV"&gt;&lt;/iframe&gt;
+      </p>
+
+      <h3>Embedding using Python</h3>
+        <p>
+          A Python version to calculate day and year visibility, and mosaic coordinates is available in GitHub.
+        </p>
+
+  </div>
+</div>
+
+<div class="footer">
+  <p><small class="normal">Feedback:  <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or <a href="mailto:astroimagetools@gmail.com">astroimagetools@gmail.com</a></p>
+</div>
+
+<script>
+
+  var viewer_params = {
+      fov_x : 37,                 // x fov in degrees
+      fov_y : 43,                 // y fov in degrees
+      location_lat : 28.29970,    // location latitude
+      location_lng : -16.50826,   // location longitude
+      horizonSoft : null,         // soft horizon limit or null
+      horizonHard : [30],         // hard horizon limit or null
+      meridian_transit : null,    // meridian transit or null
+      UTCdate_ms : null,          // UTC date in milliseconds at the start of the day, null for current date
+      isCustomMode : true,        // use custom colors
+      chartTextColor : "white",   // custom chart text color
+      gridlinesColor : "lightgray",// custom chart grid lines color
+      backgroundColor : "black"   // custom chart background color
+  };
+  
+  AstroMosaicEngine("horsehead nebula", viewer_params, "target-div", "day-div", "year-div");
+  
+  </script>
+  
+</body>
+</html>
