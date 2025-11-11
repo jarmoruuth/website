@@ -1,23 +1,13 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
     <title>Astro images</title>
     <meta charset = "UTF-8" />
 </head>
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html" class="active">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
     <h1>Astro images</h1>         
 
@@ -440,5 +430,14 @@
     </div>
 
 
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

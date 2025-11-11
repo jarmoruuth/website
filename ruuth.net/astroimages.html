@@ -1,43 +1,46 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
     <title>Astro images</title>
     <meta charset = "UTF-8" />
+    <!-- GLightbox -->
+    <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=4">
+    <link rel="stylesheet" type="text/css" href="narrative-glightbox.css">
 </head>
 <body>
-    <script type="text/javascript" src="showimages.js"></script>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html" class="active">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
+    <script type="text/javascript" src="astro_data.js"></script>
+    <script type="text/javascript" src="showimages_narrative.js"></script>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
     <h1>Astro images</h1>         
+
+    <h4>
+        <ul style="all: revert;">
+        <li style="all: revert;">My image Waves of the Great Lacerta Nebula was selected as <a  style="all: revert;" href="https://apod.nasa.gov/apod/ap220914.html">APOD on 14 Sep 2022</a>.</li>
+        <li style="all: revert;">My image of Chamaeleon III dark cloud was selected as <a  style="all: revert;" href="https://apod.nasa.gov/apod/ap220117.html">APOD on 17 Jan 2022</a>.</li>
+        </ul>
+    </h4>
+
 
     <div class="flex-container-choices">
 
         <div class="wrapper"> 
-            <a href="javascript:showNebulae();"> <img src="images/Trifid_Nebula.jpg"></a>      
+            <a href="javascript:showNebulae();"> <img src="images/IC2948_copy3.jpg"></a>      
             <button onclick="javascript:showNebulae();">Nebulae</button>
         </div> 
         <div class="wrapper"> 
-            <a href="javascript:showGalaxies();"> <img src="images/Pinwheel_Galaxy.jpg"></a>      
+            <a href="javascript:showGalaxies();"> <img src="images/M100_copy.jpg"></a>      
             <button onclick="javascript:showGalaxies();">Galaxies</button>
         </div> 
         <div class="wrapper"> 
-            <a href="javascript:showStarClusters();"> <img src="images/m15.jpg"></a>      
+            <a href="javascript:showStarClusters();"> <img src="images/NGC6752_copy.jpg"></a>      
             <button onclick="javascript:showStarClusters();">Star Clusters</button>
         </div> 
         <div class="wrapper"> 
-            <a href="javascript:showSolarSystem();"> <img src="images/SunFlare2-2.jpg"></a>  
+            <a href="javascript:showSolarSystem();"> <img src="images/CometC2023A3_copy.jpg"></a>  
             <button onclick="javascript:showSolarSystem();">Solar System</button>
         </div> 
         <div class="wrapper"> 
@@ -61,27 +64,15 @@
         {
             var images = [
                 [ 'Trifid_Nebula.jpg', 'Trifid Nebula', 'Messier 20', 'i' ],
-                [ 'Eagle_Nebula_pano_PS_v3.jpg', 'Eagle Nebula', 'Messier 16', 'i' ],
-                [ 'Pillars2.jpg', 'Eagle Nebula - Pillars of Creation', 'Messier 16', 'i' ],
                 [ 'Cocoon_Nebula2.jpg', 'Cocoon Nebula', 'IC 5146', 'i' ],
-                [ 'Crab_Nebula.jpg', 'Crab Nebula - Supernova remnant', 'Messier 1', 'i' ],
                 [ 'Lagoon_Nebula.jpg', 'Lagoon Nebula', 'Messier 8', 'i' ],
                 [ 'Orion_Nebula.jpg', 'Orion Nebula', 'Messier 42', 'i' ],
                 [ 'M42_Mosaic_Large_Filled_PS_PI.jpg', 'Orion and Running man Nebula', 'Messier 42 and NGC 1977', 'i' ],
                 [ 'Western_Veil_Nebula.jpg', 'Veil Nebula West', 'NGC 6960', 'i' ],
-                [ 'VeilNebulaEastNGC6992.jpg', 'Veil Nebula East', 'NGC 6992', 'i' ],
                 [ 'Bubble_Nebula4.jpg', 'Bubble Nebula', 'NGC 7635', 'i' ],
-                [ 'Horsehead_Nebula.jpg', 'Horsehead Nebula', 'Barnard 33', 'i' ],
                 [ 'Dumbbell_Nebula.jpg', 'Dumbbell Nebula', 'Messier 27', 'i' ],
-                [ 'Horsehead_Mosaic.jpg', 'Flame and Horsehead Nebula', 'NGC 2024 and Barnard 33', 'i' ],
                 [ 'Cone_Nebula.jpg', 'Cone nebula', 'NGC 2264', 'i' ],
-                [ 'Christmas_Tree_Cluster.jpg', 'Christmas Tree Cluster', 'NGC 2264', 'i' ],
-                [ 'Jellyfish_Nebula.jpg', 'Jellyfish Nebula', 'IC 443', 'i' ],
-                [ 'Owl_Nebula.jpg', 'Owl Nebula', 'Messier 97', 'i' ],
-                [ 'Wizard_Nebula2.jpg', 'Wizard Nebula', 'NGC 7380', 'i' ],
                 [ 'Iris_Nebula.jpg', 'Iris Nebula', 'NGC 7023', 'i' ],
-                [ 'NGC2359_v4.jpg', "Thor's Helmet", 'NGC 2359', 'i' ],
-                [ 'Eta_Carinae.jpg', 'Eta Carinae Nebula', 'NGC 3372', 'i' ],
                 [ 'Heart_Nebula.jpg', 'Heart Nebula', 'IC 1805', 'i' ],
                 [ 'Helix_Nebula.jpg', 'Helix Nebula', 'NGC 7293', 'i' ],
                 [ 'Rosette_Nebula.jpg', 'Rosette Nebula', 'NGC 2238', 'i' ],
@@ -89,20 +80,63 @@
                 [ 'Tarantula_Nebula.jpg', 'Tarantula Nebula', 'NGC 2070', 'i' ],
                 [ 'NGC3576-2.jpg', 'The Statue of Liberty Nebula', 'NGC 3576', 'i' ],
                 [ 'North_America_Pelican_Nebula-2.jpg', 'North America and Pelican Nebula', 'NGC 7000 and IC 5070', 'i' ],
-                [ 'NGC6559.jpg', 'Star-forming region', 'NGC 6559', 'i' ],
-                [ 'NGC2467.jpg', 'Skull and Crossbones Nebula', 'NGC 2467', 'i' ],
-                [ 'IC4603.jpg', 'Rho Ophiuchi Region', 'IC 4603', 'i' ],
-                [ 'NGC6726-v2.jpg', 'Reflection nebula and Globular Cluster', 'NGC 6726 and NGC 6723', 'i' ],
                 [ 'Sh2-136-wide.jpg', 'Ghost Nebula', 'Sh2-136', 'i' ],
-                [ 'NGC246__2.jpg', 'Skull Nebula', 'NGC 246', 'i' ],
                 [ 'NGC1761_v3.jpg', 'Nebula in Large Magellanic Cloud', 'NGC 1761', 'i' ],
                 [ 'Rosette_Nebula_SHO_v6.jpg', 'Rosette Nebula in SHO', 'NGC 2238', 'i' ],
-                [ 'Eagle_Nebula_full_auto_PS2.jpg', 'Eagle_Nebula in SHO', 'Messier 16', 'i' ],
+                [ 'Eagle_Nebula_full_auto_PS2.jpg', 'Eagle Nebula in SHO', 'Messier 16', 'i' ],
                 [ 'Gabriela_Mistral_Nebula_v4.jpg', 'Gabriela Mistral Nebula in SHO', 'NGC 3324', 'i' ],
                 [ 'Running_Chiken_SHO_extra_PS.jpg', 'Running Chicken Nebula in SHO', 'IC 2944', 'i' ],
-                [ 'Statue_of_Liberty_Nebula_v2.jpg', 'The Statue of Liberty Nebula in SHO', 'NGC 3576', 'i' ]
+                [ 'Statue_of_Liberty_Nebula_v2.jpg', 'The Statue of Liberty Nebula in SHO', 'NGC 3576', 'i' ],
+                [ 'Heart_Nebula_v3.jpg', 'Heart Nebula', '', 'i' ],
+                [ 'Vela_Supernova_Remnant_HSO_2048.jpg', 'Vela Supernova Remnant', '', 'i' ],
+                [ 'Pencil_Nebula_v6.jpg', 'Pencil Nebula', '', 'i' ],
+                [ 'Spaghetti_Nebula_HOO_PS_exp_stars2_PStopaz_PIstars.jpg', 'Spaghetti Nebula', '', 'i' ],
+                [ 'Jellufish_Nebula.jpg', 'Jellyfish Nebula', 'IC 443', 'i' ],
+                [ 'Lagoon_Nebula_CHI-6.jpg', 'Lagoon Nebula', '', 'i' ],
+                [ 'Rho_Ophiuchi_Set_2_AUS_2_v1.jpg', 'Rho Ophiuchi', '', 'i' ],
+                [ 'Elephants_Trunk_v2.jpg', 'Elephants Trunk Nebula', '', 'i' ],
+                [ 'Crescent_Soap_Bubble_wide_v1.jpg', 'Crescent and Soap Bubble Nebula', '', 'i' ],
+                [ 'CED111_v3.jpg', 'CED 111', '', 'i' ],
+                [ 'NGC6559_crop_v22.jpg', 'NGC 6559', '', 'i' ],
+                [ 'NGC6559_v22.jpg', 'NGC 6559', '', 'i' ],
+                [ 'Bubble_Nebula_v2.jpg', 'Bubble Nebula', 'NGC 7635', 'i' ],
+                [ 'California_Nebula_copy.jpg', 'California Nebula', '', 'i' ],
+                [ 'Helix_Nebula_v2_copy.jpg', 'Helix Nebula', '', 'i' ],
+                [ 'Rho_Blu_mosaic_real_v12_final.jpg', 'Rho Ophiuchi and Blue Horsehead Mosaic', '', 'i' ],
+                [ 'Polaris_v4.jpg', 'Polaris Nebula', '', 'i' ],
+                [ 'Flying_Bat_and_Squid_Nebula_v2_copy.jpg', 'Flying Bat and Squid Nebula', '', 'i' ],
+                [ 'SH2-63_X_copy.jpg', 'SH2-63', '', 'i' ],
+                [ 'NGC6723_copy_v5.jpg', 'NGC6723', '', 'i' ],
+                [ 'Pleiades_v2tonemapped_copy.jpg', 'Pleiades', '', 'i' ],
+                [ 'Witch_Head_Nebula_copy6.jpg', 'Witch Head Nebula', '', 'i' ],
+                [ 'Cone_Nebula_AP_copy3.jpg', 'Cone Nebula', '', 'i' ],
+                [ 'Lobster_Nebula_v4_blue2_copy2.jpg', 'Lobster Nebula', '', 'i' ],
+                [ 'Dolphin_Nebula_Sh-308_v3_copy.jpg', 'Dolphin Nebula', 'Sh2-308', 'i' ],
+                [ 'Thos_Helmet_copy.jpg', 'Thors Helmet', '', 'i' ],
+                [ 'Plican_Nebula_detail_copy.jpg', 'Pelican Nebula detail', '', 'i' ],
+                [ 'FlyingBat_ElephantsTrunk_v3_copy.jpg', 'Flying Bat and Elephants Trunk Nebula mosaic', '', 'i' ],
+                [ 'NGC2014_v3_copy.jpg', 'NGC 2014', '', 'i' ],
+                [ 'NGC3324_v2_copy.jpg', 'NGC 3324', '', 'i' ],
+                [ 'Heart_Nebula_detail_v5_copy.jpg', 'Heart Nebula detail', '', 'i' ],
+                [ 'Dark_Nebula_Complex_v5_copy.jpg', 'Chamaeleon III dark cloud', '', 'i' ],
+                [ 'Great_Lacerta_Nebula_v4_copy4.jpg', 'Waves of the Great Lacerta Nebula', '', 'i' ],
+
+                // 4K size below
+                [ 'M78_v11_6000_copy4.jpg', 'M78', '', 'i' ],
+                [ 'Horsehead_Mosaic_v1_copy6.jpg', 'Horsehead and Orion Nebula Mosaic', '', 'i' ],
+                [ 'GC4_v2_copy2.jpg', 'GC 4', '', 'i' ],
+                [ 'Horsehead_Nebula_copy3.jpg', 'Horsehead Nebula', '', 'i' ],
+                [ 'ConeNebulaMosaic_copy.jpg', 'Cone Nebula Mosaic', '', 'i' ],
+                [ 'Jellyfish_Nebula_copy3.jpg', 'Jellyfish Nebula', '', 'i' ],
+                [ 'DarkSharkNebula_copy.jpg', 'Dark Shark Nebula', '', 'i' ],
+                [ 'IC2948_copy3.jpg', 'Running Chicken Nebula', '', 'i' ],
+                [ 'Lupus_Dust_P12_copy_small.jpg', 'Lupus Dust', '', 'i' ],
+                [ 'RCW6_v3_copy.jpg', 'RCW 6', '', 'i' ],
+                [ 'CosmicBat_v2_copy3.jpg', 'Cosmic Bat Nebula', '', 'i' ],
+                [ 'DolphinNebula_bin2_copy.jpg', 'Dolphin Nebula', '', 'i' ]
             ];
 
+            images.reverse();
             showImages('Nebulae', images);
             sessionStorage.setItem('Visible', 'Nebulae');
         }
@@ -112,9 +146,7 @@
             var images = [
                 [ 'Pinwheel_Galaxy.jpg', 'Pinwheel Galaxy', 'Messier 101', 'i' ],
                 [ 'm81m82.jpg', "Bode's Galaxy and The Cigar Galaxy", 'Messier 81 and 82', 'i' ],
-                [ 'Andromeda.jpg', 'Andromeda Galaxy', 'Messier 31', 'i' ],
-                [ 'm33.jpg', 'Triangulum Galaxy', 'Messier 33', 'i' ],
-                [ 'm51.jpg', 'Whirlpool Galaxy', 'Messier 51', 'i' ],
+                [ 'M33.jpg', 'Triangulum Galaxy', 'Messier 33', 'i' ],
                 [ 'Grand_Design_Galaxy.jpg', 'Grand Design Galaxy', 'Messier 74', 'i' ],
                 [ 'M83.jpg', 'Southern Pinwheel Galaxy', 'Messier 83', 'i' ],
                 [ 'M64.jpg', 'Black-Eye Galaxy', 'Messier 83', 'i' ],
@@ -125,23 +157,54 @@
                 [ 'CentaurusA_v3.jpg', 'Centaurus A', 'NGC 6946', 'i' ],
                 [ 'Virgo_Cluster.jpg', 'Virgo Cluster', 'Messier 84, 86, 87, etc.', 'i' ],
                 [ 'NGC4945.jpg', 'Spiral Galaxy', 'NGC 4945', 'i' ],
-                [ 'NGC1291.jpg', 'Ring Galaxy', 'NGC 1291', 'i' ]
+                [ 'NGC1291.jpg', 'Ring Galaxy', 'NGC 1291', 'i' ],
+                [ 'Southern_Pinwheel_Galaxy.jpg', 'Southern Pinwheel Galaxy', '', 'i' ],
+                [ 'Whirlpool_Galaxy_APF.jpg', 'Whirlpool Galaxy', '', 'i' ],
+                [ 'Sombrero_Galaxy_v2.jpg', 'Sombrero Galaxy', '', 'i' ],
+                [ 'Whale_Galaxy_v8.jpg', 'Whale Galaxy', '', 'i' ],
+                [ 'Sculptor_Galaxy_rotated.jpg', 'Sculptor Galaxy', '', 'i' ],
+                [ 'NGC300.jpg', 'NGC 300', '', 'i' ],
+                [ 'Hydra_Cluster_v3.jpg', 'Hydra Cluster', '', 'i' ],
+                [ 'Black_Eye_v6.jpg', 'Black Eye Galaxy', '', 'i' ],
+                [ 'Cigar_Galaxy_v3.jpg', 'Cigar Galaxy', '', 'i' ],
+                [ 'Pinwheel_Galaxy_v9.jpg', 'Pinwheel Galaxy', '', 'i' ],
+                [ 'NGC1531_copy.jpg', 'NGC 1531', '', 'i' ],
+                [ 'M94_v3_copy.jpg', 'M94', '', 'i' ],
+                [ 'NGC3981_copy.jpg', 'NGC 3981', '', 'i' ],
+
+                // 4K size below
+                [ 'NGC1316_v2_copy.jpg', 'NGC 1316', '', 'i' ],
+                [ 'Topsy_Turvy_Galaxy_v2_copy.jpg', 'Topsy Turvy Galaxy', '', 'i' ],
+                [ 'M100_copy2.jpg', 'M100', 'Messier 100', 'i' ],
+                [ 'M31_v3_crop_copy.jpg' , 'Andromeda Galaxy', '', 'i' ],
+                [ 'NGC1566_copy.jpg', 'Spanish Dancer Galaxy', 'NGC 1566', 'i' ],
+                [ 'NGC3521_rotcrop_copy2.jpg', 'NGC 3521', '', 'i' ],
+                [ 'NGC660_v2_copy3.jpg', 'NGC 660', '', 'i' ],
+                [ 'M81_copy4.jpg', 'Bode\'s Galaxy', 'Messier 81', 'i' ],
+                [ 'M100_copy.jpg', 'M100', 'Messier 100', 'i' ]
             ];
 
+            images.reverse();
             showImages('Galaxies', images);
         }
 
         function showStarClusters()
         {
             var images = [
-                [ 'm15.jpg', 'Great Pagasus Cluster', 'Messier 15', 'i' ],
+                [ 'NGC4755.jpg', "Jewel Box Open Cluster", 'NGC 4755', 'i' ],
                 [ 'Comet21PandMessier37.jpg', "Comet 21P and Messier 37", 'Messier 37', 'i' ],
                 [ 'Pleiades_m45.jpg', "Pleiades", 'Messier 45', 'i' ],
                 [ 'Omega_Centauri.jpg', "Omega Centauri", 'NGC 5139', 'i' ],
                 [ 'NGC3532.jpg', "Wishing Well Cluster", 'NGC 3532', 'i' ],
-                [ 'NGC4755.jpg', "Jewel Box Open Cluster", 'NGC 4755', 'i' ]
+
+                // 4K size below
+                [ 'M14_v2_copy3.jpg', 'Messier 14', 'NGC 6402', 'i' ],
+                [ 'NGC6752_copy.jpg', 'NGC 6752', '', 'i' ],
+                [ 'Southern_Pleiades_copy2.jpg', 'Southern Pleiades', 'IC 2602', 'i' ],
+                [ 'M10_copy.jpg', 'Messier 10', 'NGC 6254', 'i' ]
             ];
 
+            images.reverse();
             showImages('Star Clusters', images);
         }
 
@@ -150,9 +213,15 @@
             var images = [
                 [ 'Sun2.jpg', 'Sun', '', 'i' ],
                 [ 'Sun2-2.jpg', "Sun flares", '', 'i' ],
-                [ 'SunFlare2-2.jpg', "Sun flare", '', 'i' ]
+                [ 'SunFlare2-2.jpg', "Sun flare", '', 'i' ],
+                [ 'Moon_color_wavelet.jpg', 'Moon', '', 'i' ],
+                [ 'Comet_Lenonard_v3_copy.jpg', 'Comet C/2021 A1 (Leonard)', '', 'i' ],
+                [ 'Comet62PnearLeoTriplet_crop_copy.jpg', 'Comet 62P near Leo Triplet', '', 'i' ],
+                [ 'COMETC2022E3_AutoLRGB_edit_2_copy.jpg', 'Comet C/2022 E3 (ZTF)', '', 'i' ],
+                [ 'CometC2023A3_copy.jpg' , 'Comet C/2023 A3', '', 'i' ]
             ];
 
+            images.reverse();
             showImages('Solar System', images);
         }
 
@@ -213,7 +282,8 @@
                 [ 'M52.jpg', 'Messier 52',"Open (galactic) Cluster", 'i' ],
                 [ 'M53.jpg', 'Messier 53',"Globular Cluster", 'i' ],
                 [ 'M54.jpg', 'Messier 54',"Globular Cluster", 'i' ],
-                [ 'M55.jpg', 'Messier 55',"Globular Cluster", 'i' ]
+                [ 'M55.jpg', 'Messier 55',"Globular Cluster", 'i' ],
+                [ 'Messier_Challenge_Poster.jpg', 'Messier Challenge Poster', '', 'i' ]
             ];
 
             showImages('Messier 1-55', images);
@@ -222,7 +292,7 @@
         function showMessier_56_110()
         {
             var images = [
-            [ 'M56.jpg', 'Messier 56',"Globular Cluster", 'i' ],
+                [ 'M56.jpg', 'Messier 56',"Globular Cluster", 'i' ],
                 [ 'M57.jpg', 'Messier 57',"Ring Nebula", 'i' ],
                 [ 'M58.jpg', 'Messier 58',"Seyfert Galaxy", 'i' ],
                 [ 'M59.jpg', 'Messier 59',"Galaxy in Group of Galaxies", 'i' ],
@@ -240,7 +310,7 @@
                 [ 'M71.jpg', 'Messier 71',"Globular Cluster", 'i' ],
                 [ 'M72.jpg', 'Messier 72',"Globular Cluster", 'i' ],
                 [ 'M73.jpg', 'Messier 73',"Cluster of Stars", 'i' ],
-                [ 'M74.jpg', 'Messier 74',"Galaxy", 'i' ],
+                [ 'M74.jpg', 'Messier 74',"Grand Design Galaxy", 'i' ],
                 [ 'M75.jpg', 'Messier 75',"Globular Cluster", 'i' ],
                 [ 'M76.jpg', 'Messier 76',"Little Dumbbell Nebula", 'i' ],
                 [ 'M77.jpg', 'Messier 77',"Galaxy in Pair of Galaxies", 'i' ],
@@ -276,7 +346,8 @@
                 [ 'M107.jpg', 'Messier 107',"Globular Cluster", 'i' ],
                 [ 'M108.jpg', 'Messier 108',"Starburst Galaxy", 'i' ],
                 [ 'M109.jpg', 'Messier 109',"Galaxy in Group of Galaxies", 'i' ],
-                [ 'M110.jpg', 'Messier 110',"Galaxy in Group of Galaxies", 'i' ]
+                [ 'M110.jpg', 'Messier 110',"Galaxy in Group of Galaxies", 'i' ],
+                [ 'Messier_Challenge_Poster.jpg', 'Messier Challenge Poster', '', 'i' ]
             ];
 
             showImages('Messier 56-110', images);
@@ -312,5 +383,14 @@
         restoreState();
     </script>
 
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

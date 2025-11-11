@@ -1,57 +1,55 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
     <title>Travels</title>
     <meta charset = "UTF-8" />
     <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
 </head>
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html" class="active">Travels</a></li> 
-        <li><a href="astroimages.html">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
-
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
     <h1>Travels</h1>         
 
     <div class="flex-container2">
         <div>
-            <a href="travels_europe.html"><p id=box>Europe</p></a>
+            <a href="travels_europe.html"><p class="box">Europe</p></a>
             <a href="travels_europe.html">
-                <img id=square src="images/small/small_DSCF0989.jpg" 
+                <img class="square" src="images/small/small_DSCF0989.jpg" 
                 alt="images/small/small_DSCF0989.jpg">
             </a>      
         </div>       
         <div>               
-            <a href="travels_usa.html"><p id=box>USA</p></a>
+            <a href="travels_usa.html"><p class="box">USA</p></a>
             <a href="travels_usa.html">
-                <img id=square src="images/small/small_IMG_3602_HDR.jpg" 
+                <img class="square" src="images/small/small_IMG_3602_HDR.jpg" 
                 alt="images/small/small_IMG_3602_HDR.jpg">
             </a> 
         </div>
         <div>
-            <a href="travels_africa.html"><p id=box>Africa</p></a>
+            <a href="travels_africa.html"><p class="box">Africa</p></a>
             <a href="travels_africa.html">
-                <img id=square src="images/small/small_DSCF5873.jpg" 
+                <img class="square" src="images/small/small_DSCF5873.jpg" 
                 alt="images/small/small_DSCF5873.jpg">
             </a>      
         </div>       
         <div>               
-            <a href="travels_asia.html"><p id=box>Asia</p></a>
+            <a href="travels_asia.html"><p class="box">Asia</p></a>
             <a href="travels_asia.html">
-                <img id=square src="images/small/small_im000007.jpg" 
+                <img class="square" src="images/small/small_im000007.jpg" 
                 alt="images/small/small_im000007.jpg">
             </a>    
         </div> 
     </div>
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

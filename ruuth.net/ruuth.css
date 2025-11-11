@@ -26,18 +26,14 @@ li a:hover {
     background-color: red;
 }
 
-#square {
+.square {
     object-fit: cover;
-    width:150px;
-    height:150px
+    width:200px;
+    height:200px
 }
 
-#box {
+.box {
     color: black;        
-}
-
-#small {
-    height: 200px;
 }
 
 .flex-container {
@@ -75,11 +71,9 @@ li a:hover {
     padding-right: 3px;
 } 
 
-#square-choices {
-    object-fit: cover;
-    width:100px;
-    height:100px
-}
+.flex-container3 > a {
+    padding-right: 3px;
+} 
 
 .flex-container-choices {
     display: flex;
@@ -129,4 +123,33 @@ li a:hover {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+}
+
+/* Compact GLightbox captions */
+.glightbox-container .gdesc-inner {
+  background-color: black !important;
+  color: white !important;
+  padding: 4px 8px !important; /* smaller padding */
+}
+
+/* Ensure title is white and has no extra margin */
+.glightbox-container .gslide-title {
+  font-size: 14px !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  color: white !important;
+}
+
+/* Make description match */
+.glightbox-container .gslide-desc {
+  color: white !important;
+}
+
+/* Force GLightbox background to solid black */
+.glightbox-container {
+    background: #000 !important;
+}
+
+.glightbox-overlay {
+    background: #000 !important;
 }

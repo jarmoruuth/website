@@ -1,50 +1,45 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
     <title>Volcanoes</title>
     <meta charset = "UTF-8" />
+    <!-- GLightbox -->
+    <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
 </head>
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html" class="active">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
     <h1>Volcanoes</h1>         
 
     <h2>Stomboli, Italy</h2>
     <div class="flex-container3">
-        <div>
-        <a href="images/DSCF1334.jpg">
+        <a href="images/DSCF1192.jpg" class="glightbox" data-gallery="volcanoes" data-title="Stromboli, Italy">
+            <img src="images/small/small_DSCF1192.jpg" 
+            alt="images/small/small_DSCF1192.jpg" >
+        </a>  
+        <a href="images/DSCF1252.jpg" class="glightbox" data-gallery="volcanoes" data-title="Stromboli, Italy">
+            <img src="images/small/small_DSCF1252.jpg" 
+            alt="images/small/small_DSCF1252.jpg" >
+        </a>       
+        <a href="images/Stromboli-Merge1-Edit.jpg" class="glightbox" data-gallery="volcanoes" data-title="Stromboli, Italy">
+            <img src="images/small/small_Stromboli-Merge1-Edit.jpg" 
+            alt="images/small/small_Stromboli-Merge1-Edit.jpg" >
+        </a>
+        <a href="images/Stromboli-Merge2-Edit.jpg" class="glightbox" data-gallery="volcanoes" data-title="Stromboli, Italy">
+            <img src="images/small/small_Stromboli-Merge2-Edit.jpg" 
+            alt="images/small/small_Stromboli-Merge2-Edit.jpg" >
+        </a>
+        <a href="images/DSCF1334.jpg" class="glightbox" data-gallery="volcanoes" data-title="Stromboli, Italy">
             <img src="images/small/small_DSCF1334.jpg" 
             alt="images/small/small_DSCF1334.jpg" >
-        </a>       
-        </div>
-        <div>
-        <a href="images/DSCF1329.jpg">
-            <img src="images/small/small_DSCF1329.jpg" 
-            alt="images/small/small_DSCF1329.jpg" >
-        </a>  
-        </div>
-        <div>
-        <a href="images/Merge1.jpg">
-            <img src="images/small/small_Merge1.jpg" 
-            alt="images/small/small_Merge1.jpg" >
         </a>
-        </div>
         <div>
         <!--iframe height="200" src="https://www.youtube.com/embed/Zgp5mdjanR0">
         </iframe-->   
-        <a href="https://youtu.be/Zgp5mdjanR0">
+        <a href="https://youtu.be/Zgp5mdjanR0" class="glightbox" data-gallery="volcanoes" data-type="video">
             <img src="images/small/small_Stromboli2017Video.jpg" 
             alt="images/small/small_Stromboli2017Video.jpg" >
         </a>          
@@ -56,14 +51,27 @@
     </div>
     <h2>Vulcano, Italy</h2>
     <p>
-        <a href="images/DSCF1591-small-Pano.jpg">
-            <img src="images/small/small_DSCF1591-small-Pano.jpg" 
-            alt="images/small/small_DSCF1591-small-Pano.jpg" >
-        </a>       
-        <a href="images/DSCF1506.jpg">
+        <a href="images/DSCF1506.jpg" class="glightbox" data-gallery="volcanoes" data-title="Vulcano, Italy">
             <img src="images/small/small_DSCF1506.jpg" 
             alt="images/small/small_DSCF1506.jpg" >
         </a>  
+        <a href="images/DSCF1599.jpg" class="glightbox" data-gallery="volcanoes" data-title="Vulcano, Italy">
+            <img src="images/small/small_DSCF1599.jpg" 
+            alt="images/small/small_DSCF1599.jpg" >
+        </a>       
+        <a href="images/DSCF1622.jpg" class="glightbox" data-gallery="volcanoes" data-title="Vulcano, Italy">
+            <img src="images/small/small_DSCF1622.jpg" 
+            alt="images/small/small_DSCF1622.jpg" >
+        </a>       
     </p>
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

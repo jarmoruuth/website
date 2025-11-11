@@ -1,63 +1,53 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
     <title>Other animals</title>
     <meta charset = "UTF-8" />
+    <!-- GLightbox -->
+    <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
 </head>
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
-    <h1>Other animals</h1>         
+    <h1>Insects</h1>         
 
     <p>
-        <a href="images/IMG_4903.jpg">
-            <img src="images/small/small_IMG_4903.jpg" 
-            alt="images/small/small_IMG_4903.jpg" >
+        <a href="images/2024-07-11_19-17-51_B_R8_S4-Edit.jpg" class="glightbox" data-gallery="insects">
+            <img src="images/small/small_2024-07-11_19-17-51_B_R8_S4-Edit.jpg" 
+            alt="images/small/small_2024-07-11_19-17-51_B_R8_S4-Edit.jpg" >
         </a>       
-        <a href="images/IMG_4790_edited-1.jpg">
-            <img src="images/small/small_IMG_4790_edited-1.jpg" 
-            alt="images/small/small_IMG_4790_edited-1.jpg" >
-        </a>  
-        <a href="images/IMG_4785_edited-1.jpg">
-            <img src="images/small/small_IMG_4785_edited-1.jpg" 
-            alt="images/small/small_IMG_4785_edited-1.jpg" >
-        </a>
-        <a href="images/IMG_4286.jpg">
-            <img src="images/small/small_IMG_4286.jpg" 
-            alt="images/small/small_IMG_4286.jpg" >
+        <a href="images/DSC07934-Edit.jpg" class="glightbox" data-gallery="insects">
+            <img src="images/small/small_DSC07934-Edit.jpg" 
+            alt="images/small/small_DSC07934-Edit.jpg" >
         </a>       
-        <a href="images/IMG_3881_edited-1.jpg">
-            <img src="images/small/small_IMG_3881_edited-1.jpg" 
-            alt="images/small/small_IMG_3881_edited-1.jpg" >
-        </a>  
-        <a href="images/IMG_1121.jpg">
-            <img src="images/small/small_IMG_1121.jpg" 
-            alt="images/small/small_IMG_1121.jpg" >
-        </a>
-        <a href="images/IMG_2775_edited-1.jpg">
+        <a href="images/DSC07968-Edit-2.jpg" class="glightbox" data-gallery="insects">
+            <img src="images/small/small_DSC07968-Edit-2.jpg" 
+            alt="images/small/small_DSC07968-Edit-2.jpg" >
+        </a>       
+        <a href="images/DSC07784.jpg" class="glightbox" data-gallery="insects">
+            <img src="images/small/small_DSC07784.jpg" 
+            alt="images/small/small_DSC07784.jpg" >
+        </a>       
+        <a href="images/IMG_2775_edited-1.jpg" class="glightbox" data-gallery="insects">
             <img src="images/small/small_IMG_2775_edited-1.jpg" 
             alt="images/small/small_IMG_2775_edited-1.jpg" >
         </a>       
-        <a href="images/IMG_2462.jpg">
-            <img src="images/small/small_IMG_2462.jpg" 
-            alt="images/small/small_IMG_2462.jpg" >
-        </a>  
-        <a href="images/IMG_0863-copy.jpg">
+        <a href="images/IMG_0863-copy.jpg" class="glightbox" data-gallery="insects">
             <img src="images/small/small_IMG_0863-copy.jpg" 
             alt="images/small/small_IMG_0863-copy.jpg" >
         </a>       
     </p>
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

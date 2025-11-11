@@ -1,41 +1,47 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
     <title>Animals</title>
     <meta charset = "UTF-8" /> 
 </head>
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
-    <h1>Animals</h1>         
+    <h1>Wildlife</h1>         
 
     <div class="flex-container2">
         <div>
-            <a href="animals_birds.html"><p id=box>Birds</p></a>
+            <a href="animals_mammals.html"><p class="box">Mammals</p></a>
+            <a href="animals_mammals.html">
+                <img class="square" src="images/small/small_DSC06899.jpg" 
+                alt="images/small/small_DSC06899.jpg">
+            </a>         
+        </div>       
+        <div>
+            <a href="animals_birds.html"><p class="box">Birds</p></a>
             <a href="animals_birds.html">
-                <img id=square src="images/small/small_IMG_5450.jpg" 
-                alt="images/small/small_IMG_5450.jpg">
+                <img class="square" src="images/small/small_DSC04675-Enhanced-NR.jpg" 
+                alt="images/small/small_DSC04675-Enhanced-NR.jpg">
             </a>         
         </div>       
         <div>            
-            <a href="animals_other.html"><p id=box>Other</p></a>
+            <a href="animals_other.html"><p class="box">Insects</p></a>
             <a href="animals_other.html">
-                <img id=square src="images/small/small_IMG_2775_edited-1.jpg" 
-                alt="images/small/small_IMG_2775_edited-1.jpg">
+                <img class="square" src="images/small/small_DSC07784.jpg" 
+                alt="images/small/small_DSC07784.jpg">
             </a> 
         </div>
     </div>
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

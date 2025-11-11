@@ -1,26 +1,30 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
-    <title>Astro images</title>
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
+    <title>Messier Catalog</title>
     <meta charset = "UTF-8" />
+
+    <meta property="og:title" content="Messier Catalog" />
+    <meta property="og:url" content="http://ruuth.net/Messier.html" />
+    <meta property="og:image" content="http://ruuth.net/images/small/small_Messier_Challenge_Poster.jpg" />
+    <meta property="og:description" content="All 110 Messier Catalog objects captured using Slooh remote telescopes and processed from FITS files." />
+    <meta property="og:type" content="website" />
 </head>
 <body>
     <script type="text/javascript" src="showimages.js"></script>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html" class="active">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
     <h2 id="h2">Messier Catalog</h2>
+
+    <p>
+        All 110 Messier Catalog objects. Images were taken using Slooh remote telescopes and processed from FITS files.
+        I used my own tool <a href="https://ruuth.xyz/AstroMosaic.html">Astro Mosaic Telescope Planner</a> for 
+        scheduling correct date and time for these object. My own PixInsight script 
+        <a href="https://ruuth.xyz/AutoIntegrateInfo.html">AutoIntegrate</a> helped a lot when processing
+        these images.
+    </p>
 
     <div id="mainDiv" class="flex-container3">
     </div>
@@ -30,6 +34,7 @@
         function showMessier()
         {
             var images = [
+                [ 'Messier_Challenge_Poster.jpg', 'Messier Challenge Poster',"Poster of all images", 'i' ],
                 [ 'M1.jpg', 'Messier 1',"Crab Nebula", 'i' ],
                 [ 'M2.jpg', 'Messier 2',"Globular Cluster", 'i' ],
                 [ 'M3.jpg', 'Messier 3',"Globular Cluster", 'i' ],
@@ -103,7 +108,7 @@
                 [ 'M71.jpg', 'Messier 71',"Globular Cluster", 'i' ],
                 [ 'M72.jpg', 'Messier 72',"Globular Cluster", 'i' ],
                 [ 'M73.jpg', 'Messier 73',"Cluster of Stars", 'i' ],
-                [ 'M74.jpg', 'Messier 74',"Galaxy", 'i' ],
+                [ 'M74.jpg', 'Messier 74',"Grand Design Galaxy", 'i' ],
                 [ 'M75.jpg', 'Messier 75',"Globular Cluster", 'i' ],
                 [ 'M76.jpg', 'Messier 76',"Little Dumbbell Nebula", 'i' ],
                 [ 'M77.jpg', 'Messier 77',"Galaxy in Pair of Galaxies", 'i' ],
@@ -153,5 +158,14 @@
         restoreState();
     </script>
 
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

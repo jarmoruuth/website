@@ -1,0 +1,45 @@
+/* ===== Astro Narrative Styling ===== */
+
+.glightbox-description .astro-info {
+  text-align: left;
+  color: #ddd;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 1em;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 1em 1.2em;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.astro-info .astro-block {
+  margin-bottom: 0.8em;
+  border-left: 3px solid #556b9f;
+  padding-left: 0.8em;
+}
+
+.astro-info h4 {
+  font-size: 0.95rem;
+  color: #9fc5ff;
+  margin: 0 0 0.2em 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.astro-info p {
+  margin: 0;
+  color: #ddd;
+}
+
+.astro-info .astro-block:last-child {
+  margin-bottom: 0;
+}
+
+/* Optional subtle icons per section */
+.astro-info h4::before {
+  content: '✦ ';
+  color: #ffd27f;
+}

@@ -1,55 +1,82 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
     <title>Other</title>
     <meta charset = "UTF-8" />
 </head>
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html">Astrophotos</a></li> 
-        <li><a href="other.html" class="active">Other</a></li> 
-    </ul>
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
 
     <h1>Other</h1>      
     
     <div class="flex-container2">  
         <div>
-            <a href="other_nightsky.html"><p id=box>Night sky</p></a>
-            <a href="other_nightsky.html">
-                <img id=square src="images/small/small_DSC02662_3_4-PS.jpg" 
+            <a href="skitouring.html"><p class="box">Ski touring</p></a>
+            <a href="skitouring.html">
+                <img class="square" src="images/small/small_HaRo0005_edited.jpg" 
+                alt="images/small/small_HaRo0005_edited.jpg">
+            </a>
+        </div> 
+        <div>
+            <a href="climbing.html"><p class="box">Climbing</p></a>
+            <a href="climbing.html">
+                <img class="square" src="images/small/small_jarmonuuksio.jpg" 
+                alt="images/small/small_jarmonuuksio.jpg">
+            </a>   
+        </div>
+        <div>
+            <a href="mountaineering.html"><p class="box">Mountaineering</p></a>
+            <a href="mountaineering.html">
+            <img class="square" src="images/small/small_Sign0001_edited.jpg" 
+            alt="images/small/small_Sign0001_edited.jpg">
+            </a>         
+        </div>
+        <div>
+            <a href="volcanoes.html"><p class="box">Volcanoes</p></a>
+            <a href="volcanoes.html">
+            <img class="square" src="images/small/small_Merge1.jpg" 
+            alt="images/small/small_Merge1.jpg">
+            </a>    
+        </div>
+        <div>
+            <a href="other_hiking.html"><p class="box">Hiking</p></a>
+            <a href="other_hiking.html">
+                <img class="square" src="images/small/small_DSC04407.jpg" 
                 alt="">
             </a>         
         </div>       
         <div>
-            <a href="animals_birds.html"><p id=box>Birds</p></a>
-            <a href="animals_birds.html">
-                <img id=square src="images/small/small_IMG_5450.jpg" 
+            <a href="other_nightsky.html"><p class="box">Night sky</p></a>
+            <a href="other_nightsky.html">
+                <img class="square" src="images/small/small_DSC02662_3_4-PS.jpg" 
+                alt="">
+            </a>         
+        </div>       
+        <div>
+            <a href="circus.html"><p class="box">Circus</p></a>
+            <a href="circus.html">
+                <img class="square" src="images/small/small_DSC03906-Enhanced-NR.jpg" 
                 alt="">
             </a>         
         </div>       
         <div>            
-            <a href="animals_other.html"><p id=box>Other animals</p></a>
-            <a href="animals_other.html">
-                <img id=square src="images/small/small_IMG_2775_edited-1.jpg" 
-                alt="">
-            </a> 
-        </div>
-        <div>            
-            <a href="other_misc.html"><p id=box>Misc</p></a>
+            <a href="other_misc.html"><p class="box">Misc</p></a>
             <a href="other_misc.html">
-                <img id=square src="images/small/small_DSCF4407.jpg" 
+                <img class="square8" src="images/small/small_DSCF1804-Edit-2.jpg" 
                 alt="">
             </a> 
         </div>
     </div>    
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>

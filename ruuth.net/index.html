@@ -1,91 +1,76 @@
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-    <link rel="stylesheet" type="text/css" href="ruuth.css">
-    <title>ruuth.net</title>
+    <link rel="stylesheet" type="text/css" href="ruuth.css?v=3">
+    <title>Photos</title>
     <meta charset = "UTF-8" />
     <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+    <style>
+    body {
+        background-image: url('images/IMG_0056.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    </style>
 </head>
-<body>
-    <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="skiing.html">Skiing</a></li>
-        <li><a href="skitouring.html">Ski touring</a></li>
-        <li><a href="climbing.html">Climbing</a></li>
-        <li><a href="mountaineering.html">Mountaineering</a></li>
-        <li><a href="caves.html">Caves</a></li>
-        <li><a href="volcanoes.html">Volcanoes</a></li>
-        <li><a href="travels.html">Travels</a></li> 
-        <li><a href="astroimages.html">Astrophotos</a></li> 
-        <li><a href="other.html">Other</a></li> 
-    </ul>
 
-    <h1>ruuth.net</h1>     
-    
+<body>
+
+    <script src="navbar.js"></script>
+    <my-navbar></my-navbar>
+
     <div class="flex-container">
         <div>
             <a href="skiing.html"><p>Skiing</p></a>
             <a href="skiing.html">
-                <img id=square src="images/small/small_DSCF0534.jpg" 
-                alt="DSCF0534.jpg">
+                <img class="square" src="images/small/small_DSC03396.jpg" 
+                alt="DSC06754.jpg">
             </a> 
         </div>       
         <div>
-            <a href="skitouring.html"><p>Ski touring</p></a>
-            <a href="skitouring.html">
-                <img id=square src="images/small/small_HaRo0005_edited.jpg" 
-                alt="images/small/small_HaRo0005_edited.jpg">
-            </a>
-        </div> 
-        <div>
-            <a href="climbing.html"><p class="linkfont">Climbing</p></a>
-            <a href="climbing.html">
-                <img id=square src="images/small/small_jarmonuuksio.jpg" 
-                alt="images/small/small_jarmonuuksio.jpg">
-            </a>   
-        </div>
-        <div>
-            <a href="mountaineering.html"><p>Mountaineering</p></a>
-            <a href="mountaineering.html">
-            <img id=square src="images/small/small_Sign0001_edited.jpg" 
-            alt="images/small/small_Sign0001_edited.jpg">
-            </a>         
-        </div>
-        <div>
             <a href="caves.html"><p>Caves</p></a>
             <a href="caves.html">
-            <img id=square src="images/small/small_Lummelunda_2018.jpg" 
-            alt="images/small/small_Lummelunda_2018.jpg">
+            <img class="square" src="images/small/small_DSC05477.jpg" 
+            alt="images/small/small_DSC05477.jpg">
             </a>  
         </div>
         <div>
-            <a href="volcanoes.html"><p>Volcanoes</p></a>
-            <a href="volcanoes.html">
-            <img id=square src="images/small/small_Merge1.jpg" 
-            alt="images/small/small_Merge1.jpg">
-            </a>    
+            <a href="animals.html"><p>Wildlife</p></a>
+            <a href="animals.html">
+            <img class="square" src="images/small/small_DSC06899.jpg" 
+            alt="images/small/small_DSC06899.jpg">
+            </a>  
         </div>
         <div>
             <a href="travels.html"><p>Travels</p></a>
             <a href="travels.html">
-            <img id=square src="images/small/small_DSCF1612-small-Pano-2.jpg" 
+            <img class="square" src="images/small/small_DSCF1612-small-Pano-2.jpg" 
             alt="images/small/small_DSCF1612-small-Pano-2.jpg">
             </a>         
         </div>
         <div>
             <a href="astroimages.html"><p>Astrophotos</p></a>
             <a href="astroimages.html">
-            <img id=square src="images/small/small_Heart_Nebula.jpg" 
+            <img class="square" src="images/small/small_Horsehead_Nebula_copy3.jpg" 
             alt="">
             </a>              
         </div>
         <div>
             <a href="other.html"><p>Other</p></a>
             <a href="other.html">
-            <img id=square src="images/small/small_DSC02662_3_4-PS.jpg" 
+            <img class="square" src="images/small/small_DSC03906-Enhanced-NR.jpg" 
             alt="">
             </a>              
         </div>
     </div>
+    <!-- Initialize GLightbox -->
+    <script>
+      GLightbox({
+        selector: 'a.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+    </script>
 </body>
+
 </html>
