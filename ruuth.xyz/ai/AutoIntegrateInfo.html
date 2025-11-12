@@ -1779,7 +1779,7 @@ Stars are removed from the narrowband image and then combined with the RGB stars
 a final image.
 </p>
 <p>
-Auto narrowband palettes automatically use RGB stars option is both narrowband and RGB data is available.
+Auto narrowband palettes automatically use RGB stars option if both narrowband and RGB data is available.
 </p>
 
 <h2 id="narrowband_allpalettes">Automatic processing of all palettes</h2>
@@ -2530,12 +2530,12 @@ Process icons can also be used to manually run the same processing again, maybe 
 so the same files that were are used when running the process icons.
 </p>
 <p>
-You can load process icons to the PixInsight desktop using Process / Process Icon / Load Process Icons... menu command.
+You can load process icons to the PixInsight desktop using <i>Process / Process Icons / Load Process Icons...</i> menu command.
 If you already have some process icons loaded to the desktop you can append new icons by using the
-Process / Process Icon / Merge Process Icons... menu command.
+<i>Process / Process Icons / Merge Process Icons...</i> menu command.
 </p>
 <p>
-Process icons file is created to the <a href="#root_directory">processing root directory</a>.
+Process icons file ExecutedProcesses.xpsm is created to the <a href="#root_directory">processing root directory</a>.
 </p>
 <p>
 Some processing steps may not generate process icons. Below are listed some of steps that do not have a process icon.
@@ -2544,14 +2544,29 @@ Some processing steps may not generate process icons. Below are listed some of s
 <li>There is no process icon to create or set a mask. Masks are often used when doing for example noise reduction or color saturation.</li>
 <li>Astrometric solution is run using the Image solver script. So there is no process icon for that.</li>
 <li>There is no process icon for fixing column or row defects.</li>
+<li>External process like GraXpert do not generate process icons.</li>
+<li>Iterative stretch methods do not generate process icons.</li>
 </ul>
 <p>
+Iterative stretch methods that do not generate process icons are listed below:
+</p>
+<ul>
+<li>Histogram stretch</li>
+<li>Arcsinh Stretch</li>
+<li>Asinh+Histogram stretching</li>
+<li>Square root stretch</li>
+<li>Shadow stretch</li>
+<li>Highlight stretch</li>
+</ul>
+
 Some consideration if you plan to run manual prcessing using process icons:
 </p>
 <ul>
-<li>In some cases the image names used in icons may not match those created during manual processing. So you may need to adjust the file names accordingly.</li>
+<li>In some cases the image names used in icons may not match those created during manual processing. So you may need to adjust the image names accordingly.</li>
 <li>During manual processing the SSWEIGHT keyword is not written to output files. So the use of SSWEIGHT keyword is disabled in the process icons.</li>
 </ul>
+
+<p>Below is an example of process icons created by AutoIntegrate script and loaded into PixInsight desktop.</p>
 
 <a href="ai_processiconsexample.jpg"><img src="ai_processiconsexample.jpg"></a>
 
