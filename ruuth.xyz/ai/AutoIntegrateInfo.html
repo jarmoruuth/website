@@ -95,7 +95,7 @@ gtag('config', 'G-FV9GG7V9PM');
 <h2>PixInsight repository link</h2>
 
 <p>
-AutoIntegrate is available as an automatic update in PixInsight. Repository link is below.
+AutoIntegrate is available as an automatic update in PixInsight. The repository link is below.
 For more details see <a href="#downloading">Downloading the script</a> section.
 </p>
 <div>        
@@ -337,7 +337,7 @@ I have created a set of short YouTube videos that show the workflow with AutoInt
 </div>
 
 <p>
-Below are older videos that are still valid altough the dialog looks a bit different. Basic steps are still the same.
+Below are older videos that are still valid although the dialog looks a bit different. Basic steps are still the same.
 </p>
     
 <div class="video-container" style="background-color: white;">
@@ -396,7 +396,7 @@ Available Tutorials:
   first integration. Perfect for new users.
 </li>
 <li>
-File Management - Master organizing your input and and output files.
+File Management - Master organizing your input and output files.
 </li>
 <li>
 Processing Settings - Explore processing options like cropping, gradient correction and stretching.
@@ -420,7 +420,7 @@ automatically from the welcome screen on first launch.
 <h2 id="dialog">AutoIntegrate dialog screens</h2>
 
 <p>
-Below are the examples of the script dialog screens. Often it is best to start with default options, add files and
+Below are the sample script dialog screens. Often it is best to start with default options, add files and
 hit the Run button.
 </p>
 
@@ -463,7 +463,7 @@ AutoIntegrate is added to the Script/Batch Processing menu.
 
 <p>
 In a page <a href="https://github.com/jarmoruuth/AutoIntegrate/releases">GitHub releases</a> you can find
-the latest release and download it from there. Releases page has some detailed information of changes in each release.
+the latest release and download it from there. The releases page has some detailed information of changes in each release.
 To download the source code click Source code (zip) and save the zip file. After download is complete, unzip the file.
 </p>
 <p>
@@ -525,7 +525,7 @@ Files can be added to the script by clicking the buttons at the bottom of the <i
 <a href="ai_directory.jpg"><img src="ai_directory.jpg"></a>
 <p>
 If <i>Directory</i> checkbox is checked then the script will recursively read all files from the selected directory
-and subdirectories. All files that match the file pattern will be added as image files. Selected directory 
+and subdirectories. All files matching the file pattern will be added as image files. Selected directory 
 will be used as the <a href="#root_directory">processing root directory</a>. File pattern can have multiple file 
 types separated by space. 
 </p>
@@ -606,7 +606,7 @@ AutoIntegrate will write output files into subdirectories.
 <li>AutoProcessed contains processed final images. Also integrated images and log output is here.</li>
 </ul>
 <p>
-If image calibration is used then calibrate files are put into own subdirectories.
+If image calibration is used then calibrated files are put into their own subdirectories.
 </p>
 <ul>
 <li>AutoMaster contains generated master calibration files.</li>
@@ -626,7 +626,7 @@ Output directories are created to the <a href="#root_directory">processing root 
   <li>Combined RGB image: <b><i>Integration_RGB_combined</i></b><br>
       For this image channel combination or narrowband mapping is done.</li>
   <li>Processed images: <b><i>Integration_L_processed and Integration_RGB_processed</i></b>
-      <br>Processed images that are still in linear stage.</li>
+      <br>Processed images that are still in the linear stage.</li>
   <li>Stretched images: <b><i>Integration_L_HT</i></b> and <b><i>Integration_RGB_HT</i></b>, and <b><i>Integration_LRGB_HT</i></b> if there is L image</li>
   <li>Final images: <b><i>AutoLRGB</i></b> or <b><i>AutoRGB</i></b></li>
 </ul>
@@ -645,7 +645,7 @@ Output directories are created to the <a href="#root_directory">processing root 
 <h3>Output files</h3>
 
 <ul>
-  <li><b>AutosaveSetup.json</b>: By default processing information is saved into AutosaveSetup.json file. The file can be loaded
+  <li><b>AutosaveSetup.json</b>: By default processing information is saved into the AutosaveSetup.json file. The file can be loaded
       later to check the processing or to fine tune some options for different processing. If not output directory is given
       AutosaveSetup.json file is saved into the <a href="#root_directory">processing root directory</a>
       AutosaveSetup.json is created only after a full processing, it is not generated after AutoContinue.</li>
@@ -658,12 +658,12 @@ Output directories are created to the <a href="#root_directory">processing root 
       Process Console during the AutoContinue processing. It is useful to check the processing steps and to see if there were
       any problems during processing. AutoContinue.log is created to the AutoProcessed directory.</li>
   <li><b>ExecutedProcesses.xpsm</b>:  When script runs a full processing it always generates ExecutedProcesses.xpsm file. It can be
-       loaded into PixInsight desktop as process icons to see the exact processes and settings that were used during processing.
+       loaded into the PixInsight desktop as process icons to see the exact processes and settings that were used during processing.
        ExecutedProcesses.xpsm is created to the <a href="#root_directory">processing root directory</a>.
   </li>
-  <li><b>AstrobinInfo.csv</b>:  When script runs a full processing it always generates AstrobinInfo.csv file. It can be used in
+  <li><b>AstrobinInfo.csv</b>:  When script runs a full processing it always generates an AstrobinInfo.csv file. It can be used in
       Astrobin to describe the imaging session. Astrobin filter numbers must be configured in the <i>Other / Astrobin section.</i>
-      AstrobinInfo.csv is created to the AutoProcessed directory.
+      AstrobinInfo.csv is created in the AutoProcessed directory.
 </li>
 </ul>
 
@@ -672,8 +672,8 @@ Output directories are created to the <a href="#root_directory">processing root 
 <a href="ai_targettype.jpg"><img src="ai_targettype.jpg"></a>
 
 <p>
-There is an option to select the target type for simplified processing. Target type changes some default
-options so that they are more likely to match to the target.
+There is an option to choose the target type for simplified processing. Target type changes some default
+options so that they are more likely to match the target.
 </p>
 <p>
 Following target types are available
@@ -701,7 +701,7 @@ narrowband images to RGB channels.
 </p>
 <p>
 Note that AutoIntegrate always uses narrowband mapping if any of the H, S, or O filters are present. So for example 
-HaLRGB workflow always uses narrowband mapping.
+The HaLRGB workflow always uses narrowband mapping.
 </p>
 <p>
 Below is a sample output from AutoIntegrate script when using narrowband data and SHO color palette. Otherwise it was run
@@ -866,7 +866,7 @@ Non-default processing options are saved after the base processing is run. With 
 parameters are saved to the image metadata.
 </p>
 <p>
-Processing history can be viewer using PixInsight File/FITS header selection.
+Processing history can be viewed using PixInsight File/FITS header selection.
 </p>
 <a href="ai_processinghistory.jpg"><img src="ai_processinghistory.jpg"></a>
 <p>
@@ -965,7 +965,7 @@ This is useful for visually checking the quality of the images.
 <a href="ai_resample.jpg"><img src="ai_resample.jpg"></a>
 
 <p>
-It is also possible to resample images to a lower resolution for blinking by selectoing the <i>Resample</i> 
+It is also possible to resample images to a lower resolution for blinking by selecting the <i>Resample</i> 
 checkbox below the preview image. This is useful for large images where 
 blinking would be too slow. Note that only the preview image is resampled, not the original image.
 Resample settings are in the <i>Interface / Interface settings</i> section.
@@ -1050,7 +1050,7 @@ It is useful for checking how the current settings affect the file list and also
 filtering settings if needed. When the dialog is closed, the file list is updated
 to show the current filtering.
 </p><p>
-Metricss visualizer can be opened from the <i>Preprocessing / Weighting and filtering</i> section or by clicking the
+Metrics visualizer can be opened from the <i>Preprocessing / Weighting and filtering</i> section or by clicking the
 <i>Metrics visualizer</i> button in the <i>Files</i> tab.
 </p>
 <p>
@@ -1061,7 +1061,7 @@ If the SubframeSelector process has not been run, the Metrics visualizer will as
 <p>
 Metrics are always created when light files are processed.
 Once measurements are done they can be saved to a Json file using the save button.
-Measurements are also saved to AutosaveSetup.json file. Loading this file will also load the measurements.
+Measurements are also saved to the AutosaveSetup.json file. Loading this file will also load the measurements.
 </p>
 
 
@@ -1140,12 +1140,12 @@ if you want quick results or if you have a huge number of images.
 <a href="ai_fastintegrationsettings.jpg"><img src="ai_fastintegrationsettings.jpg"></a>
 
 <p>
-FastIntegration has some setup options in <i>Proccessing 2 / FastIntegration</i> section. By default FastIntegration skips
+FastIntegration has some setup options in <i>Processing 2 / FastIntegration</i> section. By default FastIntegration skips
 cosmetic correction and also uses a subset of frames to find the reference image. It is possible to change these settings in the <i>FastIntegration</i>
 section.
 </p>
 <p>
-FastIntegration supports also drizzle integration. Drizzle integration is useful when you have undersampled data and you want to increase the 
+FastIntegration also supports drizzle integration. Drizzle integration is useful when you have undersampled data and you want to increase the 
 resolution of the image. Note that drizzle integration uses the normal DrizzleIntegration process so some performance benefits of
 FastIntegration are lost.
 </p>
@@ -1195,7 +1195,7 @@ Notes on different gradient correction methods:
 <ul>
   <li>When DBE is used, sample points are set automatically for the image.</li>
   <li>If GraXpert is used, it must be installed separately as it is an external tool.</li>
-  <li>When using MultiscaleGradientCorrection you need to set up MARS database in PixInsight. 
+  <li>When using MultiscaleGradientCorrection you need to set up the MARS database in PixInsight. 
     Note that the MARS database does not yet cover the whole sky. 
     If the image area is not in the MARS database, normal GradientCorrection is used.
     Also the image must be plate solved when using MultiscaleGradientCorrection. </li>
@@ -1211,8 +1211,8 @@ and <i>Tools / GraXpert</i> section.
 <a href="ai_gcwhen.jpg"><img src="ai_gcwhen.jpg"></a>
   
 <p>
-  There are options to select when gradient correction is done. The default option is not to do gradient correction.
-  One of these options must be selected to do gradient correction. ALso multiple options can be selected at the same time.
+  There are options to select when the gradient correction is executed. The default option is not to do gradient correction.
+  One of these options must be selected to do gradient correction. Also multiple options can be selected at the same time.
 </p>
 <ul>
   <li>Gradient correction on channel images</li>
@@ -1221,7 +1221,7 @@ and <i>Tools / GraXpert</i> section.
 </ul>
 
 <p>
-When the gradient correction is done is selected in the <i>Settings / Image processing parameters</i> section.
+At which point of the processing the gradient correction is executed is selected in the <i>Settings / Image processing parameters</i> section.
 </p>
   
 <h2 id="exclusionarea">Exclusion area for DBE</h2>
@@ -1236,10 +1236,10 @@ neutralization.
 <p>
 Exclusion area is set in the <i>Postprocessing / Gradient correction, ABE settings, DBE settings</i> section. It opens a new dialog 
 where you can select the exclusion area. From the drop down list is is possible to select the image that is used for selecting the 
-exclusion area. If image is non-linear it is auto streched before for the the exclusion area dialog.
+exclusion area. If the image is non-linear it is auto stretched for the exclusion area dialog.
 </p>
 <p>
-If images are not well aligned, it it recommended to use the <i>Settings / Image processing parameters / Integrate only</i> option.
+If images are not well aligned, it is recommended to use the <i>Settings / Image processing parameters / Integrate only</i> option.
 This will align the images before the exclusion area is selected. Autocontinue can then be used to continue the processing.
 </p>
 
@@ -1290,7 +1290,7 @@ Histogram stretch works best with images that are processed with the <i>Crop to 
 
 <h4><i>Other stretch methods</i></h4>
 <p>
-There are also a few other stretch methods available. These could be described as experimental. They may not be as useful
+There are a few other stretch methods available. These could be described as experimental. They may not be as useful
 as other stretch methods but they can be helpful in some special cases.
 </p>
 
@@ -1330,7 +1330,7 @@ BlurXTerminator or GraXpert deconvolution is used. So
 But it is always good to experiment what is best for your own data.
 </p>
 <p>
-By default noise reduction uses MultiscaleLinerTransform. There are also several AI tools available for noise redution:
+By default noise reduction uses MultiscaleLinerTransform. There are also several AI tools available for noise reduction:
 NoiseXTerminator, GraXpert denoise or DeepSNR.
 </p>
 
@@ -1367,7 +1367,7 @@ Below is an image that shows results from different narrowband processing using 
 AutoSTF auto/linked/unlinked channel options.
 </p>
 <p>
-First row is using defaults with no color calibration and auto (unlinked) channels for AutoSTF. Second row is using 
+The first row is using defaults with no color calibration and auto (unlinked) channels for AutoSTF. Second row is using 
 SPCC with auto channel link mode. With narrowband images and SPCC the auto channel link mode AutoIntegrate uses linked channels 
 for AutoSTF when there is H assigned into the red channel, otherwise AutoIntegrate uses unlinked channels.
 </p>
@@ -1416,7 +1416,7 @@ In the <i>Tools / BlurXTerminator</i> section are settings for BlurXTerminator.
 <a href="ai_noisexterminator.jpg"><img src="ai_noisexterminator.jpg"></a>
 
 <p>
-In the <i>Postprocessing / Noise reduction</i> section there are settings NoiseXTerminator.
+In the <i>Postprocessing / Noise reduction</i> section there are settings for NoiseXTerminator.
 </p>
 
 <h4>StarXTerminator</h4>
@@ -1427,9 +1427,9 @@ In the <i>Postprocessing / Noise reduction</i> section there are settings NoiseX
 In the <i>Tools / StarXTerminator</i> section there are settings for StarXTerminator.
 </p>
 <p>
-There it is possible to select other than default AI model. You can see the default AI model in the tooltip.
-AI models are stored in PixInsight installation directory and have .pb extension.
-At least in Windows they are in PixInsight/library directory.
+There it is possible to select other than the default AI model. You can see the default AI model in the tooltip.
+AI models are stored in the PixInsight installation directory and have a .pb extension.
+At least in Windows they are in the PixInsight/library directory.
 </p>
 <p>
 If you are getting tiling artifacts you can check <i>Large overlap</i> option. It runs slower but should give better results.
@@ -1448,7 +1448,7 @@ It is possible to use GraXpert for gradient correction, denoising or deconvoluti
 <a href="ai_graxpertgradient.jpg"><img src="ai_graxpertgradient.jpg"></a>
 
 <p>
-For gradient correction GraXpert ca be used instead of default gradient correction.
+For gradient correction GraXpert can be used instead of default gradient correction.
 GraXpert can be used by checking the <i>GraXpert</i> option in the <i>Settings / Tools</i> section.
 Smoothing and correction settings can be configured. When GraXpert is used from the script it 
 always uses the AI model when removing gradients.
@@ -1470,7 +1470,7 @@ settings can be configured in the <i>Postprocessing / Noise reduction</i> sectio
 
 <a href="ai_graxpertdeconvolution.jpg"><img src="ai_graxpertdeconvolution.jpg"></a>
 <p>
-GraXpert deconvolution can bve used to improve start quality and sharpen the image. It is used is used instead of 
+GraXpert deconvolution can be used to improve start quality and sharpen the image. It is used is used instead of 
 the default image sharpening. GraXpert deconvolution can be used by checking the <i>GraXpert deconvolution</i> 
 option in the <i>Settings / Tools</i>> section. Strength and FWHM settings can be configured in the 
 <i>Tools / GraXpert</i> section for both stars and objects (non-stars). 
@@ -1504,12 +1504,12 @@ Note that AutoIntegrate supports GraXpert version 2.2.0 or later.
 
 <a href="ai_starnet.jpg"><img src="ai_starnet.jpg"></a>
 <p>
-StarNet2 can be used to remove stars from the image. Before StarNet2 can be used it must installed to the PixInsight.
+StarNet2 can be used to remove stars from the image. Before StarNet2 can be used it must be installed to PixInsight.
 </p>
 
 <a href="ai_deepsnr.jpg"><img src="ai_deepsnr.jpg"></a>
 <p>
-DeepSNR can be used to reduce noise the image. Before DeepSNR can be used it must installed to the PixInsight.
+DeepSNR can be used to reduce noise in the image. Before DeepSNR can be used it must be installed to PixInsight.
 In <i>Postprocessing / Noise reduction</i> section there are settings for DeepSNR.
 </p>
   
@@ -1682,7 +1682,7 @@ equations created by Bill Blanshan.
 
 <p>
 By default a single narrowband palette is run. It can be selected in the <i>Settings / Narrowband processing</i> section.
-If there any of the H, S or O files available then a narrowband palette is always used. Note that even if there is just H files with
+If there are any of the H, S or O files available then a narrowband palette is always used. Note that even if there is just H files with
 LRGB files then a narrowband palette is used.
 </p>
 
@@ -1690,7 +1690,7 @@ LRGB files then a narrowband palette is used.
 Available narrowband palettes are listed below. Actual narrowband mapping is done based on the values in R, G and B
 edit fields. The palettes listed here are just shortcuts to the actual narrowband mapping values. You can also
 define your own narrowband mapping values in the <i>User defined</i> option or just edit the R, G and B mapping
-values before processing. The text in the R, G and B edit fields must be PixleMath compatible expressions.
+values before processing. The text in the R, G and B edit fields must be PixelMath compatible expressions.
 </p>
 
 <ul>
@@ -1779,7 +1779,7 @@ Stars are removed from the narrowband image and then combined with the RGB stars
 a final image.
 </p>
 <p>
-Auto narrowband palettes automatically use RGB stars option if both narrowband and RGB data is available.
+Auto narrowband palettes automatically use the RGB stars option if both narrowband and RGB data is available.
 </p>
 
 <h2 id="narrowband_allpalettes">Automatic processing of all palettes</h2>
@@ -1827,7 +1827,7 @@ on the <i>Settings / Other</i> section.
 <a href="ai_foraxx.jpg"><img src="ai_foraxx.jpg"></a>
 
 <p>
-To run Foraxx palette during the normal processing you need to select Dynamic narrowband palatte like Dynamic SHO and 
+To run Foraxx palette during the normal processing you need to select Dynamic narrowband palette like Dynamic SHO and 
 check the option <i>Narrowband mapping using non-linear data</i>.
 </p>
 <p>
@@ -1896,13 +1896,13 @@ options can be selected and the mapping can be tested with a test button.
 <a href="ai_extrahatorgb.jpg"><img src="ai_extrahatorgb.jpg"></a>
 
 <p>
-There is also extra processing option <i>Ha to RGB mapping</i> to add Ha to RGB. 
+There is also an extra processing option <i>Ha to RGB mapping</i> to add Ha to RGB. 
 In that case None combine mapping option can be used to skip mapping during processing. 
 Then the mapping can be done using the extra option.
 Extra option mapping settings are taken from <i>Postprocessing / Ha to RGB mapping</i> section.
 </p>
 <p>
-With extra option it is possible to use a different stretching for the Ha image.
+With the extra option it is possible to use a different stretching for the Ha image.
 So if the galaxy image is processed with masked stretch then Ha image can be stretched
 with AutoSTF and combined for example with 'Max 0.7' predefined setting.
 </p>
@@ -1983,7 +1983,7 @@ processing options.
 <a href="ai_extranarrowband.jpg"><img src="ai_extranarrowband.jpg"></a>
 <p>
 There are also narrowband specific extra processing options in the <i>Settings / Narrowband processing</i> section. 
-Below are listed some of the options.
+Below are some options.
 </p>
 <ul>
 <li>remap SHO or HOO image to a new palette</li>
@@ -2002,10 +2002,10 @@ Below are listed some of the options.
 <p>
 AutoContinue runs automatic processing from previously created LRGB/RGB, Narrowband or OSC/Color images. 
 The idea with AutoContinue is that it is possible to start from integrated images and then run
-procerssing with different options. For example you can run AutoIntegrate with default settings and then
+processing with different options. For example you can run AutoIntegrate with default settings and then
 use AutoContinue to run different options on the same images.
 </p><p>
-AutoContinue  akjes it possible also to run manually gradient correction or histogram 
+AutoContinue  makes it possible also to run manually gradient correction or histogram 
 transformation on the automatically processed images and then again continue automatic processing from there.
 </p><p>
 AutoContinue looks for images with fixed names and if it finds them it starts processing from those images. 
@@ -2053,13 +2053,13 @@ options, set a new <i>Window Prefix</i> to avoid overwriting previous processing
 <h4>Example to run manual gradient correction</h4>
 
 <p>
-Below is an example how to run manual gradient correction on images and then continue automatic processing from there.
+Below is an example of how to run manual gradient correction on images and then continue automatic processing from there.
 The example assumes that a base processing has been done with AutoIntegrate.  
 </p>
 
 <ol>
 <li>
-First close all images on desktop. For mono camera, load channel images Integration_<i>filter</i> to the desktop. 
+First close all images on the desktop. For a mono camera, load channel images Integration_<i>filter</i> to the desktop. 
 For example Integration_L, Integration_R, Integration_G and Integration_B.
 For color camera, load Integration_RGB image.
 </li>
@@ -2083,17 +2083,17 @@ Select processing options and click AutoContinue.
 <h4>Example to run manual stretching</h4>
 
 <p>
-Below is an example how to run manual stretching on images and then continue automatic processing from there.
+Below is an example of how to run manual stretching on images and then continue automatic processing from there.
 The example assumes that a base processing has been done with AutoIntegrate.  
 </p>
 
 <ol>
 <li>
-First close all images on desktop. For mono camera,  load images Integration_L_processed and
+First close all images on the desktop. For mono camera,  load images Integration_L_processed and
 Integration_RGB_processed to the desktop. For color camera, load Integration_RGB_processed image.
 </li>
 <li>
-If you want to avoid overwriting previously processed images set the Window prefix.
+If you want to avoid overwriting previously processed images, set the Window prefix.
 </li>
 <li>
 Run stretching on images and rename images to L_HT and RGB_HT.
@@ -2106,7 +2106,7 @@ Select processing options and click AutoContinue.
 
 <hr>
 
-<h1 id="other_processing">Other procesing</h1>
+<h1 id="other_processing">Other processing</h1>
 
 <h2 id="extract_color_channels">Extracting color channels from OSC files</h2>
 
@@ -2173,7 +2173,7 @@ There is also an extra processing option to run banding reduction on the final i
 <h3>Using Photometric Mosaic script</h3>
 
 <p>
-PixInsigth has great tools for creating mosaics. One such tool is the PhotometricMosaic script by John Murphy. 
+PixInsight has great tools for creating mosaics. One such tool is the PhotometricMosaic script by John Murphy. 
 You prepare linear images with scripts ImageSolver, MosaicByCoordinates and TrimMosaicTile and then create the 
 mosaic using script PhotometricMosaic.
 </p>
@@ -2220,7 +2220,7 @@ Note that batch mode does not create the actual mosaic image. It only creates pa
 <a href="ai_binning.jpg"><img src="ai_binning.jpg"></a>
 
 <p>
-Software binning option is available for light files. It is done as the first operation for all light files or 
+A software binning option is available for light files. It is done as the first operation for all light files or 
 only for color channel files. It uses the IntegerResample routine for binning. For very noisy images binning should 
 help to reduce noise at the costs of decreased resolution. If luminance data is good then it can be useful to do 
 binning only for color data.
@@ -2298,12 +2298,12 @@ automatically embedded.
 <a href="ai_signature.jpg"><img src="ai_signature.jpg"></a>
 
 <p>
-Signature extra option is used to add signature to the final image. Signature image file must be given by the user.
+Signature extra option is used to add signature to the final image. The signature image file must be given by the user.
 The signature file can be for example a .png image with a transparent background. Note that no borders are added to the image.
 </p>
 <p>
-Optionally the signature image can be scaled relative to the main image. The scaling is given as percentage of the main image size.
-Signature position can also be chosen: 'Top left', 'Top middle', 'Top right', 'Bottom left', 'Bottom middle' or 'Bottom right'.
+Optionally the signature image can be scaled relative to the main image. The scaling is given as a percentage of the main image size.
+The signature position can also be chosen: 'Top left', 'Top middle', 'Top right', 'Bottom left', 'Bottom middle' or 'Bottom right'.
 </p>
 
 <h2 id="fastmode">Fast mode</h2>
@@ -2342,7 +2342,7 @@ The change will be effective when restarting the script.
 <p>
 When manual icon control is enabled there is a new control Icon column. With that control it is possible to manually 
 set the column where icons are placed. The default for the Icon column is Auto where the icon column is chosen automatically. 
-Last icon column is remembered and automatically restored when  the script starts.
+The last icon column is remembered and automatically restored when  the script starts.
 </p>
 
 <h2 id="image_preview">Image preview and interface configuration</h2>
@@ -2352,7 +2352,7 @@ Last icon column is remembered and automatically restored when  the script start
 <p>
 AutoIntegrate includes image preview functionality. It is possible to see a stretched image by clicking 
 through the file list files. Image preview is shown in a preview window that is part of the script dialog.
-The image in the preview window can be zoomed and moved around.
+The image in the preview window can be zoomed and moved.
 </p><p>
 Files in the file list have a checked flag. Using image preview functionality bad files can be unchecked. 
 Only checked files are used for processing.
@@ -2376,12 +2376,12 @@ Preview window can be disabled in the <i>Interface / Interface settings</i> sect
 
 <p>
 By default the image histogram is displayed below the image. Histogram is updated when the image is changed.
-Clicking on the histogram shows some statistics. Default size for histogram is calculated automatically. 
+Clicking the histogram shows some statistics. Default size for histogram is calculated automatically. 
 Size can be adjusted in the <i>Interface / Interface settings</i> section and the histogram display can 
 be disabled in the <i>Interface / Interface settings</i> section.
 </p>
 <p>
-If image is linear (not stretched) then the histogram is shown using a logarithmic scale. A text Log is shown
+If the image is linear (not stretched) then the histogram is shown using a logarithmic scale. A text Log is shown
 in the histogram window. If the image is stretched then the histogram uses linear scale and text Norm
 is shown.
 </p>
@@ -2462,7 +2462,7 @@ script you need to clear the checksum field first.
 
 <p>
 Current parameter settings and image file lists loaded into light and calibrate image pages can be saved to a setup file. 
-That file can later be restored back to AutoIntegrate. Saved file keeps checked/unchecked status for files. The file must 
+That file can later be restored to AutoIntegrate. Saved file keeps checked/unchecked status for files. The file must 
 have a .json extension.
 </p><p>
 File paths that are in a subdirectory of the setup file are saved as relative paths. This makes it possible to move or
@@ -2470,7 +2470,7 @@ share setup and images files and it still works in a new location. Relative path
 </p><p>
 Setup file saves only those parameters that have a non-default value. It is good to note that other parameters settings are
 not changed when restoring the setup. There is an option <i>Reset on setup load</i> to use only those settings that are loaded
-from the setup file. Other parameters are reset to default values.
+from the setup file. Other parameters are reset to defaults.
 </p><p>
 Also window prefix and output directory are saved to a setup file.
 </p><p>
@@ -2489,7 +2489,7 @@ Option <i>Autosave setup</i> saves current setup automatically after successful 
 only after the Run command, it is not done after the AutoContinue command. Starting from version 1.65, <i>Autosave setup</i>
 is enabled by default.
 </p><p>
-File is saved to the default output directory. This makes it possible to use relative paths to files so it is easy to 
+The file is saved to the default output directory. This makes it possible to use relative paths to files so it is easy to 
 move the setup file around or even share with lights files.
 </p><p>
 Setup can be later loaded into AutoIntegrate to see the settings or run the setup again possibly with different options. 
@@ -2522,12 +2522,12 @@ info calibration file lists. If only one calibration file is present then the sc
 <a href="ai_executedprocesses.jpg"><img src="ai_executedprocesses.jpg"></a>
 
 <p>
-When script runs a full processing it always generates ExecutedProcesses.xpsm file. It can be loaded into PixInsight desktop as 
+When script runs a full processing it always generates an ExecutedProcesses.xpsm file. It can be loaded into PixInsight desktop as 
 process icons to see the exact processes and settings that were used during processing.
 </p>
 <p>
 Process icons can also be used to manually run the same processing again, maybe with some fine tuning. Process icons include file lists
-so the same files that were are used when running the process icons.
+so the same files as used as during automatic processing.
 </p>
 <p>
 You can load process icons to the PixInsight desktop using <i>Process / Process Icons / Load Process Icons...</i> menu command.
@@ -2538,7 +2538,7 @@ If you already have some process icons loaded to the desktop you can append new 
 Process icons file ExecutedProcesses.xpsm is created to the <a href="#root_directory">processing root directory</a>.
 </p>
 <p>
-Some processing steps may not generate process icons. Below are listed some of steps that do not have a process icon.
+Some processing steps may not generate process icons. Below are some steps that do not have a process icon.
 </p>
 <ul>
 <li>There is no process icon to create or set a mask. Masks are often used when doing for example noise reduction or color saturation.</li>
@@ -2559,23 +2559,24 @@ Iterative stretch methods that do not generate process icons are listed below:
 <li>Highlight stretch</li>
 </ul>
 
-Some consideration if you plan to run manual prcessing using process icons:
+<p>
+Some considerations if you plan to run manual processing using process icons:
 </p>
 <ul>
 <li>In some cases the image names used in icons may not match those created during manual processing. So you may need to adjust the image names accordingly.</li>
 <li>During manual processing the SSWEIGHT keyword is not written to output files. So the use of SSWEIGHT keyword is disabled in the process icons.</li>
 </ul>
 
-<p>Below is an example of process icons created by AutoIntegrate script and loaded into PixInsight desktop.</p>
+<p>Below is an example of process icons created by AutoIntegrate script and loaded into the PixInsight desktop.</p>
 
 <a href="ai_processiconsexample.jpg"><img src="ai_processiconsexample.jpg"></a>
 
 <h2 id="astrobin">Astrobin session information</h2>
 
 <p>
-When script runs a full processing it always generates AstrobinInfo.csv file. It can be used in
+When script runs a full processing it always generates an AstrobinInfo.csv file. It can be used in
 Astrobin to describe the imaging session. Astrobin filter numbers must be configured in the <i>Other / Astrobin section.</i>
-AstrobinInfo.csv is created to the AutoProcessed directory.
+AstrobinInfo.csv is created in the AutoProcessed directory.
 </p>
 
 <h2 id="command_line">Running AutoIntegrate from the Command Line</h2>
@@ -2591,7 +2592,7 @@ AstrobinInfo.csv is created to the AutoProcessed directory.
 <li><code>do_not_write_settings</code> - Prevents AutoIntegrate from saving any settings after the script completes.</li>
 </ul>
 <p>
-Using PixInsight command line option --force-exit you can exit PixInsight after the script finishes executing.
+Using the PixInsight command line option --force-exit you can exit PixInsight after the script finishes executing.
 </p>
 <p>
  Example command line to run AutoIntegrate script:
@@ -2660,7 +2661,7 @@ smaller stars automatically.
 </li>
 <li>
 When removing stars you often get better star color with unscreen option. When combining stars and starless
-in either PixInsight or Photoshop use the screen option.
+in PixInsight or Photoshop use the screen option.
 </li>
 <li>
 Automatic cropping is very handy. But check LowRejectionMap_ALL and verify that the crop is ok.
@@ -2691,7 +2692,7 @@ It has a lot of useful information so please check it out.
 </p>
 <p>
 Glenn Newell discusses his latest (not so) secret PixInsight weapon, the AutoIntegrate script 
-in the San Jose Astronomical Association (SJAA) meeting. 
+at the San Jose Astronomical Association (SJAA) meeting. 
 Link to the YouTube presentation is: 
 <a href="https://www.youtube.com/watch?v=P_DaZnz7JzY&t=178s">SJAA Imaging Special Interest Group 05 18 2021</a>
 </p>
@@ -2770,7 +2771,7 @@ Details of processing steps can be found from the header block of the source cod
 <p>
 I started my astrophotography hobby with remote telescopes in 2017. I almost immediately got PixInsight 
 and started working with FITS files. From the start I was happy with the results but also found 
-that there are a lot of repetitive and complex tasks to be done. After a few months I even 
+that there are many repetitive and complex tasks to be done. After a few months I even 
 stopped my new hobby for a while. When I started astrophotography again after the summer 2018 I 
 realized that there is this wonderful scripting capability in PixInsight. So I started developing 
 my script. FITS files from remote telescopes were already calibrated so I did some first steps 
@@ -2839,7 +2840,7 @@ with PixInsight. Linear Defect Detection code is using the code from Vicent Peri
 </p>
 <p>
 PixInsight scripts that come with the product were a great help when developing this script. 
-Website Light Vortex Astronomy was a great place to find details and best practices when using PixInsight. 
+The website Light Vortex Astronomy was a great place to find details and best practices when using PixInsight. 
 Unfortunately that site is no longer available.
 </p>
 <p>
