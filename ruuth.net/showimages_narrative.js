@@ -28,12 +28,17 @@ function showImages(heading, images) {
         var subtitle = images[i][2] || '';
         var data = astroData[file] || {};
 
+        var header = escapeHtml(title);
+        if (subtitle != '') {
+            header += ' (' + escapeHtml(subtitle) + ')';
+        }
+
         // Build narrative HTML if available
         var narrativeHtml = '';
         if (data.story || data.whatToLook || data.scale || data.constellation || data.nameOrigin) {
             narrativeHtml = `
             <div class="astro-info">
-                ${data.story ? `<div class="astro-block"><h4>Story</h4><p>${escapeHtml(data.story)}</p></div>` : ''}
+                ${data.story ? `<div class="astro-block"><h4>${header}</h4><p>${escapeHtml(data.story)}</p></div>` : ''}
                 ${data.nameOrigin ? `<div class="astro-block"><h4>Name Origin</h4><p>${escapeHtml(data.nameOrigin)}</p></div>` : ''}
                 ${data.whatToLook ? `<div class="astro-block"><h4>What to Look For</h4><p>${escapeHtml(data.whatToLook)}</p></div>` : ''}
                 ${data.scale ? `<div class="astro-block"><h4>Scale</h4><p>${escapeHtml(data.scale)}</p></div>` : ''}
@@ -41,6 +46,7 @@ function showImages(heading, images) {
                 ${data.discovered ? `<div class="astro-block"><h4>Discovered</h4><p>${escapeHtml(data.discovered)}</p></div>` : ''}
             </div>
             `;
+            header = null; // Clear header to avoid duplication
         } else {
             // No data, add item to nodata list
             console.log('No data for file:[', images[i].join(', '), '],');
@@ -48,11 +54,16 @@ function showImages(heading, images) {
 
         var newdiv = document.createElement("div");
 
+        if (header != null) {
+            var data_title = 'data-title="' + header + '" ';
+        } else {
+            var data_title = 'data-title=""';
+        }
         newdiv.innerHTML =
             '<a href="images/' + encodeURI(file) + '" ' +
                 'class="glightbox" ' +
                 'data-gallery="' + escapeHtml(galleryId) + '" ' +
-                'data-title="' + escapeHtml(title) + ' (' + escapeHtml(subtitle) + ')" ' +
+                data_title +
                 'data-description="' + escapeHtml(narrativeHtml) + '">' +
                 '<img class="thumb" src="images/small/small_' + encodeURI(file) + '" ' +
                     'alt="' + escapeHtml(title || file) + '">' +
