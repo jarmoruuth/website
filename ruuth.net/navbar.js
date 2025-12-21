@@ -2,7 +2,7 @@ class MyNavBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <ul id="main-nav">
-        <li><a id="nav-home" href="https://ruuth.xyz/">Home</a></li>
+        <li><a id="nav-home" href="/">Home</a></li>
         <li><a id="nav-photos" href="index.html">Photos</a></li>
         <li><a id="nav-skiing" href="skiing.html">Skiing</a></li>
         <li><a id="nav-caves" href="caves.html">Caves</a></li>
