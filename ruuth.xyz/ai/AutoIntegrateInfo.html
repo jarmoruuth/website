@@ -76,11 +76,11 @@ gtag('config', 'G-FV9GG7V9PM');
 <div class="dropdown">
 <button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
 <div class="dropdown-content">
-<a href="AstroImageTools.html">Home</a>
-<a href="AstroMosaicInfo.html">Astro Mosaic</a>
-<a href="AutoIntegrateInfo.html">AutoIntegrate</a>
-<a href="DownloadFitInfo.html">Download .fit</a>
-<a href="FitsPyInfo.html">FITS utility</a>
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
 </div>
 </div>
 <div class="h1text">
@@ -1254,6 +1254,7 @@ AutoIntegrate offers a few options to stretch an image from linear to non-linear
 
 <ul>
 <li>Auto STF - Uses auto Screen Transfer Function.</li>
+<li>VeraLuxHMS - Uses VeraLux Hypermetric Stretch to stretch an image.</li>
 <li>Masked Stretch - Uses MaskedStretch to stretch an image.</li>
 <li>Masked+Histogram Stretch - Uses MaskedStretch with Histogram prestretch to stretch an image.</li>
 <li>Histogram stretch - Using simple histogram transformation to get histogram median or peak to the target value.</li>
@@ -1264,6 +1265,14 @@ AutoIntegrate offers a few options to stretch an image from linear to non-linear
 <p>
 Auto STF is the default stretch. It is good in most cases. It can be fine tuned with STF targetBackground parameter.
 If you get too bright an image you can try lowering targetBackground value.
+</p>
+
+<h4><i>VeraLuxHMS</i></h4>
+<p>
+VeraLuxHMS can work well on many targets. Typically it is great if you want saturated results.
+</p>
+<p>
+VeraLux Hypermetric Stretch is based on the original Python version implementation by Riccardo Paterniti.
 </p>
 
 <h4><i>Masked Stretch</i></h4>
@@ -2800,6 +2809,9 @@ new ideas and testing different versions of the script.
 <p>
 Thanks to Erik Westermann for doing a great work on documenting the script in his web site 
 <a href="https://remoteastrophotography.com/">https://remoteastrophotography.com/</a>.
+</p>
+<p>
+VeraLux Hypermetric Stretch is based on the original Python version implementation by Riccardo Paterniti.
 </p>
 <p>
 YouTube channel <a href="https://www.youtube.com/@setiv2">Seti Astro</a> by Frank Marek has been a great source for new 
