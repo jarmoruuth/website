@@ -15,6 +15,8 @@
          </title>
          <remove>
          src/scripts/AutoIntegrate.js
+         src/scripts/AutoIntegrate/VeraLux_HyperMetric_Stretch.js
+         src/scripts/AutoIntegrate/BasicPreviewControl.js
          </remove>
          <description>
             <p>
@@ -38,7 +40,7 @@
             </p>
             <p>
                 <ul>
-                    <li>Copyright (c) 2018-2024 Jarmo Ruuth</li>
+                    <li>Copyright (c) 2018-2026 Jarmo Ruuth</li>
                     <li>Copyright (c) 2022 Jean-Marc Lugrin</li>
                     <li>Copyright (c) 2021 rob pfile</li>
                     <li>Copyright (c) 2013 Andres del Pozo</li>

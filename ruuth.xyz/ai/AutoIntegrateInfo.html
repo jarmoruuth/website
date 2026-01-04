@@ -163,13 +163,13 @@ https://ruuth.xyz/autointegrate/
     <li><a href="#narrowband_rgbstars">RGB stars for narrowband images</a></li>
     <li><a href="#narrowband_allpalettes">Automatic processing of all palettes</a></li>
     <li><a href="#narrowband_multiplepalettes">Automatic processing of multiple palettes</a></li>
-    <li><a href="#narrowband_extra_mapping">Narrowband mapping extra options</a></li>
+    <li><a href="#narrowband_enhancements_mapping">Narrowband mapping enhancements options</a></li>
     <li><a href="#foraxx_palette">Foraxx palette</a></li>
     <li><a href="#narrowband_colorization">Narrowband colorization</a></li>
     <li><a href="#ha_rgb">Ha to RGB mapping</a></li>
     <li><a href="#narrowband_rgb">Narrowband to RGB mapping</a></li>
   </ul>
-  <li><a href="#extra_processing">Extra processing</a></li>
+  <li><a href="#enhancements_processing">Image enhancements</a></li>
   <li><a href="#autocontinue">AutoContinue</a></li>
   <li><a href="#other_processing">Other processing</a></li>
   <ul class="toc_list">
@@ -216,6 +216,8 @@ https://ruuth.xyz/autointegrate/
 <h3>Latest updates</h3>
 
 <p>
+  <a href="">v1.82 test - Standalone scripts, MultiscaleAdaptiveStretch</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-81-veralux-hypermetric-stretch/274">v1.81 - VeraLux HyperMetric Stretch</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-80-process-icons/272">v1.80 - Process icons</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-79-tutorials/270">v1.79 - Tutorials</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-78-small-updates-and-fixes/267">v1.78 - Small updates and fixes</a><br>
@@ -225,8 +227,6 @@ https://ruuth.xyz/autointegrate/
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-74-tools-stretching-sharpening/248">v1.74 - Tools, stretching, sharpening</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-73-multiscalegradientcorrection/240">v1.73 - MultiscaleGradientCorrection</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-72-ha-to-rgb-mapping-true-background/235">v1.72 - Ha to RGB mapping, true background</a><br>
-  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-71-fix-to-memory-usage/227">v1.71 - Fix to memory usage</a><br>
-  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-70-deepsnr-signature-fastintegration-flowchart/221">v1.70 - DeepSNR, Signature, FastIntegration, Flowchart</a><br>
 </p>
 <p>
 For more details on versions see <a href="https://github.com/jarmoruuth/AutoIntegrate/releases">GitHub page</a> or 
@@ -455,7 +455,7 @@ After you have added the link to AutoIntegrate repository you should check for u
 To install updates you need to restart PixInsight.
 </p>
 <p>
-AutoIntegrate is added to the Script/Batch Processing menu.
+AutoIntegrate is added to the Script/AutoIntegrate menu.
 </p>
   
 <h4>Manual download and source code</h4>
@@ -483,7 +483,7 @@ changes from the GitHub master branch.
 <a href="ai_scriptmenu.jpg"><img src="ai_scriptmenu.jpg"></a>
 
 <p>
-Click AutoIntegrate in the Script/Batch Processing menu to start the script.
+Click AutoIntegrate in the Script/AutoIntegrate menu to start the script.
 </p>
   
 <h4>Starting the script the script from the script editor</h4>
@@ -861,7 +861,7 @@ AutoIntegrate automatically embeds processing history into image metadata as FIT
 Processing history is saved using the HISTORY keywords.
 </p>
 <p>
-Non-default processing options are saved after the base processing is run. With extra processing the processing option name with possible
+Non-default processing options are saved after the base processing is run. With enhancements processing the processing option name with possible
 parameters are saved to the image metadata.
 </p>
 <p>
@@ -870,7 +870,7 @@ Processing history can be viewed using PixInsight File/FITS header selection.
 <a href="ai_processinghistory.jpg"><img src="ai_processinghistory.jpg"></a>
 <p>
 It is also possible to view the processing history by loading 
-the image as a target image in the AutoIntegrate script Extra processing tab. Then the processing history is printed to the process console
+the image as a target image in the AutoIntegrate script <i>Enhancements</i> tab. Then the processing history is printed to the process console
 using the <i>AutoIntegrate processing history</i> button.
 </p>
 
@@ -889,8 +889,8 @@ run --reset
 </li>
 
 <li>
-<i>AutoIntegrate does not show up in the Script/Batch Processing menu.</i><br>
-If AutoIntegrate does not show up in the Script/Batch Processing menu you can try to reinstall scripts by deleting the updates.xri file 
+<i>AutoIntegrate does not show up in the Script/AutoIntegrate menu.</i><br>
+If AutoIntegrate does not show up in the Script/AutoIntegrate menu you can try to reinstall scripts by deleting the updates.xri file 
 in the PixInsight application folder. Or you can try to repair the PixInsight installation, check for updates, close PixInsight 
 to install updates, and restart PixInsight.
 <br><br>
@@ -921,7 +921,9 @@ installation path to AdP is C:\Program Files\PixInsight\src\scripts\AdP.
 <li>
 <i>Error Zero or insignificant PSF Signal Weight estimate</i><br>
 In some cases like when using starless images you may get an error "Zero or insignificant PSF Signal Weight estimate" in the AutoIntegrate log files. 
-You may get rid of this problem by using an option <i>ImageIntegration use ssweight</i>.
+You may get rid of this problem by using an option <i>Settings / Preprocessing / ImageIntegration use ssweight</i>.<br>
+Very bad input image can cause the the problem. In that case you should filter out bad images.<br>
+Another reason can be too small image size caused for example by cropping or binning.
 </li>
 
 </ul>
@@ -1178,11 +1180,16 @@ Multiple options for gradient correction are available. The default option is to
 There are options to use the following processes for gradient correction.
 </p>
 <ul>
+  <li>GradientCorrection (default unless some other option is selected)</li>
   <li>ABE (AutomaticBackgroundExtractor)</li>
   <li>DBE (DynamicBackgroundExtraction)</li>
   <li>MultiscaleGradientCorrection</li>
   <li>GraXpert</li>
 </ul>
+
+<p>
+To try out different gradient correction methods there is a standalone script Gradient Correction in the Script / AutoIntegrate menu.
+</p>
 
 <p>
 Gradient correction is selected in the <i>Settings / Tools</i> section.
@@ -1249,17 +1256,22 @@ This will align the images before the exclusion area is selected. Autocontinue c
 <a href="ai_stretching.jpg"><img src="ai_stretching.jpg"></a>
 
 <p>
-AutoIntegrate offers a few options to stretch an image from linear to non-linear.
+AutoIntegrate offers a few options to stretch an image from linear to non-linear. 
 </p>
 
 <ul>
-<li>Auto STF - Uses auto Screen Transfer Function.</li>
-<li>VeraLuxHMS - Uses VeraLux Hypermetric Stretch to stretch an image.</li>
+<li>Auto STF - Uses Auto Screen Transfer Function.</li>
+<li>MultiscaleAdaptiveStretch - Uses MultiscaleAdaptiveStretch.</li>
 <li>Masked Stretch - Uses MaskedStretch to stretch an image.</li>
+<li>VeraLuxHMS - Uses VeraLux Hypermetric Stretch to stretch an image.</li>
 <li>Masked+Histogram Stretch - Uses MaskedStretch with Histogram prestretch to stretch an image.</li>
 <li>Histogram stretch - Using simple histogram transformation to get histogram median or peak to the target value.</li>
 <li>Other stretch methods</li>
 </ul>
+
+<p>
+To try out different stretching methods there is a standalone script Image Stretching in the Script / AutoIntegrate menu.
+</p>
 
 <h4><i>Auto STF</i></h4>
 <p>
@@ -1267,18 +1279,28 @@ Auto STF is the default stretch. It is good in most cases. It can be fine tuned 
 If you get too bright an image you can try lowering targetBackground value.
 </p>
 
-<h4><i>VeraLuxHMS</i></h4>
+<h4><i>MultiscaleAdaptiveStretch</i></h4>
 <p>
-VeraLuxHMS can work well on many targets. Typically it is great if you want saturated results.
-</p>
-<p>
-VeraLux Hypermetric Stretch is based on the original Python version implementation by Riccardo Paterniti.
+MultiscaleAdaptiveStretch is the new a new built in stretching tool in PixInsight.
 </p>
 
 <h4><i>Masked Stretch</i></h4>
 <p>
 Masked Stretch is a good choice when Auto STF does not give a good image. For example with bright galaxy images 
 Masked Stretch is a good choice as it keeps brightness in control and gives better saturation.
+</p>
+
+<h4><i>VeraLuxHMS</i></h4>
+<p>
+VeraLuxHMS can work well on many targets. Typically it is great if you want saturated results.
+</p>
+<p>
+VeraLux HyperMetric Stretch is a new stretching method created by Riccardo Paterniti. His original implementation is done in Python for Siril. 
+This new stretching looks very interesting and has been added to the AutoIntegrate script.
+</p>
+<p>
+The AutoIntegrate implementation was done using the original Python version that was found from GitLab. It was converted to the
+PixInsight Javascript using Claude AI tool.
 </p>
 
 <h4><i>Masked+Histogram Stretch</i></h4>
@@ -1587,7 +1609,7 @@ and before optional comet alignment.
 <a href="ai_unscreen_stars.jpg"><img src="ai_unscreen_stars.jpg"></a>
 
 <p>
-For both normal and extra processing there is an <i>Unscreen stars</i> checkbox. This option uses 
+For both normal and enhancements processing there is an <i>Unscreen stars</i> checkbox. This option uses 
 a bit of a different method to generate the stars image as described by Russell Croman. 
 For details see this post: 
 <a href="https://pixinsight.com/forum/index.php?threads/unscreening-and-re-screening-recombining-stars-with-starless-images.18602/">"Unscreening" and re-screening: recombining stars with starless images</a>
@@ -1606,7 +1628,7 @@ When stars are removed before stretching then a different stretching can be used
 get better star colors.
 </p>
 
-<h4>Extra remove stars</h4>
+<h4>Enhancements remove stars</h4>
 
 <a href="ai_extra_remove_stars.jpg"><img src="ai_extra_remove_stars.jpg"></a>
 
@@ -1614,12 +1636,12 @@ get better star colors.
 Removes stars from the final image to generate a starless image and a separate stars image.
 </p>
 
-<h4>Extra Fix star cores</h4>
+<h4>Enhancements Fix star cores</h4>
 
 <a href="ai_fixstarcores.jpg"><img src="ai_fixstarcores.jpg"></a>
 <p>
-Sometimes star cores can be too bright and need to be fixed. There is an Extra processing option <i>Fix star cores</i> to fix star cores in the
-<i>Extra processing / Generic extra processing</i> section.
+Sometimes star cores can be too bright and need to be fixed. There is an Enhancements option <i>Fix star cores</i> to fix star cores in the
+<i>Enhancements / Generic enhancements</i> section.
 </p>
 
 <h2 id="reducing_stars">Reducing stars</h2>
@@ -1629,7 +1651,7 @@ Stars can be reduced either separately or when combining starless and star image
 </p>
 <a href="ai_smallerstars.jpg"><img src="ai_smallerstars.jpg"></a>
 <p>
-Extra option <i>Smaller stars</i> reduce star sizes. Number of iterations can be selected when reducing star sizes. 
+Enhancements option <i>Smaller stars</i> reduce star sizes. Number of iterations can be selected when reducing star sizes. 
 Value zero uses Erosion instead of Morphological Selection
 </p>
 <a href="ai_reducestars.jpg"><img src="ai_reducestars.jpg"></a>
@@ -1652,17 +1674,17 @@ Photoshop blending modes.
 
 <p>
 Combine option can be set separately in the <i>Postprocessing / Stars stretching</i> section and 
-<i>Extra processing / Generic extra processing</i> section.
+<i>Enhancements / Generic enhancements</i> section.
 </p>
 
-<h3>Extra processing to starless and stars images</h3>
+<h3>Enhancements processing to starless and stars images</h3>
 
 <a href="ai_extra_combine_stars.jpg"><img src="ai_extra_combine_stars.jpg"></a>
 <p>
-Extra processing has some additional options when combining starless and stars images.
+Enhancements processing has some additional options when combining starless and stars images.
 </p>
 <p>
-To use the Extra processing option <i>combine</i> you need to have starless and stars images open on the desktop. 
+To use the Enhancements option <i>combine</i> you need to have starless and stars images open on the desktop. 
 Starless image must be selected as the target image.
 </p>
 <p>
@@ -1725,6 +1747,10 @@ values before processing. The text in the R, G and B edit fields must be PixelMa
 <li>User defined - </li>
 <li>All - Process all narrowband palettes</li>
 </ul>
+
+<p>
+To try out different narrowband palettes there is a standalone script Narrowband Combinations in the Script / AutoIntegrate menu.
+</p>
 
 <h2 id="narrowband_auto_mapping">Automatic selection of narrowband palette</h2>
 
@@ -1802,14 +1828,14 @@ Optionally it is possible to process multiple narrowband palettes in one run.
 Narrowband palette option <i>All</i> automatically processes all HSO palettes it knows. 
 Every image is named with the palette option and automatically saved to disk as a .xisf file. 
 Images are also left open on screen. With Save final image files selection it is possible to 
-save them all for example as 16 bit TIFF files. You can also use extra options in images,
-then images with name Auto_+palette-name+_extra are created.
+save them all for example as 16 bit TIFF files. You can also use enhancements options in images,
+then images with name <i>Auto_</i>+palette-name+<i>_enh</i> are created.
 If you want to just check the output of different palettes then you can use the <i>Fast mode</i> option
 on the <i>Settings / Other</i> section.
 </p>
 <p>
 <a href="AllPalettes.jpg"><img src="AllPalettes.jpg" height="300"></a>
-<br><small>All narrowband palettes known by AutoIntegrate, and two SHO palettes after extra processing.</small>
+<br><small>All narrowband palettes known by AutoIntegrate, and two SHO palettes after enhancements processing.</small>
 </p>
 
 <h2 id="narrowband_multiplepalettes">Automatic processing of multiple palettes</h2>
@@ -1843,24 +1869,24 @@ Dynamic narrowband palettes should be run using non-linear data. With dynamic pa
 stretched before running the dynamic combinations.
 </p>
 
-<h4>Foraxx extra option</h4>
+<h4>Foraxx enhancements option</h4>
 
 <a href="ai_foraxxextra.jpg"><img src="ai_foraxxextra.jpg"></a>
 
 <p>
-In the <i>Extra processing / Narrowband extra processing</i> section there is also an option to use the Foraxx palette for SHO and HOO images. 
+In the <i>Enhancements / Narrowband enhancements processing</i> section there is also an option to use the Foraxx palette for SHO and HOO images. 
 Foraxx needs nonlinear images so it can be run after other processing. Foraxx palette is the same as Dynamic 
 palettes with <i>Settings / Narrowband mapping</i> section but for SHO images also <i>Remove green cast</i> and <i>Orange/blue colors</i> 
 options are run for the image.
 </p>
 
-<h2 id="narrowband_extra_mapping">Narrowband mapping extra options</h2>
+<h2 id="narrowband_enhancements_mapping">Narrowband mapping enhancements options</h2>
 
 <a href="ai_extranarrowbandmapping.jpg"><img src="ai_extranarrowbandmapping.jpg"></a>
 
 <p>
 Another way to check different narrowband palettes is with the <i>Narrowband mapping</i> option 
-in the <i>Extra processing / Narrowband extra processing</i> section. If the processed image is a SHO or HOO image then it is possible 
+in the <i>Enhancements / Narrowband enhancements processing</i> section. If the processed image is a SHO or HOO image then it is possible 
 to try different narrowband mappings. When the <i>Narrowband mapping</i> option is used, channels are extracted 
 from the SHO or HOO image and mapped again to create a new palette image.
 </p>
@@ -1870,7 +1896,7 @@ from the SHO or HOO image and mapped again to create a new palette image.
 <a href="ai_narrowbandcolorization.jpg"><img src="ai_narrowbandcolorization.jpg"></a>
 
 <p>
-Extra processing option <i>Colorize narrowband</i> is used to map narrowband (or any other) data 
+Enhancements option <i>Colorize narrowband</i> is used to map narrowband (or any other) data 
 to RGB channels using user selected hue, saturation and weight.
 </p>
 
@@ -1904,13 +1930,13 @@ options can be selected and the mapping can be tested with a test button.
 <a href="ai_extrahatorgb.jpg"><img src="ai_extrahatorgb.jpg"></a>
 
 <p>
-There is also an extra processing option <i>Ha to RGB mapping</i> to add Ha to RGB. 
+There is also an enhancements option <i>Ha to RGB mapping</i> to add Ha to RGB. 
 In that case None combine mapping option can be used to skip mapping during processing. 
-Then the mapping can be done using the extra option.
-Extra option mapping settings are taken from <i>Postprocessing / Ha to RGB mapping</i> section.
+Then the mapping can be done using the enhancements option.
+Enhancements option mapping settings are taken from <i>Postprocessing / Ha to RGB mapping</i> section.
 </p>
 <p>
-With the extra option it is possible to use a different stretching for the Ha image.
+With the enhancements option it is possible to use a different stretching for the Ha image.
 So if the galaxy image is processed with masked stretch then Ha image can be stretched
 with AutoSTF and combined for example with 'Max 0.7' predefined setting.
 </p>
@@ -1939,18 +1965,21 @@ With narrowband RGB mapping you can choose:<br>
 
 <hr>
 
-<h1 id="extra_processing">Extra processing</h1>
+<h1 id="enhancements_processing">Image enhancements</h1>
 
 <a href="ai_extra.jpg"><img src="ai_extra.jpg"></a>
 
 <p>
-Extra processing allows running several PixInsight processes and enhancements separately on an image. 
-Extra processing can be run as part of the basic image workflow or it can be run separately on selected images.
-When extra processing is run separately on a selected image it is easy to experiment the effect of
+Image enhancements allow running several PixInsight processes and enhancements separately on an image. 
+Image enhancements can be found in the <i>Enhancements</i> tab.
+</p>
+<p>
+Enhancements can be run as part of the basic image workflow or it can be run separately on selected images.
+When enhancements are run separately on a selected image it is easy to experiment the effect of
 different processing in a preview window with undo and redo buttons. 
 </p>
 <p>
-Some of the extra processing that can be applied to the image include:
+Some of the enhancements that can be applied to the image include:
 </p>
 <ul>
 <li>Separate stars and background</li>
@@ -1970,27 +1999,30 @@ Some of the extra processing that can be applied to the image include:
 If multiple options are selected see tooltips on the script for execution order.
 </p>
 <p>
-In case of Run or AutoContinue, extra processing steps are applied to a copy of the final image. 
-A new image is created with _extra added to the name. For example if the final image is 
-AutoLRGB then a new image AutoLRGB_extra is created. AutoContinue can be used to apply 
-extra processing after the final image is created.
+To use AutoIntegrate enhancements tools without the full AutoIntegrate script there is a standalone 
+script Image Enhancements in the Script / AutoIntegrate menu.
+</p>
+<p>
+In case of Run or AutoContinue, Image enhancements steps are applied to a copy of the final image. 
+A new image is created with _enh added to the name. For example if the final image is 
+AutoLRGB then a new image AutoLRGB_enh is created. AutoContinue can be used to apply 
+enhancements after the final image is created.
 </p>
 
 <h4>Target image and apply button</h4>
 
 <a href="ai_extraapply.jpg"><img src="ai_extraapply.jpg"></a>
 <p>
-From a drop down list it is possible to select an image into which extra processing is applied. 
-With the Apply button extra processing is by default run on a copy of the image.
-There is also a simple undo and redo mechanism to iterate with different extra
-processing options.
+From a drop down list it is possible to select an image into which enhancements are applied. 
+With the Apply button enhancements are by default run on a copy of the image.
+There is also a simple undo and redo mechanism to iterate with different enhancements options.
 </p>
 
-<h4>Narrowband specific extra processing</h4>
+<h4>Narrowband specific enhancements</h4>
 
 <a href="ai_extranarrowband.jpg"><img src="ai_extranarrowband.jpg"></a>
 <p>
-There are also narrowband specific extra processing options in the <i>Settings / Narrowband processing</i> section. 
+There are also narrowband specific enhancements options in the <i>Settings / Narrowband processing</i> section. 
 Below are some options.
 </p>
 <ul>
@@ -2031,7 +2063,7 @@ Starting points and the search order for AutoContinue are listed below
 </p>
 
 <ol>
-<li>AutoLRGB or AutoRGB - Final image for extra processing</li>
+<li>AutoLRGB or AutoRGB - Final image for enhancements</li>
 <li>L_HT + RGB_HT - Manually stretched L and RGB images.</li>
 <li>RGB_HT - Manually stretched RGB image</li>
 <li>Integration_<i>filter</i>_<i>GCext</i> - Gradient corrected integrated channel images</li>
@@ -2168,12 +2200,12 @@ Banding reduction can be useful for Canon DSLR data and sometimes also for other
 is run just after debayering so it is run separately for each light image.
 </p>
 
-<h3 id="banding_reduction">Banding reduction extra processing option</h3>
+<h3 id="banding_reduction">Banding reduction enhancements option</h3>
 
 <a href="ai_bandingextra.jpg"><img src="ai_bandingextra.jpg"></a>
 
 <p>
-There is also an extra processing option to run banding reduction on the final image.
+There is also an enhancements option to run banding reduction on the final image.
 </p>
   
 <h2 id="creating_mosaics">Creating mosaics</h2>
@@ -2289,7 +2321,7 @@ It is possible to manually run the CometAlignment process. Below are the steps t
 <a href="ai_annotate.jpg"><img src="ai_annotate.jpg"></a>
 
 <p>
-Annotate images extra option can be used to add annotations to the final image. When used with the Run or AutoContinue button a 
+Annotate images enhancements can be used to add annotations to the final image. When used with the Run or AutoContinue button a 
 new image with _Annotated postfix is created. Annotate image uses PixInsight AnnotateImage script. 
 </p>
 <p>
@@ -2306,7 +2338,7 @@ automatically embedded.
 <a href="ai_signature.jpg"><img src="ai_signature.jpg"></a>
 
 <p>
-Signature extra option is used to add signature to the final image. The signature image file must be given by the user.
+Signature enhancements option is used to add signature to the final image. The signature image file must be given by the user.
 The signature file can be for example a .png image with a transparent background. Note that no borders are added to the image.
 </p>
 <p>
@@ -2477,7 +2509,7 @@ File paths that are in a subdirectory of the setup file are saved as relative pa
 share setup and images files and it still works in a new location. Relative paths are automatically restored as full paths.
 </p><p>
 Setup file saves only those parameters that have a non-default value. It is good to note that other parameters settings are
-not changed when restoring the setup. There is an option <i>Reset on setup load</i> to use only those settings that are loaded
+not changed when restoring the setup. There is an option <i>Reset</i> to use only those settings that are loaded
 from the setup file. Other parameters are reset to defaults.
 </p><p>
 Also window prefix and output directory are saved to a setup file.
@@ -2663,7 +2695,7 @@ using MaskedStretch or reduce STF targetBackground value.
 When processing nebulosity data you can try using Histogram stretch.
 </li>
 <li>
-With extra processing it is possible to do basic enhancements like remove stars using StarNet2 
+With enhancements options it is possible to do basic enhancements like remove stars using StarNet2 
 or StarXTerminator, increase contrast, run HDRMultiscaleTransform, LocalHistogramEqualization and make 
 smaller stars automatically.
 </li>
@@ -2755,6 +2787,7 @@ Details of processing steps can be found from the header block of the source cod
 <li>LRGBCombination</li>
 <li>ArcsinhStretch</li>
 <li>MaskedStretch</li>
+<li>MultiscaleAdaptiveStretch</li>
 <li>ACDNR</li>
 <li>AutomaticBackgroundExtractor</li>
 <li>DynamicBackgroundExtraction</li>
