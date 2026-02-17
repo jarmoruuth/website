@@ -104,7 +104,7 @@ gtag('config', 'G-FV9GG7V9PM');
         <li>A panel view to show multiple catalog objects</li>
         <li>Optionally catalog objects can be sorted by altitude</li>
         <li>Wiki interface to show target information</li>
-        <li>Messier, NGC, IC, Sharpless, RCW, LDN, LBN, Barnard, Cederblad, Slooh 500, Simbad and NED catalog names on a map (optional)</li>
+        <li>Messier, Caldwell, NGC, IC, Sharpless, RCW, LDN, LBN, Barnard, Cederblad, Slooh 500, Simbad and NED catalog names on a map (optional)</li>
         <li>Object markers are clickable and print short info or a Wiki page</li>
         <li>Full screen control to show a bigger view of the map</li>
         <li>Control to change the map view</li>
@@ -125,12 +125,18 @@ gtag('config', 'G-FV9GG7V9PM');
       Direct links to telescope services are below.
     </p>
     <ul>
+      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=RoboScopes">https://ruuth.xyz/AstroMosaic.html?service=RoboScopes</a></li>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Telescope%20Live">https://ruuth.xyz/AstroMosaic.html?service=Telescope%20Live</a></li>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Slooh">https://ruuth.xyz/AstroMosaic.html?service=Slooh</a></li>
-      <li><a href="https://ruuth.xyz/AstroMosaic.html?service=RoboScopes">https://ruuth.xyz/AstroMosaic.html?service=RoboScopes</a></li>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=SkyGems">https://ruuth.xyz/AstroMosaic.html?service=SkyGems</a></li>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Hubble">https://ruuth.xyz/AstroMosaic.html?service=Hubble</a></li>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=JWST">https://ruuth.xyz/AstroMosaic.html?service=JWST</a></li>
+      </ul>
+
+    <p>
+      Direct links to smart telescopes are below.
+    </p>
+    <ul>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Seestar">https://ruuth.xyz/AstroMosaic.html?service=Seestar</a></li>
       <li><a href="https://ruuth.xyz/AstroMosaic.html?service=Vaonis">https://ruuth.xyz/AstroMosaic.html?service=Vaonis</a></li>
       </ul>
@@ -188,6 +194,7 @@ gtag('config', 'G-FV9GG7V9PM');
     </p>
     <ul>
       <li>Messier</li>
+      <li>Caldwell</li>
       <li>NGC</li>
       <li>IC</li>
       <li>Sharpless</li>
@@ -220,15 +227,17 @@ gtag('config', 'G-FV9GG7V9PM');
       It is possible to filter catalog lists in a few ways.
     </p><p>
       <ul>
-      <li>First filter is altitude where you decide how high the target needs to be during the night to be shown in the list.</li>
-      <li>Then it is possible to filter by time. If there is for example only a specific time slot available the time filter 
-      can be used to show what other filter conditions are met at that specific time.</li>
-      <li>With a moon filter it is possible to show only those targets that have at least the given distance from the moon. 
-      If the moon is up it can be useful for example to pick only targets that are at least 90 degrees from the moon.</li>
+      <li>Altitude - Show only catalog objects that are higher than selected altitude.</li>
+      <li>Time - Show only catalog objects that are visible at selected time. The time format is HH:MM. Multiple times can be given separated by comma like HH:MM,HH:MM. When multiple times are given all times must match the altitude filter.</li>
+      <li>Moon - Show only catalog objects that are further away from the moon than selected angle. If no time is selected then objects are included if at any point during the night they match the filter.</li>
+      <li>Rising - Show only catalog objects whose altitude is rising (increasing) over the selected number of weeks. Rising objects will be at a higher altitude at the same time on future dates.</li>
+      <li>Magnitde - Show only catalog objects that have higher magnitude than selected magnitude. NOTE! Not many objects have the magnitude info available.</li>
+      <li>Size - Show only catalog objects that are larger than the selected size in arcminutes. NOTE! Some objects do not have the size info available.</li>
+      <li>Type - Show only catalog objects whose type contains the entered text. The match is case-insensitive and partial.</li>
     </ul>
     </p><p>
-      Filtering points are calculated at midnight and then two and four hours before and after midnight. So in some cases 
-      it is possible that a target is not listed if it will match the filter only between those calculated points.
+      If no time is given then filtering points are calculated at midnight and then two and four hours before and after midnight. 
+      So in some cases it is possible that a target is not listed if it will match the filter only between those calculated points.
     </p>
 
     <h3>Sorting catalog list</h3>

@@ -107,6 +107,7 @@ https://ruuth.xyz/autointegrate/
   <ul class="toc_list">
   <li><a href="#overview">Overview</a></li>
   <ul class="toc_list">
+    <li><a href="#simple_and_expert_modes">Simple and expert modes</a></li>
     <li><a href="#autointegrate_images">Images created with AutoIntegrate script</a></li>
     <li><a href="#youtube">YouTube videos</a></li>
     <li><a href="#tutorials">Tutorials</a></li>
@@ -123,7 +124,6 @@ https://ruuth.xyz/autointegrate/
     <li><a href="#target_type">Target type</a></li>
     <li><a href="#rgb">Processing RGB files</a></li>
     <li><a href="#narrowband">Processing narrowband files</a></li>
-    <li><a href="#calibration">Image calibration</a></li>
     <li><a href="#flowchart">Processing Flowchart</a></li>
     <li><a href="#startupimage">Startup image</a></li>
     <li><a href="#processinghistory">Embedding processing history</a></li>
@@ -135,6 +135,10 @@ https://ruuth.xyz/autointegrate/
     <li><a href="#sort_and_filter">Sort and filter file lists</a></li>
     <li><a href="#filtering_bad_files">Automatic filtering of bad files</a></li>
     <li><a href="#metricsvisualizer">Metrics visualizer</a></li>
+  </ul>
+  <li><a href="#calibration">Image calibration</a></li>
+  <ul class="toc_list">
+    <li><a href="#calibration_masters">Calibration master files</a></li>
   </ul>
   <li><a href="#processing_settings">Processing settings</a></li>
   <ul class="toc_list">
@@ -224,6 +228,8 @@ https://ruuth.xyz/autointegrate/
 <h3>Latest updates</h3>
 
 <p>
+  <a href="">v1.84 test - Calibration updates</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-83-simple-and-expert-modes/282">v1.83 - Simple and expert modes</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-82-test-standalone-tools-multiscaleadaptivestretch/279">v1.82 - Standalone tools, MultiscaleAdaptiveStretch</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-81-veralux-hypermetric-stretch/274">v1.81 - VeraLux HyperMetric Stretch</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-80-process-icons/272">v1.80 - Process icons</a><br>
@@ -234,7 +240,6 @@ https://ruuth.xyz/autointegrate/
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-75-dbe-drizzle-options-flat-dark-calibration/259">v1.75 - DBE, drizzle options, flat dark calibration</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-74-tools-stretching-sharpening/248">v1.74 - Tools, stretching, sharpening</a><br>
   <a href="https://forums.ruuth.xyz/t/autointegrate-v1-73-multiscalegradientcorrection/240">v1.73 - MultiscaleGradientCorrection</a><br>
-  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-72-ha-to-rgb-mapping-true-background/235">v1.72 - Ha to RGB mapping, true background</a><br>
 </p>
 <p>
 For more details on versions see <a href="https://github.com/jarmoruuth/AutoIntegrate/releases">GitHub page</a> or 
@@ -278,6 +283,22 @@ AutoIntegrate works with PixInsight version 1.8.9-1 or later.
 <p>
   AutoIntegrate is available as an automatic update in PixInsight. Repository link is 
   <b>https://ruuth.xyz/autointegrate/</b>
+</p>
+
+<h2 id="simple_and_expert_modes">Simple and expert modes</h2>
+
+<a href="ai_simple_expert_modes.jpg"><img src="ai_simple_expert_modes.jpg"></a>
+
+<p>
+When starting AutoIntegrate for the first time it starts in a simple mode.
+</p>
+<p>
+In the simple mode only the most essential options are shown. This is useful for new users
+who want to get started quickly without being overwhelmed by too many options.
+</p>
+<p>
+To switch to expert mode, click the "Expert" button at the top of the dialog.
+In expert mode all available options are shown.
 </p>
 
 <h2 id="autointegrate_images">Images created with AutoIntegrate script</h2>
@@ -719,49 +740,6 @@ with default settings but Remove green cast and Fix star colors options were che
 <br><small>Thanks to Erik Westermann for providing narrowband data.</small>
 </p>
 
-<h2 id="calibration">Image calibration</h2>
-
-<a href="ai_addfiles.jpg"><img src="ai_addfiles.jpg"></a>
-
-<p>
-Script can do image calibration if needed. Two basic workflows are supported: 
-</p>
-<p>
-<ol>
-<li>Calibrating with bias, darks and flats</li>
-<li>Calibrating with darks, flat darks (or dark flats) and flats</li>
-</ol>
-</p><p>
-If any of the calibration files are not available the script tries to run calibration
-with the remaining files.
-</p><p>
-If there is only one file for bias, dark or flat dark it is assumed to be a master file.
-If you have multiple master files for example for different binning you can give multiple
-master files but in that case option <i>Master files</i> must be checked. When multiple master 
-files are available, the script picks the one with the same resolution.
-</p>
-<a href="ai_imagecalibration.jpg"><img src="ai_imagecalibration.jpg"></a>
-<p>
-In <i>Preprocessing / Image calibration</i> section there are settings
-for pedestal values.
-</p>
-
-<a href="ai_bias.jpg"><img src="ai_bias.jpg"></a>
-<a href="ai_darks.jpg"><img src="ai_darks.jpg"></a>
-<a href="ai_flats.jpg"><img src="ai_flats.jpg"></a>
-<a href="ai_flatdarks.jpg"><img src="ai_flatdarks.jpg"></a>
-
-<p>
-In each files tab there are also some settings for calibration.
-</p>
-  
-<h3 id="youtube_calibration">YouTube video of image calibration</h3>
-
-<p>
-<a href="https://youtu.be/1xHN6rsWYqs">
-<img src="AutoIntegrateCalibrate2.jpg" alt="Video" height="200" >
-</a>
-</p>
 
 <h2 id="flowchart">Processing Flowchart</h2>
 
@@ -1059,6 +1037,14 @@ It is useful for checking how the current settings affect the file list and also
 filtering settings if needed. When the dialog is closed, the file list is updated
 to show the current filtering.
 </p><p>
+Metrics visualizer shows scatter plots for each selected metric. The plots show how the files are distributed
+based on the selected metrics. Each point in the scatter plot represents one file in the file list.
+Files that are accepted based on the current filtering settings are shown  as a colored dot. Files that are 
+rejected are shown as white dots.
+</p><p>
+Filtering values can be updated by changing the values in the limit edit field. Values can updated also by double clicking
+at the scatter plot.
+</p><p>
 Metrics visualizer can be opened from the <i>Preprocessing / Weighting and filtering</i> section or by clicking the
 <i>Metrics visualizer</i> button in the <i>Files</i> tab.
 </p>
@@ -1073,6 +1059,72 @@ Once measurements are done they can be saved to a Json file using the save butto
 Measurements are also saved to the AutosaveSetup.json file. Loading this file will also load the measurements.
 </p>
 
+<hr>
+
+<h1 id="calibration">Image calibration</h1>
+
+<a href="ai_addfiles.jpg"><img src="ai_addfiles.jpg"></a>
+
+<p>
+Script can do image calibration if needed. Two basic workflows are supported: 
+</p>
+<p>
+<ol>
+<li>Calibrating with bias, darks and flats</li>
+<li>Calibrating with darks, flat darks (or dark flats) and flats</li>
+</ol>
+</p><p>
+If any of the calibration files are not available the script tries to run calibration
+with the remaining files.
+</p><p>
+If there is only one file for bias, dark or flat dark it is assumed to be a master file.
+If you have multiple master files for example for different binning or resolution you can give multiple
+master files but in that case option <i>Master files</i> must be checked. When multiple master 
+files are available, the script picks the one with the same resolution.
+</p>
+<a href="ai_imagecalibration.jpg"><img src="ai_imagecalibration.jpg"></a>
+<p>
+In the <i>Preprocessing / Image calibration</i> section there are settings
+for pedestal values.
+</p>
+
+<a href="ai_bias.jpg"><img src="ai_bias.jpg"></a>
+<a href="ai_darks.jpg"><img src="ai_darks.jpg"></a>
+<a href="ai_flats.jpg"><img src="ai_flats.jpg"></a>
+<a href="ai_flatdarks.jpg"><img src="ai_flatdarks.jpg"></a>
+
+<p>
+In each files tab there are also some settings for calibration. Defaults are selected so that they
+should work fine with modern CMOS cameras.
+</p>
+
+<h2 id="calibration_masters">Calibration master files</h2>
+
+<a href="ai_loadmasters.jpg"><img src="ai_loadmasters.jpg"></a>
+
+<p>
+If you have master calibration files available for example from previous processing you can load them in the script
+using the <i>Masters</i> button. With the Masters button you can load all master bias, dark, flat and flat dark files. 
+Files are auto-classified by IMAGETYP keyword and loaded into the correct tabs.
+</p>
+
+<a href="ai_generatemasters.jpg"><img src="ai_generatemasters.jpg"></a>
+
+<p>
+You can generate calibration master files with the script. If you load all bias, dark, flat and flat dark files 
+to the script and run the processing using the option <i>Settings / Generate masters only</i> then master calibration files are 
+generated and saved to the AutoMaster directory. No light files need to be loaded for generating master calibration 
+files. After master files are generated they can be loaded to the script using the <i>Masters</i> button and used 
+for calibrating light files.
+</p>
+
+<h3 id="youtube_calibration">YouTube video of image calibration</h3>
+
+<p>
+<a href="https://youtu.be/1xHN6rsWYqs">
+<img src="AutoIntegrateCalibrate2.jpg" alt="Video" height="200" >
+</a>
+</p>
 
 <hr>
 
@@ -1569,6 +1621,22 @@ A separate <i>RGB stars</i> section has an <i>RGB stars</i> option that is used 
 For more details see the <a href="#narrowband_rgbstars">RGB stars for narrowband images</a> 
 in the Narrowband specific settings section.
 </p>
+
+<h4>Steps to remove stars.</h4>
+
+<ul>
+<li>In the <i>Tools</i> / <i>Settings</i> section choose either StarXTerminator or StarNet2 for star removal.</li>
+<li>In the <i>Postprocessing</i> / <i>Star stretching and removing</i> section select when to remove stars.</li>
+<li>Run a normal processing.</li>
+</ul>
+
+In the end there are three images.
+
+<ul>
+<li>AutoRGB has stars being added back.</li>
+<li>AutoRGB_starless is the starless image.</li>
+<li>AutoRGB_stars is the star image.</li>
+</ul>
 
 <h4>Remove stars from channel images</h4>
 
@@ -2895,6 +2963,9 @@ of that code that works with the latest AutoIntegrate version.
 <p>
 Special thanks to Norman Hamann, Garth Hunt, Erik Westermann, Glenn Newell and Jari Backman for 
 new ideas and testing different versions of the script.
+</p>
+<p>
+Thanks to Ric Anderson for pointing the banding reduction performance problem.
 </p>
 <p>
 Thanks to Erik Westermann for doing a great work on documenting the script in his web site 
