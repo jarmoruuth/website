@@ -5,13 +5,13 @@
         PixInsight AutoIntegrate script.
      </p>
   </description>
-   <platform os="all" arch="noarch" version="1.8.9:9.9.9">
-      <package fileName="autointegrate.zip"
-               sha1="XXX SHA1 XXX"
+   <platform os="all" arch="noarch" version="1.8.9:1.9.3">
+      <package fileName="autointegrate-sm.zip"
+               sha1="XXX SHA1 SM XXX"
                type="script"
-               releaseDate="XXX RELEASE DATE XXX">
+               releaseDate="XXX RELEASE DATE SM XXX">
          <title>
-            AutoIntegrate XXX VERSION XXX - XXX INFO XXX
+            AutoIntegrate XXX VERSION SM XXX - XXX INFO SM XXX
          </title>
          <remove>
          src/scripts/AutoIntegrate.js
@@ -20,7 +20,55 @@
          </remove>
          <description>
             <p>
-               This update installs AutoIntegrate.js XXX VERSION XXX
+               This update installs AutoIntegrate.js XXX VERSION SM XXX
+            </p>
+            <p>
+            Version history between releases with detailed info can be seen from the following link: 
+            </p>
+            <p>
+            https://github.com/jarmoruuth/AutoIntegrate/releases
+            </p>
+            <p>
+                For generic information about AutoIntegrate script please check AutoIntegrate web page:
+            </p>
+            <p>
+               https://ruuth.xyz/AutoIntegrateInfo.html
+            </p>
+            <p>
+                This product is based on software from the PixInsight project, developed
+                by Pleiades Astrophoto and its contributors (https://pixinsight.com/).
+            </p>
+            <p>
+                <ul>
+                    <li>Copyright (c) 2018-2026 Jarmo Ruuth</li>
+                    <li>Copyright (c) 2022 Jean-Marc Lugrin</li>
+                    <li>Copyright (c) 2021 rob pfile</li>
+                    <li>Copyright (c) 2013 Andres del Pozo</li>
+                    <li>Copyright (c) 2009-2013 Georg Viehoever</li>
+                    <li>Copyright (c) 2019 Vicent Peris (OAUV). All Rights Reserved.</li>
+                    <li>Copyright (c) 2025 Riccardo Paterniti</li>
+                    <li>Copyright (c) 2003-2020 Pleiades Astrophoto S.L. All Rights Reserved.</li>
+                </ul>
+            </p>
+         </description>
+      </package>
+   </platform>
+   <platform os="all" arch="noarch" version="1.9.4:1.9.4">
+      <package fileName="autointegrate-v8.zip"
+               sha1="XXX SHA1 V8 XXX"
+               type="script"
+               releaseDate="XXX RELEASE DATE V8 XXX">
+         <title>
+            AutoIntegrate XXX VERSION V8 XXX - XXX INFO V8 XXX
+         </title>
+         <remove>
+         src/scripts/AutoIntegrate.js
+         src/scripts/AutoIntegrate/VeraLux_HyperMetric_Stretch.js
+         src/scripts/AutoIntegrate/BasicPreviewControl.js
+         </remove>
+         <description>
+            <p>
+               This update installs AutoIntegrate.js XXX VERSION V8 XXX
             </p>
             <p>
             Version history between releases with detailed info can be seen from the following link: 
