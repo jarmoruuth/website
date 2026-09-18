@@ -53,7 +53,7 @@
          </description>
       </package>
    </platform>
-   <platform os="all" arch="noarch" version="1.9.4:1.9.4">
+   <platform os="all" arch="noarch" version="1.9.4:1.9.5">
       <package fileName="autointegrate-v8.zip"
                sha1="XXX SHA1 V8 XXX"
                type="script"
