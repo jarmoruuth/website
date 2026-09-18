@@ -1441,7 +1441,14 @@ But it is always good to experiment what is best for your own data.
 </p>
 <p>
 By default noise reduction uses MultiscaleLinerTransform. There are also several AI tools available for noise reduction:
-NoiseXTerminator, GraXpert denoise or DeepSNR.
+NoiseXTerminator, GraXpert denoise, DeepSNR or MLDenoise.
+</p>
+<p>
+MLDenoise is a noise reduction process that is included in newer PixInsight versions so it does not need to be
+installed separately. It is selected in the <i>Settings / Tools</i> section. In the
+<i>Postprocessing / Noise reduction</i> section it is possible to set the model file and the amount of noise
+reduction. Model files have a .xmlm extension. If no model file is given then the MLDenoise default model is
+used. Other MLDenoise settings use the default values.
 </p>
 
 <h2 id="colorcalibration">Color calibration</h2>
@@ -2950,6 +2957,7 @@ Details of processing steps can be found from the header block of the source cod
 <li>DeepSNR</li>
 <li>StarXTerminator</li>
 <li>NoiseXTerminator</li>
+<li>MLDenoise</li>
 <li>BlurXTerminator</li>
 </ul>
 
