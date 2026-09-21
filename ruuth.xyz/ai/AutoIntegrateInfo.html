@@ -1415,9 +1415,11 @@ In the <i>Postprocessing / Stretching</i> section there are some settings for th
 <a href="ai_noisereduction.jpg"><img src="ai_noisereduction.jpg"></a>
 
 <p>
-Option <i>Auto</i> selects automatically correct time for noise reduction.
-If BlurXTerminator is used, then processed linear image noise reduction is used. 
-Otherwise channel noise reduction is used except for OSC/color images where processed linear image is used.
+Option <i>Auto</i> selects automatically correct time for noise reduction. It is the default option.
+Noise reduction is done on the processed linear image, that is, on the combined RGB or color/OSC image and on
+the luminance image. It is done after possible deconvolution with BlurXTerminator or GraXpert deconvolution
+and before the image is stretched to non-linear. Noise reduction is done on the combined image and not on the
+individual channel images.
 </p>
 <p>
 Option <i>Channel image</i> does noise reduction on each color channels and luminance image separately.
@@ -1434,21 +1436,21 @@ Option <i>Processed linear image</i> does noise reduction on processed RGB image
 Option <i>Non-linear image</i> does noise reduction in non-linear state after stretching on combined and luminance images.
 </p>
 <p>
-When using BlurXTerminator or GraXpert deconvolution it is recommended to do noise reduction after 
-BlurXTerminator or GraXpert deconvolution is used. So
-<i>Combined image</i>, <i>Processed linear image</i> or <i>Non-linear noise reduction</i> should be selected. 
-But it is always good to experiment what is best for your own data.
+Noise reduction should be done after BlurXTerminator or GraXpert deconvolution. Option <i>Auto</i> does that,
+other possible options are <i>Processed linear image</i> and <i>Non-linear image</i>. Note that option
+<i>Combined image</i> does noise reduction before deconvolution. But it is always good to experiment what is
+best for your own data.
 </p>
 <p>
 By default noise reduction uses MultiscaleLinerTransform. There are also several AI tools available for noise reduction:
 NoiseXTerminator, GraXpert denoise, DeepSNR or MLDenoise.
 </p>
 <p>
-MLDenoise is a noise reduction process that is included in newer PixInsight versions so it does not need to be
-installed separately. It is selected in the <i>Settings / Tools</i> section. In the
-<i>Postprocessing / Noise reduction</i> section it is possible to set the model file and the amount of noise
-reduction. Model files have a .xmlm extension. If no model file is given then the MLDenoise default model is
-used. Other MLDenoise settings use the default values.
+MLDenoise is a noise reduction process that is included in PixInsight starting from version 1.9.5 so it does
+not need to be installed separately. It is selected in the <i>Settings / Tools</i> section. In the
+<i>Postprocessing / Noise reduction</i> section the model file and the amount of noise reduction are set.
+Model files have a .xmlm extension. The model file must be given in AutoIntegrate, setting it in the
+PixInsight process does not suffice. Other MLDenoise settings use the default values.
 </p>
 
 <h2 id="colorcalibration">Color calibration</h2>
