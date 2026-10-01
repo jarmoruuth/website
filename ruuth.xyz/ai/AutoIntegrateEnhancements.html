@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<link rel="stylesheet" type="text/css" href="ai_docs.css">
+<title>AutoIntegrate Enhancements</title>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Enhancements and standalone tools - AutoIntegrate" />
+<meta property="og:url" content="https://ruuth.xyz/AutoIntegrateEnhancements.html" />
+<meta property="og:image" content="https://ruuth.xyz/autointegratescreen.jpg" />
+<meta property="og:description" content="Improve the final image, rerun parts of the workflow, or use the tools separately" />
+<meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+<div class="dropdown">
+<button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+<div class="dropdown-content">
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
+</div>
+</div>
+<div class="h1text">
+<h1>Enhancements and standalone tools</h1>
+<p class="tagline">Improve the final image, or use the tools separately</p>
+</div>
+</div>
+
+<!-- Documentation navigation -->
+<nav class="docnav">
+<ul>
+<li><a href="AutoIntegrateInfo.html">Start</a></li>
+<li><a href="AutoIntegrateGettingStarted.html">Getting started</a></li>
+<li><a href="AutoIntegrateGuides.html">Data guides</a></li>
+<li><a href="AutoIntegrateProcessing.html">Processing</a></li>
+<li><a href="AutoIntegrateFiles.html">Files &amp; calibration</a></li>
+<li><a class="current" href="AutoIntegrateEnhancements.html">Enhancements</a></li>
+<li><a href="AutoIntegrateSetup.html">Setup</a></li>
+<li><a href="AutoIntegrateHelp.html">Help</a></li>
+<li><a href="AutoIntegrateOptionsSimple.html">Options</a></li>
+</ul>
+</nav>
+
+<div class="page">
+
+<div class="inshort">
+<p><b>In short:</b> <i>Enhancements</i> improve the final image after processing. <i>Standalone tools</i> run parts of AutoIntegrate as separate scripts from the <i>Script / AutoIntegrate</i> menu.</p>
+</div>
+
+<div class="pagetoc">
+<b>On this page</b>
+<ul>
+<li><a href="#enhancements_processing"><b>Image enhancements</b></a>: <a href="#annotateimage">Annotate images</a> &middot; <a href="#addsignature">Add signature</a></li>
+<li><a href="#standalone_tools"><b>Standalone tools</b></a>: <a href="#standalone_imagestretching">Image stretching</a> &middot; <a href="#standalone_gradientcorrection">Gradient correction</a> &middot; <a href="#standalone_narrowbandcombinations">Narrowband combinations</a> &middot; <a href="#standalone_imageenhancements">Image enhancements</a> &middot; <a href="#standalone_selectivecolor">Selective color</a></li>
+</ul>
+</div>
+
+<h2 id="enhancements_processing">Image enhancements</h2>
+<a href="ai_extra.jpg"><img src="ai_extra.jpg"></a>
+
+<p>
+Image enhancements allow running several PixInsight processes and enhancements separately on an image. 
+Image enhancements can be found in the <i>Enhancements</i> tab.
+</p>
+<p>
+Enhancements can be run as part of the basic image workflow or it can be run separately on selected images.
+When enhancements are run separately on a selected image it is easy to experiment the effect of
+different processing in a preview window with undo and redo buttons. 
+</p>
+<p>
+Some of the enhancements that can be applied to the image include:
+</p>
+<ul>
+<li>Separate stars and background</li>
+<li>Combine starless and star images using selected option</li>
+<li>Clip shadows</li>
+<li>Gradient correction</li>
+<li>Darker background with a luminance mask</li>
+<li>ExponentialTransformation with a luminance mask</li>
+<li>HDRMultiscaleTransform with a luminance mask</li>
+<li>LocalHistogramEqualization with a luminance mask</li>
+<li>Add contrast</li>
+<li>Noise reduction</li>
+<li>Sharpening</li>
+<li>Smaller stars with a star mask.</li>
+</ul>
+<p>
+If multiple options are selected see tooltips on the script for execution order.
+</p>
+<p>
+To use AutoIntegrate enhancements tools without the full AutoIntegrate script there is a standalone 
+script Image Enhancements in the Script / AutoIntegrate menu.
+</p>
+<p>
+In case of Run or AutoContinue, Image enhancements steps are applied to a copy of the final image. 
+A new image is created with _enh added to the name. For example if the final image is 
+AutoLRGB then a new image AutoLRGB_enh is created. <a href="AutoIntegrateProcessing.html#autocontinue">AutoContinue</a> can be used to apply 
+enhancements after the final image is created.
+</p>
+
+<h4>Target image and apply button</h4>
+
+<a href="ai_extraapply.jpg"><img src="ai_extraapply.jpg"></a>
+<p>
+From a drop down list it is possible to select an image into which enhancements are applied. 
+With the Apply button enhancements are by default run on a copy of the image.
+There is also a simple undo and redo mechanism to iterate with different enhancements options.
+</p>
+
+<h4>Narrowband specific enhancements</h4>
+
+<a href="ai_extranarrowband.jpg"><img src="ai_extranarrowband.jpg"></a>
+<p>
+There are also narrowband specific enhancements options in the <i>Enhancements / Narrowband enhancements</i> section. 
+Below are some options.
+</p>
+<ul>
+<li>remap SHO or HOO image to a new palette</li>
+<li>Remove green cast, useful in SHO images</li>
+<li>Remove part of the green cast but leave some green color, useful in SHO images</li>
+<li>Fix magenta star colors often visible in SHO images</li>
+</ul>
+
+<h3 id="annotateimage">Annotate images</h3>
+
+<a href="ai_annotate.jpg"><img src="ai_annotate.jpg"></a>
+
+<p>
+Annotate images enhancements can be used to add annotations to the final image. When used with the Run or AutoContinue button a 
+new image with _Annotated postfix is created. Annotate image uses PixInsight AnnotateImage script. 
+</p>
+<p>
+Note that the image must have a correct astrometric solution embedded for annotation to work. When using SPCC color calibration the astrometric solution is 
+automatically embedded.
+</p>
+<p>
+<a href="ai_annotatedimage.jpg"><img src="ai_annotatedimage.jpg" height="300"></a>
+<br><small>Annotated image.</small>
+</p>
+
+<h3 id="addsignature">Add signature</h3>
+
+<a href="ai_signature.jpg"><img src="ai_signature.jpg"></a>
+
+<p>
+Signature enhancements option is used to add signature to the final image. The signature image file must be given by the user.
+The signature file can be for example a .png image with a transparent background. Note that no borders are added to the image.
+</p>
+<p>
+Optionally the signature image can be scaled relative to the main image. The scaling is given as a percentage of the main image size.
+The signature position can also be chosen: 'Top left', 'Top middle', 'Top right', 'Bottom left', 'Bottom middle' or 'Bottom right'.
+</p>
+
+<h2 id="standalone_tools">Standalone tools</h2>
+<p>
+Standalone tools are scripts that are derived from the larger AutoIntegrate suite. They can be used independently
+of the main AutoIntegrate script for specific tasks.
+</p>
+
+<h3 id="standalone_imagestretching">Image stretching</h3>
+
+<p>
+Standalone image stretching script allows applying different stretching methods to images.
+</p>
+
+<a href="ai_standalone_imagestretching.jpg"><img src="ai_standalone_imagestretching.jpg" width="500"></a>
+
+<h3 id="standalone_gradientcorrection">Gradient correction</h3>
+
+<p>
+Standalone gradient correction script allows applying different gradient correction methods to images.
+</p>
+
+<a href="ai_standalone_gradientcorrection.jpg"><img src="ai_standalone_gradientcorrection.jpg" width="500"></a>
+
+<h3 id="standalone_narrowbandcombinations">Narrowband combinations</h3>
+
+<p>
+Standalone narrowband combinations script allows combining narrowband images to RGB images
+using different color palettes.
+</p>
+
+<a href="ai_standalone_narrowbandcombinations.jpg"><img src="ai_standalone_narrowbandcombinations.jpg" width="500"></a>
+
+<h3 id="standalone_imageenhancements">Image enhancements</h3>
+
+<p>
+Standalone image enhancements script allows applying different image enhancements to images.
+</p>
+
+<a href="ai_standalone_imageenhancements.jpg"><img src="ai_standalone_imageenhancements.jpg" width="500"></a>
+
+<h3 id="standalone_selectivecolor">Selective color</h3>
+
+<p>
+Standalone selective color script allows applying selective color adjustments to images.
+</p>
+
+<a href="ai_standalone_selectivecolor.jpg"><img src="ai_standalone_selectivecolor.jpg" width="500"></a>
+
+</div>
+
+<div class="docfooter">
+<a href="AutoIntegrateInfo.html">Start</a> &middot;
+<a href="AutoIntegrateAbout.html">About</a> &middot;
+<a href="AutoIntegrateOptionsSimple.html">Options</a> &middot;
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a> &middot;
+<a href="https://forums.ruuth.xyz">Forum</a> &middot;
+<a href="https://discord.gg/baqMqmKS3N">Discord</a> &middot;
+<a href="https://ko-fi.com/jarmoruuth">Support development</a>
+<p>Feedback: <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or
+<a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></p>
+</div>
+
+</body>
+</html>

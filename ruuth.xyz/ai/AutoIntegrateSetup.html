@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<link rel="stylesheet" type="text/css" href="ai_docs.css">
+<title>AutoIntegrate Setup</title>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Setup and advanced use - AutoIntegrate" />
+<meta property="og:url" content="https://ruuth.xyz/AutoIntegrateSetup.html" />
+<meta property="og:image" content="https://ruuth.xyz/autointegratescreen.jpg" />
+<meta property="og:description" content="Interface, saving settings and automation" />
+<meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+<div class="dropdown">
+<button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+<div class="dropdown-content">
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
+</div>
+</div>
+<div class="h1text">
+<h1>Setup and advanced use</h1>
+<p class="tagline">Interface, saving settings and automation</p>
+</div>
+</div>
+
+<!-- Documentation navigation -->
+<nav class="docnav">
+<ul>
+<li><a href="AutoIntegrateInfo.html">Start</a></li>
+<li><a href="AutoIntegrateGettingStarted.html">Getting started</a></li>
+<li><a href="AutoIntegrateGuides.html">Data guides</a></li>
+<li><a href="AutoIntegrateProcessing.html">Processing</a></li>
+<li><a href="AutoIntegrateFiles.html">Files &amp; calibration</a></li>
+<li><a href="AutoIntegrateEnhancements.html">Enhancements</a></li>
+<li><a class="current" href="AutoIntegrateSetup.html">Setup</a></li>
+<li><a href="AutoIntegrateHelp.html">Help</a></li>
+<li><a href="AutoIntegrateOptionsSimple.html">Options</a></li>
+</ul>
+</nav>
+
+<div class="page">
+
+<div class="inshort">
+<p><b>In short:</b> interface and preview settings, the processing flowchart, saving and restoring settings, and running AutoIntegrate in automated ways.</p>
+</div>
+
+<div class="pagetoc">
+<b>On this page</b>
+<ul>
+<li><a href="#interface_group"><b>Interface and preview</b></a>: <a href="#image_preview">Image preview and interface configuration</a> &middot; <a href="#flowchart">Processing Flowchart</a> &middot; <a href="#window_prefix">Window name prefix</a> &middot; <a href="#startupimage">Startup image</a></li>
+<li><a href="#setup_options"><b>Saving settings</b></a>: <a href="#save_persistent">Saving settings to persistent module settings</a> &middot; <a href="#save_icon">Saving settings to script icon</a> &middot; <a href="#save_and_restore_setup">Save and restore script setup</a> &middot; <a href="#autosave_setup">Autosave setup</a> &middot; <a href="#use_processed_files">Use already processed files</a></li>
+<li><a href="#automation"><b>Outputs and automation</b></a>: <a href="#fastmode">Fast mode</a> &middot; <a href="#processinghistory">Embedding processing history</a> &middot; <a href="#process_icons">Process icons</a> &middot; <a href="#astrobin">Astrobin session information</a> &middot; <a href="#command_line">Running AutoIntegrate from the Command Line</a> &middot; <a href="#embedding">Embedding AutoIntegrate engine</a></li>
+</ul>
+</div>
+
+<h2 id="interface_group">Interface and preview</h2>
+
+<h3 id="image_preview">Image preview and interface configuration</h3>
+
+<a href="ai_preview.jpg"><img src="ai_preview.jpg"></a>
+
+<p>
+AutoIntegrate includes image preview functionality. It is possible to see a stretched image by clicking 
+through the file list files. Image preview is shown in a preview window that is part of the script dialog.
+The image in the preview window can be zoomed and moved.
+</p><p>
+Files in the file list have a checked flag. Using image preview functionality bad files can be unchecked. 
+Only checked files are used for processing.
+</p><p>
+Image preview window is also used to show image files during different steps of processing. During processing
+images are not shown in stretched mode.
+</p><p>
+Preview window can be disabled in the <i>Interface / Interface settings</i> section. Also preview window size can be changed there.
+</p>
+
+<p>
+<a href="ai_interfacesettings.jpg"><img src="ai_interfacesettings.jpg"></a>
+<br><small>Image preview settings in Interface settings section</small>
+</p>
+
+<h4>Image histogram</h4>
+
+<p>
+By default the image histogram is displayed below the image. Histogram is updated when the image is changed.
+Clicking the histogram shows some statistics. Default size for histogram is calculated automatically. 
+Size can be adjusted in the <i>Interface / Interface settings</i> section and the histogram display can 
+be disabled in the <i>Interface / Interface settings</i> section.
+</p>
+<p>
+If the image is linear (not stretched) then the histogram is shown using a logarithmic scale. A text Log is shown
+in the histogram window. If the image is stretched then the histogram uses linear scale and text Norm
+is shown.
+</p>
+
+<h4>Full screen preview</h4>
+
+<p>
+Both dialog and preview window can be maximized to (almost) full screen. This is useful when using a small screen
+or otherwise when a bigger view of the image is needed.  
+</p>
+
+<p>
+<a href="ai_maxdialogbutton.jpg"><img src="ai_maxdialogbutton.jpg"></a>
+<br><small>Full screen dialog button.</small>
+</p>
+
+<p>
+<a href="ai_maxpreviewbutton.jpg"><img src="ai_maxpreviewbutton.jpg"></a>
+<br><small>Full screen image preview button.</small>
+</p>
+
+<p>
+<a href="ai_maxpreview.jpg"><img src="ai_maxpreview.jpg" height="300"></a>
+<br><small>Full screen image preview.</small>
+</p>
+
+<h3 id="flowchart">Processing Flowchart</h3>
+
+<a href="ai_flowchart.jpg"><img src="ai_flowchart.jpg"></a>
+
+<h4>Generate Flowchart</h4>
+
+<p>
+Using the New Flowchart button the script will generate a flowchart of the processing workflow. 
+Flowchart uses the current settings and images. A partially simulated minimal workflow is run to 
+generate the flowchart information. To run the simulated workflow all relevant files must be loaded 
+to the <i>Files</i> tab. A graphical version of the flowchart is printed to the preview window and 
+a text version is printed to the process console.
+</p>
+<p>
+Full Flowchart is available after processing. It is saved to the AutosaveSetup file and also to the setup file when available
+so it can be loaded later. A text version of flowchart is also printed to the AutoIntegrate log file.
+</p>
+<p>
+Note that with a preview save button is it possible to save the flowchart image to a file.
+</p>
+  
+<div class="video-container" style="background-color: white;">
+
+<div style="background-color: white;">
+<a href="ai_flowchart1.jpg"><img src="ai_flowchart1.jpg" height="300"></a>
+<br><small>LRGB Workflow using<br>default settings and calibrated images.</small>
+</div>
+<div style="background-color: white;">
+<a href="ai_flowchart2.jpg"><img src="ai_flowchart2.jpg" height="300"></a>
+<br><small>Narrowband workflow using<br>RC Astro tools and calibrated images.</small>
+</div>
+
+<div style="background-color: white;">
+<a href="ai_liveflowchart_final.jpg"><img src="ai_liveflowchart_final.jpg" height="300"></a>
+<br><small>LRGB workflow using image calibration.</small>
+</div>
+
+      
+</div>
+  
+<h4>Live Flowchart</h4>
+
+<p>
+Flowchart information is always generated during processing. It can viewed using <i>Show Flowchart</i>
+checkbox. During processing Flowchart is updated after each step. By checking and unchecking the <i>Show Flowchart</i>
+checkbox it is possible to switch between the current preview image and flowchart. Flowchart also shows processing 
+time for each step.
+</p>
+<a href="ai_flowchartsettings.jpg"><img src="ai_flowchartsettings.jpg"></a>
+<p>
+Flowchart settings are in the <i>Interface</i> tab. Note that Flowchart settings are saved to persistent module settings
+but values are not reset with the Set default values button.
+</p>
+<a href="ai_flowcharttime.jpg"><img src="ai_flowcharttime.jpg"></a>
+<p>
+By default <i>Flowchart settings</i> option <i>Flowchart show processing time</i> is selected. This options shows the processing time
+for each step in the flowchart. If this option is not selected then only the flowchart data is shown.
+</p>
+<a href="ai_flowchartbackground.jpg"><img src="ai_flowchartbackground.jpg"></a>
+<p>
+By default <i>Flowchart settings</i> option <i>Flowchart show processed image</i> is selected. This options shows the processed image
+in the preview window and the flowchart data is shown on top of the image. If this option is not selected then only the flowchart data 
+is shown.
+</p>
+<a href="ai_getflowchartbeforeprocessing.jpg"><img src="ai_getflowchartbeforeprocessing.jpg"></a>
+<p>
+If <i>Flowchart settings</i> option <i>Get flowchart data before processing</i> is selected then flowchart data is collected
+before processing. This is useful if you want to see the full flowchart during processing. Note that this option is not
+selected by default. Full flowchart is not available with AutoContinue or
+batch processing.
+</p>
+  
+<div class="video-container" style="background-color: white;">
+
+<div style="background-color: white;">
+<a href="ai_liveflowchart_partial2.jpg"><img src="ai_liveflowchart_partial2.jpg" height="200"></a>
+<br><small>Live flowchart with default options</small>
+</div>
+<div style="background-color: white;">
+<a href="ai_liveflowchart_full2.jpg"><img src="ai_liveflowchart_full2.jpg" height="200"></a>
+<br><small>Live flowchart using option<br><i>Get flowchart data before processing</i>.</small>
+</div>
+          
+</div>
+
+<h3 id="window_prefix">Window name prefix</h3>
+
+<a href="ai_windowprefix.jpg"><img src="ai_windowprefix.jpg"></a>
+
+<p>
+It is possible to give the user specified prefix to image window names. This makes all generated window names unique
+and allows results from multiple processing runs to be open at the same time. These images are also iconized at different 
+columns on the screen.
+</p>
+<p>
+By default the icon column for a new window prefix is automatically managed by the script. Script tries to track used icon 
+column positions and assign free ones for new runs.
+</p>
+<p>
+Sometimes, like when using multiple workspaces, this automatic management does not work optimally. In that case it is 
+possible to manually set the icon column for a window prefix. This can be enabled by setting option <i>Manual icon column control</i>. 
+The change will be effective when restarting the script.
+</p>
+<p>
+When manual icon control is enabled there is a new control Icon column. With that control it is possible to manually 
+set the column where icons are placed. The default for the Icon column is Auto where the icon column is chosen automatically. 
+The last icon column is remembered and automatically restored when  the script starts.
+</p>
+
+<h3 id="startupimage">Startup image</h3>
+
+<a href="ai_startupimage.jpg"><img src="ai_startupimage.jpg"></a>
+
+<p>
+A startup image is shown in the preview window when the script starts. This startup image
+can be changed to a user selected image in the <i>Interface / Interface settings</i> section. The startup image
+can also be disabled there.
+</p>
+
+<a href="ai_samplestartupimage.jpg"><img src="ai_samplestartupimage.jpg" height="300"></a>
+
+<h2 id="setup_options">Saving settings</h2>
+
+<h3 id="save_persistent">Saving settings to persistent module settings</h3>
+
+<a href="ai_savereset.jpg"><img src="ai_savereset.jpg"></a>
+
+<p>
+It is possible to save all settings into PixInsight persistent module settings. These settings are automatically restored on startup. 
+</p><p>
+All saved parameters, persistent module settings, process icon and setup file, will include only those values that are different from default values.
+</p><p>
+There is also a button to reset all parameters to default values.
+</p>
+
+<h3 id="save_icon">Saving settings to script icon</h3>
+
+<a href="ai_saveicon.jpg"><img src="ai_saveicon.jpg"></a>
+
+<p>
+It is possible to save your own default options to a script icon. It can then be used to recall default settings. 
+Script icons can be saved to a file. 
+</p><p>
+Parameter values are first restored from persistent module settings and then from the process icon. So process 
+icon settings overwrite persistent module settings.
+</p><p>
+Settings are saved by dragging the lower left corner triangle icon to the desktop. By double clicking the icon 
+a script window opens. Clicking the Apply global button starts the script with those settings that are saved 
+to the icon. PixInsight also saves MD5 checksum to the script icon. When using the script icon with a modified 
+script you need to clear the checksum field first.
+</p>
+
+<h3 id="save_and_restore_setup">Save and restore script setup</h3>
+
+<a href="ai_saverestore.jpg"><img src="ai_saverestore.jpg"></a>
+
+<p>
+Current parameter settings and image file lists loaded into light and calibrate image pages can be saved to a setup file. 
+That file can later be restored to AutoIntegrate. Saved file keeps checked/unchecked status for files. The file must 
+have a .json extension.
+</p><p>
+File paths that are in a subdirectory of the setup file are saved as relative paths. This makes it possible to move or
+share setup and images files and it still works in a new location. Relative paths are automatically restored as full paths.
+</p><p>
+Setup file saves only those parameters that have a non-default value. It is good to note that other parameters settings are
+not changed when restoring the setup. There is an option <i>Reset</i> to use only those settings that are loaded
+from the setup file. Other parameters are reset to defaults.
+</p><p>
+Also window prefix and output directory are saved to a setup file.
+</p><p>
+When available the setup Json file includes ssweight values for files.
+</p>
+<p>
+AutoIntegrate Json file format is described here: <a href="AutoIntegrate_JSON_Format.html">AutoIntegrate_JSON_Format.html</a>
+</p>
+
+<h3 id="autosave_setup">Autosave setup</h3>
+
+<a href="ai_autosave.jpg"><img src="ai_autosave.jpg"></a>
+
+<p>
+Option <i>Autosave setup</i> saves current setup automatically after successful processing into AutosaveSetup.json file. Autosave is done 
+only after the Run command, it is not done after the AutoContinue command. Starting from version 1.65, <i>Autosave setup</i>
+is enabled by default.
+</p><p>
+The file is saved to the default output directory. This makes it possible to use relative paths to files so it is easy to 
+move the setup file around or even share with lights files.
+</p><p>
+Setup can be later loaded into AutoIntegrate to see the settings or run the setup again possibly with different options. 
+If the option <i>Add window prefix to log files</i> is selected the current prefix is added to the autosave setup file.
+</p>
+
+<h3 id="use_processed_files">Use already processed files</h3>
+
+<a href="ai_processedfiles.jpg"><img src="ai_processedfiles.jpg"></a>
+
+<p>
+Option <i>Use processed files</i> tries to use already processed files when possible. This option can be useful when adding files 
+to an already processed set of files. Only files generated before image integration are reused.
+</p><p>
+Option works best with setup file that is saved after processing or with Autosave setup generated AutosaveSetup.json file because
+then star alignment reference image and possible defect info is saved.
+</p><p>
+
+With image calibration it is possible to use previously generated master files by loading already processed master files
+info calibration file lists. If only one calibration file is present then the script automatically uses it as a master file.
+</p>
+
+<h2 id="automation">Outputs and automation</h2>
+
+<h3 id="fastmode">Fast mode</h3>
+
+<a href="ai_fastmode.jpg"><img src="ai_fastmode.jpg"></a>
+
+<p>
+For faster processing for example when checking out some options or narrowband palettes it is possible to use the <i>Fast mode</i> option.
+Fast mode is enabled on the <i>Settings / Other</i> section. Fast mode reduces the number of images processed and uses binning to reduce image size.
+</p>
+
+<h3 id="processinghistory">Embedding processing history</h3>
+
+<a href="ai_embeddedhistory.jpg"><img src="ai_embeddedhistory.jpg"></a>
+
+<p>
+AutoIntegrate automatically embeds processing history into image metadata as FITS keywords. This helps to see how the image was processed.
+Processing history is saved using the HISTORY keywords.
+</p>
+<p>
+Non-default processing options are saved after the base processing is run. With enhancements processing the processing option name with possible
+parameters are saved to the image metadata.
+</p>
+<p>
+Processing history can be viewed using PixInsight File/FITS header selection.
+</p>
+<a href="ai_processinghistory.jpg"><img src="ai_processinghistory.jpg"></a>
+<p>
+It is also possible to view the processing history by loading 
+the image as a target image in the AutoIntegrate script <i>Enhancements</i> tab. Then the processing history is printed to the process console
+using the <i>AutoIntegrate processing history</i> button.
+</p>
+
+<h3 id="process_icons">Process icons</h3>
+
+<a href="ai_executedprocesses.jpg"><img src="ai_executedprocesses.jpg"></a>
+
+<p>
+When script runs a full processing it always generates an ExecutedProcesses.xpsm file. It can be loaded into PixInsight desktop as 
+process icons to see the exact processes and settings that were used during processing.
+</p>
+<p>
+Process icons can also be used to manually run the same processing again, maybe with some fine tuning. Process icons include file lists
+so the same files as used as during automatic processing.
+</p>
+<p>
+You can load process icons to the PixInsight desktop using <i>Process / Process Icons / Load Process Icons...</i> menu command.
+If you already have some process icons loaded to the desktop you can append new icons by using the
+<i>Process / Process Icons / Merge Process Icons...</i> menu command.
+</p>
+<p>
+Process icons file ExecutedProcesses.xpsm is created to the <a href="AutoIntegrateFiles.html#root_directory">processing root directory</a>.
+</p>
+<p>
+Some processing steps may not generate process icons. Below are some steps that do not have a process icon.
+</p>
+<ul>
+<li>There is no process icon to create or set a mask. Masks are often used when doing for example noise reduction or color saturation.</li>
+<li>Astrometric solution is run using the Image solver script. So there is no process icon for that.</li>
+<li>There is no process icon for fixing column or row defects.</li>
+<li>External process like GraXpert do not generate process icons.</li>
+<li>Iterative stretch methods do not generate process icons.</li>
+</ul>
+<p>
+Iterative stretch methods that do not generate process icons are listed below:
+</p>
+<ul>
+<li>Histogram stretch</li>
+<li>Arcsinh Stretch</li>
+<li>Asinh+Histogram stretching</li>
+<li>Square root stretch</li>
+<li>Shadow stretch</li>
+<li>Highlight stretch</li>
+</ul>
+
+<p>
+Some considerations if you plan to run manual processing using process icons:
+</p>
+<ul>
+<li>In some cases the image names used in icons may not match those created during manual processing. So you may need to adjust the image names accordingly.</li>
+<li>During manual processing the SSWEIGHT keyword is not written to output files. So the use of SSWEIGHT keyword is disabled in the process icons.</li>
+</ul>
+
+<p>Below is an example of process icons created by AutoIntegrate script and loaded into the PixInsight desktop.</p>
+
+<a href="ai_processiconsexample.jpg"><img src="ai_processiconsexample.jpg"></a>
+
+<h3 id="astrobin">Astrobin session information</h3>
+
+<p>
+When script runs a full processing it always generates an AstrobinInfo.csv file. It can be used in
+Astrobin to describe the imaging session. Astrobin filter numbers must be configured in the <i>Other / Astrobin section.</i>
+AstrobinInfo.csv is created in the AutoProcessed directory.
+</p>
+
+<h3 id="command_line">Running AutoIntegrate from the Command Line</h3>
+
+<p>You can fully automate AutoIntegrate by launching PixInsight with a script, executing your JSON-defined workflows, and then exiting, no manual interaction required.</p>
+<p>You can start the AutoIntegrate script from the command line using the <code>--run="path-to-script[,argument,argument,...]>"</code> option.</p>
+<p>
+  AutoIntegrate accepts the following arguments:
+</p>
+<ul>
+<li><code>runsetup=filename.json</code> - Specifies the path to an AutoIntegrate JSON setup file. This file contains all the settings and file lists needed for processing.</li>
+<li><code>do_not_read_settings</code> - Prevents AutoIntegrate from loading any saved settings, ensuring a clean run based solely on the provided JSON file.</li>
+<li><code>do_not_write_settings</code> - Prevents AutoIntegrate from saving any settings after the script completes.</li>
+</ul>
+<p>
+Using the PixInsight command line option --force-exit you can exit PixInsight after the script finishes executing.
+</p>
+<p>
+ Example command line to run AutoIntegrate script:
+</p>
+<pre><code>"path/PixInsight.exe" --run="path/AutoIntegrate.js,runsetup=MyProcessing.json,do_not_read_settings" --force-exit</code></pre>
+<p>
+AutoIntegrate Json file format is described here: <a href="AutoIntegrate_JSON_Format.html">AutoIntegrate_JSON_Format.html</a>
+</p>
+
+<p>
+With this setup, you can batch-process any number of AutoIntegrate JSON workflows unattended — ideal for nightly runs, 
+CI pipelines, or large-scale reprocessing.
+</p>
+
+<h3 id="embedding">Embedding AutoIntegrate engine</h3>
+
+<p>
+AutoIntegrate processing engine is separated from AutoIntegrate GUI so the engine can be called 
+without the GUI. This makes it possible to create own interfaces to AutoIntegrate engine.
+</p>
+
+<p>
+A sample to show how to call AutoIntegrate engine from a PixInsight script is in the following link:
+<a href="TestCalibrate.js">TestCalibrate.js</a>
+</p>
+
+</div>
+
+<div class="docfooter">
+<a href="AutoIntegrateInfo.html">Start</a> &middot;
+<a href="AutoIntegrateAbout.html">About</a> &middot;
+<a href="AutoIntegrateOptionsSimple.html">Options</a> &middot;
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a> &middot;
+<a href="https://forums.ruuth.xyz">Forum</a> &middot;
+<a href="https://discord.gg/baqMqmKS3N">Discord</a> &middot;
+<a href="https://ko-fi.com/jarmoruuth">Support development</a>
+<p>Feedback: <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or
+<a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></p>
+</div>
+
+</body>
+</html>

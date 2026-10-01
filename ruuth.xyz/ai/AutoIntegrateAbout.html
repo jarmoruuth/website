@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<link rel="stylesheet" type="text/css" href="ai_docs.css">
+<title>AutoIntegrate About</title>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="About AutoIntegrate - AutoIntegrate" />
+<meta property="og:url" content="https://ruuth.xyz/AutoIntegrateAbout.html" />
+<meta property="og:image" content="https://ruuth.xyz/autointegratescreen.jpg" />
+<meta property="og:description" content="Resources, processes used, history and credits" />
+<meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+<div class="dropdown">
+<button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+<div class="dropdown-content">
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
+</div>
+</div>
+<div class="h1text">
+<h1>About AutoIntegrate</h1>
+<p class="tagline">Resources, processes used, history and credits</p>
+</div>
+</div>
+
+<!-- Documentation navigation -->
+<nav class="docnav">
+<ul>
+<li><a href="AutoIntegrateInfo.html">Start</a></li>
+<li><a href="AutoIntegrateGettingStarted.html">Getting started</a></li>
+<li><a href="AutoIntegrateGuides.html">Data guides</a></li>
+<li><a href="AutoIntegrateProcessing.html">Processing</a></li>
+<li><a href="AutoIntegrateFiles.html">Files &amp; calibration</a></li>
+<li><a href="AutoIntegrateEnhancements.html">Enhancements</a></li>
+<li><a href="AutoIntegrateSetup.html">Setup</a></li>
+<li><a href="AutoIntegrateHelp.html">Help</a></li>
+<li><a href="AutoIntegrateOptionsSimple.html">Options</a></li>
+</ul>
+</nav>
+
+<div class="page">
+
+<div class="inshort">
+<p><b>In short:</b> background on AutoIntegrate: other resources, the PixInsight processes it uses, history and credits.</p>
+</div>
+
+<div class="pagetoc">
+<b>On this page</b>
+<ul>
+<li><a href="#other"><b>Other resources</b></a></li>
+<li><a href="#processes"><b>List of processes used by AutoIntegrate</b></a></li>
+<li><a href="#history"><b>History of AutoIntegrate script</b></a></li>
+<li><a href="#credits"><b>Credits</b></a></li>
+</ul>
+</div>
+
+<h2 id="other">Other resources</h2>
+
+<h4>Videos on PixInsight</h4>
+
+<p>
+There are a huge number of videos available on PixInsight. A few that I have seen often recommended are 
+Visible Dark on <a href="https://www.youtube.com/c/VisibledarkAstro/videos">YouTube</a> or 
+Adam Block on <a href="https://www.youtube.com/c/AdamBlock/videos">YouTube</a> or on his website.
+</p>
+
+<h4>Reading on PixInsight</h4>
+<p>
+Written information on PixInsight may not be as up to date as videos but they are still worth
+a check. At least the book Inside PixInsight by Warren A. Keller is good.
+</p>
+
+<h2 id="processes">List of processes used by AutoIntegrate</h2>
+<p>
+Below are listed PixInsight processes that may be used by AutoIntegrate script with default LRGB processing. 
+AutoIntegrate writes processing output to the Process Console window and to AutoIntegrate.log file.
+Details of processing steps can be found from the header block of the source code.
+</p>
+<ul>
+<li>ImageCalibration</li>
+<li>IntegerResample</li>
+<li>CosmeticCorrection</li>
+<li>Debayer</li>
+<li>ChannelExtraction</li>
+<li>SubframeSelector</li>
+<li>StarAlignment</li>
+<li>CometAlignment</li>
+<li>LocalNormalization</li>
+<li>ImageIntegration</li>
+<li>FastIntegration</li>
+<li>DrizzleIntegration</li>
+<li>PixelMath</li>
+<li>LinearFit</li>
+<li>ScreenTransferFunction</li>
+<li>HistogramTransformation</li>
+<li>MultiscaleLinearTransform</li>
+<li>Convolution</li>
+<li>StarMask</li>
+<li>ATrousWaveletTransform</li>
+<li>ChannelCombination</li>
+<li>ColorCalibration</li>
+<li>SpectrophotometricColorCalibration</li>
+<li>CurvesTransformation</li>
+<li>LRGBCombination</li>
+<li>ArcsinhStretch</li>
+<li>MaskedStretch</li>
+<li>MultiscaleAdaptiveStretch</li>
+<li>ACDNR</li>
+<li>AutomaticBackgroundExtractor</li>
+<li>DynamicBackgroundExtraction</li>
+<li>GraXpert (external process)</li>
+<li>GradientCorrection</li>
+<li>MultiscaleGradientCorrection</li>
+<li>SpectrophotometricFluxCalibration</li>
+<li>SCNR</li>
+<li>TGVDenoise</li>
+<li>ExponentialTransformation</li>
+<li>HDRMultiscaleTransform</li>
+<li>LocalHistogramEqualization</li>
+<li>StarNet2</li>
+<li>DeepSNR</li>
+<li>StarXTerminator</li>
+<li>NoiseXTerminator</li>
+<li>MLDenoise</li>
+<li>BlurXTerminator</li>
+</ul>
+
+<h2 id="history">History of AutoIntegrate script</h2>
+<p>
+I started astrophotography with remote telescopes in 2017 and soon found that processing in PixInsight
+involved many repetitive steps. In 2018 I started writing a script to automate them. The files from
+remote telescopes were already calibrated, so the first version only handled the steps around
+ImageIntegration, which is where the name AutoIntegrate comes from. Since then the script has grown
+to cover the whole workflow from image calibration to post-processing.
+</p>
+
+<h2 id="credits">Credits</h2>
+<p>
+Many thanks to Jean-Marc Lugrin for contributing brilliant Crop to common area code.
+</p>
+<p>
+Many thanks to rob pfile for contributing the very useful Window name prefix and icon column position code.
+They are a great help when working with multiple images or multiple image versions.
+</p>
+<p>
+Jean-Marc Lugrin has also created a great TestAutoIntegrate tool that automates testing. You can
+find it at <a href="https://github.com/bitli/TestAutoIntegrate">GitHub</a>. I have a 
+<a href="https://github.com/jarmoruuth/TestAutoIntegrate">slightly modified version</a> 
+of that code that works with the latest AutoIntegrate version.
+</p>
+<p>
+Special thanks to Norman Hamann, Garth Hunt, Erik Westermann, Glenn Newell and Jari Backman for 
+new ideas and testing different versions of the script.
+</p>
+<p>
+Thanks to Ric Anderson for pointing the banding reduction performance problem.
+</p>
+<p>
+VeraLux Hypermetric Stretch is based on the original Python version implementation by Riccardo Paterniti.
+</p>
+<p>
+YouTube channel <a href="https://www.youtube.com/@setiv2">Seti Astro</a> by Frank Marek has been a great source for new 
+information and ideas on PixInsight and astrophotography. It has been an inspiration to several improvements done in
+AutoIntegrate. I highly recommend checking that channel.
+</p>
+<p>
+AutoIntegrate <i>Normalization</i> option uses similar PixelMath expressions as Bill Blanshan in his 
+<i>Narrowband Normalization using PixInsight Pixelmath</i> script. See more information in his YouTube 
+channel <a href="https://www.youtube.com/@anotherastrochannel2173">AnotherAstroChannel</a>.
+</p>
+<p>
+Star Reduction equations using PixelMath are created by Bill Blanshan. For details see this
+<a href="https://youtu.be/rM3-yAcAbZc">YouTube video</a>
+</p>
+<p>
+Foraxx and Dynamic palettes, credit 
+<a href="https://thecoldestnights.com/2020/06/PixInsight-dynamic-narrowband-combinations-with-pixelmath/">The Coldest Nights</a>.
+</p>
+<p>
+The PreviewControl module is from Andres del Pozo.
+</p>
+<p>
+Banding reduction code is from CanonBandingReduction.js by Georg Viehoever.
+</p>
+<p>
+Routines ApplyAutoSTF and applySTF used by AutoIntegrate are from scripts that are 
+distributed with PixInsight. Routines for Linear Defect Detection are from PixInsight scripts 
+LinearDefectDetection.js and CommonFunctions.jsh that are distributed 
+with PixInsight. Linear Defect Detection code is using the code from Vicent Peris.
+</p>
+<p>
+PixInsight scripts that come with the product were a great help when developing this script. 
+The website Light Vortex Astronomy was a great place to find details and best practices when using PixInsight. 
+Unfortunately that site is no longer available.
+</p>
+<p>
+This product is based on software from the PixInsight project, developed by Pleiades Astrophoto 
+and its contributors (https://pixinsight.com/).
+</p>
+
+</div>
+
+<div class="docfooter">
+<a href="AutoIntegrateInfo.html">Start</a> &middot;
+<a href="AutoIntegrateAbout.html">About</a> &middot;
+<a href="AutoIntegrateOptionsSimple.html">Options</a> &middot;
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a> &middot;
+<a href="https://forums.ruuth.xyz">Forum</a> &middot;
+<a href="https://discord.gg/baqMqmKS3N">Discord</a> &middot;
+<a href="https://ko-fi.com/jarmoruuth">Support development</a>
+<p>Feedback: <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or
+<a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<link rel="stylesheet" type="text/css" href="ai_docs.css">
+<title>AutoIntegrate Getting Started</title>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Getting started with AutoIntegrate" />
+<meta property="og:url" content="https://ruuth.xyz/AutoIntegrateGettingStarted.html" />
+<meta property="og:image" content="https://ruuth.xyz/autointegratescreen.jpg" />
+<meta property="og:description" content="Install AutoIntegrate, add your files, run the processing and find your results. Everything that is visible in simple mode." />
+<meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+<div class="dropdown">
+<button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+<div class="dropdown-content">
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
+</div>
+</div>
+<div class="h1text">
+<h1>Getting started with AutoIntegrate</h1>
+<p class="tagline">Install, add files, run, and find your results</p>
+</div>
+</div>
+
+<!-- Documentation navigation -->
+<nav class="docnav">
+<ul>
+<li><a href="AutoIntegrateInfo.html">Start</a></li>
+<li><a class="current" href="AutoIntegrateGettingStarted.html">Getting started</a></li>
+<li><a href="AutoIntegrateGuides.html">Data guides</a></li>
+<li><a href="AutoIntegrateProcessing.html">Processing</a></li>
+<li><a href="AutoIntegrateFiles.html">Files &amp; calibration</a></li>
+<li><a href="AutoIntegrateEnhancements.html">Enhancements</a></li>
+<li><a href="AutoIntegrateSetup.html">Setup</a></li>
+<li><a href="AutoIntegrateHelp.html">Help</a></li>
+<li><a href="AutoIntegrateOptionsSimple.html">Options</a></li>
+</ul>
+</nav>
+
+<div class="page">
+
+<div class="inshort">
+<p><b>In short:</b> add the repository link to PixInsight, start AutoIntegrate from the
+<i>Script</i> menu, add your light files and press <b>Run</b>. The final image is called
+<b>AutoRGB</b> or <b>AutoLRGB</b> and it is saved to the <i>AutoProcessed</i> directory.</p>
+<p>This page covers everything you see in <span class="badge simple">Simple mode</span>,
+which is how the script starts the first time. Prefer video? Watch the
+<a href="https://youtu.be/so8T765h-Kc">introduction video</a>.</p>
+</div>
+
+<div class="repo">
+<span class="label">PixInsight repository link</span>
+<div class="urlrow">
+<code id="repourl">https://ruuth.xyz/autointegrate/</code>
+<button type="button" onclick="copyRepo(this)">Copy</button>
+</div>
+</div>
+
+<p>
+On this page:
+<a href="#install">Install</a> &middot;
+<a href="#start">Start the script</a> &middot;
+<a href="#files">Add files</a> &middot;
+<a href="#target">Target type</a> &middot;
+<a href="#run">Run</a> &middot;
+<a href="#results">Results</a> &middot;
+<a href="#improve">Improve the result</a> &middot;
+<a href="#tabs">Simple mode tabs</a> &middot;
+<a href="#next">Next steps</a>
+</p>
+
+<!-- 1. Install -->
+<h2 id="install">1. Install</h2>
+
+<div class="split">
+<div class="text">
+<p>
+AutoIntegrate is installed and updated through the PixInsight update system.
+</p>
+<ol>
+<li>In PixInsight, open <i>Resources / Updates / Manage Repositories</i>.</li>
+<li>Click <i>Add</i> and paste <b>https://ruuth.xyz/autointegrate/</b></li>
+<li>Click <i>Resources / Updates / Check for Updates</i>.</li>
+<li>Restart PixInsight to install the update.</li>
+</ol>
+<p>
+PixInsight then checks for AutoIntegrate updates every time it starts.
+AutoIntegrate works with PixInsight version 1.8.9-1 or later.
+</p>
+</div>
+<div class="shot">
+<a href="ai_repositorylist.jpg"><img src="ai_repositorylist.jpg" alt="PixInsight Manage Repositories dialog" width="420"></a>
+</div>
+</div>
+
+<details>
+<summary>Manual download, source code and the test repository</summary>
+<p>
+Releases can be downloaded from <a href="https://github.com/jarmoruuth/AutoIntegrate/releases">GitHub releases</a>.
+Click <i>Source code (zip)</i> and unzip the file. The
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub master branch</a> has the latest development
+changes that are not yet released. A test repository at <b>https://ruuth.xyz/test/autointegrate/</b>
+usually includes the latest changes from the master branch.
+</p>
+<p>
+To run a downloaded script, open <i>AutoIntegrate.js</i> in the PixInsight Script Editor and press F9.
+AutoIntegrate needs the ImageSolver script from the PixInsight distribution. Copy the contents of
+<i>PixInsight-install-directory</i>/src/scripts/AdP to an <i>AdP</i> directory next to the
+AutoIntegrate directory.
+</p>
+</details>
+
+<!-- 2. Start -->
+<h2 id="start">2. Start the script</h2>
+
+<p>
+Start AutoIntegrate from the <i>Script / AutoIntegrate</i> menu.
+</p>
+<p>
+<a href="ai_scriptmenu.jpg"><img src="ai_scriptmenu.jpg" alt="Script menu"></a>
+</p>
+
+<h3 id="modes">Simple and expert modes</h3>
+
+<div class="split">
+<div class="text">
+<p>
+The first time, the script starts in <b>simple mode</b>. Simple mode shows only the most important
+options, so you are not overwhelmed. Switch to <b>expert mode</b> at the top of the dialog when you
+want to see all options. You can switch back at any time. Options that you changed in expert mode
+still apply in simple mode.
+</p>
+</div>
+<div class="shot">
+<a href="ai_simple_expert_modes.jpg"><img src="ai_simple_expert_modes.jpg" alt="Simple and expert mode selection"></a>
+</div>
+</div>
+
+<h3 id="tutorials">Built-in tutorials</h3>
+
+<div class="split">
+<div class="text">
+<p>
+AutoIntegrate has interactive tutorials that walk you through the dialog. The tutorial highlights the
+controls you need and explains what each one does. Start them from the <i>Tutorials</i> button
+in the main dialog. On first launch they are also offered on the welcome screen.
+</p>
+<ul>
+<li><b>Getting Started</b>: add files, choose a target type and run your first integration.</li>
+<li><b>File Management</b>: organize input and output files.</li>
+<li><b>Processing Settings</b>: cropping, gradient correction and stretching.</li>
+<li><b>Comet Processing</b>: process comet images.</li>
+</ul>
+</div>
+<div class="shot">
+<a href="ai_tutorials.jpg"><img src="ai_tutorials.jpg" alt="Tutorials dialog" width="420"></a>
+</div>
+</div>
+
+<!-- 3. Add files -->
+<h2 id="files">3. Add files</h2>
+
+<!-- TODO: replace with a current simple mode screenshot -->
+<p>
+<a href="autointegratescriptscreen.jpg"><img src="autointegratescriptscreen.jpg" alt="AutoIntegrate dialog with light files added" width="800"></a>
+</p>
+
+<p>
+Add files using the buttons at the bottom of the <i>Files</i> tab.
+</p>
+<p>
+<a href="ai_addfiles.jpg"><img src="ai_addfiles.jpg" alt="Add files buttons"></a>
+</p>
+
+<ul>
+<li><b>Lights</b> are your image files. They are the only files you need.</li>
+<li><b>Bias, Darks, Flats, Flat Darks</b> are optional calibration files. If you add them, the
+    script calibrates your light files first. If a tab has only one file, it is used as a master file.</li>
+<li><b>Masters</b> loads existing master calibration files and puts them in the right tabs automatically.</li>
+<li>Check <b>Directory</b> to add all matching files from a directory and its subdirectories.
+    Results are then written to that directory.</li>
+</ul>
+
+<p>
+<b>Which files work?</b> All files PixInsight can open: FITS from astro cameras, RAW from DSLRs,
+calibrated or not. Calibrated files from remote telescopes like Telescope Live, iTelescope, Slooh
+and Deep Sky West work fine. OSC and RAW files are debayered automatically. If your files are
+already debayered, select <i>None</i> in the <i>Debayer</i> list.
+</p>
+
+<p>
+<b>How are filters recognized?</b> The script reads the FILTER keyword from the file, or the
+filter letter at the end of the file name (for example <i>ngc6514_R.fit</i>). Files are grouped by filter
+in the file list so you can check that they were recognized correctly. If they were not, see
+<a href="AutoIntegrateFiles.html#filter_files_manually">adding filter files manually</a>
+<span class="badge">Expert mode</span>.
+</p>
+
+<!-- 4. Target type -->
+<h2 id="target">4. Choose a target type (optional)</h2>
+
+<div class="split">
+<div class="text">
+<p>
+<i>Target</i> at the top of the dialog selects stretching settings that suit your target:
+</p>
+<ul>
+<li><b>Galaxy</b>: target is a lot brighter than the background.</li>
+<li><b>Nebula</b>: target fills the whole image or is not much brighter than the background.</li>
+<li><b>Star cluster</b>: like galaxy, clusters are often much brighter than the background.</li>
+</ul>
+<p>
+<i>Default</i> uses the current settings, which work reasonably well in many cases.
+</p>
+</div>
+<div class="shot">
+<a href="ai_targettype.jpg"><img src="ai_targettype.jpg" alt="Target type selection"></a>
+</div>
+</div>
+
+<!-- 5. Run -->
+<h2 id="run">5. Run</h2>
+
+<div class="split">
+<div class="text">
+<p>
+Press <b>Run</b>. Processing can take from minutes to hours depending on the number of files and your computer.
+</p>
+<p>
+While the script runs, the preview shows a <b>live flowchart</b> of the processing steps and how long
+each one takes. Use the <i>Show Flowchart</i> checkbox to switch between the flowchart and the current
+image. Click <i>New Flowchart</i> before running to see what the script will do with your files and settings.
+</p>
+<p>
+Messages are printed to the PixInsight <i>Process Console</i>. Use <b>Cancel</b> to stop processing.
+</p>
+</div>
+<div class="shot">
+<a href="ai_liveflowchart_partial2.jpg"><img src="ai_liveflowchart_partial2.jpg" alt="Live flowchart during processing" width="420"></a>
+</div>
+</div>
+
+<!-- 6. Results -->
+<h2 id="results">6. Results</h2>
+
+<p>
+When processing is done, the final image is open in PixInsight and saved to disk. Output goes to
+subdirectories of the directory of your first light file, or the <i>Output directory</i> you set at
+the top of the dialog.
+</p>
+
+<table class="simple">
+<tr><th>Directory</th><th>Contents</th></tr>
+<tr><td><b>AutoProcessed</b></td><td>Final images, integrated images and the <i>AutoIntegrate.log</i> file.</td></tr>
+<tr><td>AutoOutput</td><td>Intermediate files. You can delete these after processing.</td></tr>
+<tr><td>AutoMaster</td><td>Master calibration files, if calibration was done.</td></tr>
+<tr><td>AutoCalibrated</td><td>Calibrated light files, if calibration was done.</td></tr>
+</table>
+
+<h3>Images</h3>
+
+<table class="simple">
+<tr><th></th><th>Mono camera (LRGB, narrowband)</th><th>Color camera (OSC, DSLR)</th></tr>
+<tr><td><b>Final image</b></td><td><b>AutoLRGB</b> or <b>AutoRGB</b></td><td><b>AutoRGB</b></td></tr>
+<tr><td>Stretched</td><td>Integration_L_HT, Integration_RGB_HT, Integration_LRGB_HT</td><td>Integration_RGB_HT</td></tr>
+<tr><td>Processed, still linear</td><td>Integration_L_processed, Integration_RGB_processed</td><td>Integration_RGB_processed</td></tr>
+<tr><td>Combined</td><td>Integration_RGB_combined</td><td></td></tr>
+<tr><td>Integrated, unprocessed</td><td>Integration_L, _R, _G, _B, _H, _S, _O</td><td>Integration_RGB</td></tr>
+</table>
+
+<p>
+The integrated images are useful if you want to continue processing manually. The final image is saved
+in XISF format. Check <i>TIFF</i> or <i>JPG</i> in <i>Settings / Save final image files</i> to also save it
+in those formats.
+</p>
+
+<details>
+<summary>Other files that are created</summary>
+<ul>
+<li><b>AutosaveSetup.json</b> has all settings used. Load it later to check or fine-tune the processing.</li>
+<li><b>AutoIntegrate.log</b> has the Process Console output. Check it if something went wrong.</li>
+<li><b>ExecutedProcesses.xpsm</b> loads as process icons into PixInsight, showing the exact processes and settings used.</li>
+<li><b>AstrobinInfo.csv</b> describes the imaging session for Astrobin.</li>
+</ul>
+</details>
+
+<!-- 7. Improve -->
+<h2 id="improve">7. Improve the result</h2>
+
+<p>
+Default settings give a good first image. If something does not look right, these are the
+simple mode options to try first. All of them are on the <i>Settings</i> tab unless noted otherwise.
+</p>
+
+<table class="simple">
+<tr><th>If&hellip;</th><th>Try</th><th>Read more</th></tr>
+<tr>
+<td>Background is uneven or has a light pollution gradient</td>
+<td>Check <i>Gradient correction on combined images</i>. Gradient correction is off by default.
+    GraXpert can be used instead, see the <i>Tools</i> tab.</td>
+<td><a href="AutoIntegrateProcessing.html#gradientcorrection">Gradient correction</a>,
+    <a href="AutoIntegrateOptionsSimple.html#gradient">options</a></td>
+</tr>
+<tr>
+<td>Edges look bad, or channels do not cover the same area</td>
+<td>Check <i>Crop to common area</i>.</td>
+<td><a href="AutoIntegrateProcessing.html#crop_to_common">Crop to common area</a></td>
+</tr>
+<tr>
+<td>Image is too bright, too dark or stars are bloated</td>
+<td>Choose a <a href="#target">target type</a> or another <i>Image stretching</i> method.</td>
+<td><a href="AutoIntegrateProcessing.html#stretching">Image stretching</a>,
+    <a href="AutoIntegrateOptionsSimple.html#stretch">options</a></td>
+</tr>
+<tr>
+<td>Image is noisy</td>
+<td>Use NoiseXTerminator, MLDenoise, GraXpert denoise or DeepSNR if you have them.</td>
+<td><a href="AutoIntegrateProcessing.html#noisereduction">Noise reduction</a>,
+    <a href="AutoIntegrateOptionsSimple.html#noise">options</a></td>
+</tr>
+<tr>
+<td>Colors look wrong</td>
+<td>Check <i>Color calibration using SPCC</i> or <i>Use BackgroundNeutralization</i>.</td>
+<td><a href="AutoIntegrateProcessing.html#colorcalibration">Color calibration</a>,
+    <a href="AutoIntegrateOptionsSimple.html#colorcal">options</a></td>
+</tr>
+<tr>
+<td>Image could be sharper</td>
+<td>Use BlurXTerminator or GraXpert deconvolution.</td>
+<td><a href="AutoIntegrateProcessing.html#rcastrotools">RC Astro tools</a>,
+    <a href="AutoIntegrateProcessing.html#graxpertsupport">GraXpert</a></td>
+</tr>
+<tr>
+<td>You want a starless image or separate star image</td>
+<td>Use StarXTerminator or StarNet2.</td>
+<td><a href="AutoIntegrateProcessing.html#removing_stars">Removing stars</a>,
+    <a href="AutoIntegrateOptionsSimple.html#stars">options</a></td>
+</tr>
+<tr>
+<td>You have narrowband data and want a different palette</td>
+<td>Select a palette in <i>Narrowband processing</i>, for example SHO, HOO or Foraxx.
+    <i>Auto</i> picks one based on your filters.</td>
+<td><a href="AutoIntegrateGuides.html#narrowband_palettes">Narrowband palettes</a>,
+    <a href="AutoIntegrateOptionsSimple.html#narrowband">options</a></td>
+</tr>
+<tr>
+<td>You only want calibration or integration</td>
+<td>Use <i>Calibrate only</i>, <i>Integrate only</i> or <i>Generate masters only</i>.</td>
+<td><a href="AutoIntegrateOptionsSimple.html#runmodes">Run modes</a></td>
+</tr>
+</table>
+
+<p>
+To fine-tune the final image without running everything again, use the <i>Enhancements</i> tab.
+See <a href="AutoIntegrateEnhancements.html#enhancements_processing">Image enhancements</a>.
+</p>
+
+<div class="note">
+Settings can be saved and after that they are remembered between runs. Use the reset icon (<i>Set default values for all parameters</i>) at the bottom left of the dialog to
+go back to default settings.
+</div>
+
+<!-- Simple mode tabs -->
+<h2 id="tabs">Simple mode tabs</h2>
+
+<table class="simple">
+<tr><th>Tab</th><th>What it is for</th></tr>
+<tr><td><b>Files</b></td><td>Light and calibration files, debayering, file sorting and filtering.</td></tr>
+<tr><td><b>Settings</b></td><td>Main processing options, external tools, narrowband palettes and saving the final image.</td></tr>
+<tr><td><b>Tools</b></td><td>GraXpert settings.</td></tr>
+<tr><td><b>Enhancements</b></td><td>Improve the final image after processing: stars, colors, sharpening, curves and more.</td></tr>
+<tr><td><b>Interface</b></td><td>Preview, flowchart and dialog settings.</td></tr>
+</table>
+
+<p>
+Expert mode adds the <i>Other</i>, <i>Preprocessing</i>, <i>Integration</i> and <i>Postprocessing</i> tabs,
+with detailed settings for each processing step. The
+<a href="AutoIntegrateOptionsSimple.html">simple mode options</a> page lists every option you can see
+in simple mode, and <a href="AutoIntegrateOptions.html">all options</a> lists the rest.
+</p>
+
+<!-- Next steps -->
+<h2 id="next">Next steps</h2>
+
+<div class="cards">
+<a href="https://youtu.be/tl_1FS8FvoQ">
+<b>&#9654; LRGB video</b>
+<span>Mono camera with L, R, G and B filters.</span>
+</a>
+<a href="https://youtu.be/O9b5TUeb-as">
+<b>&#9654; Narrowband video</b>
+<span>Ha, OIII and SII data and color palettes.</span>
+</a>
+<a href="AutoIntegrateFiles.html#calibration">
+<b>Image calibration</b>
+<span>Bias, darks, flats, flat darks and master files.</span>
+</a>
+<a href="AutoIntegrateProcessing.html#autocontinue">
+<b>AutoContinue</b>
+<span>Fix one step manually and let the script continue from there.</span>
+</a>
+<a href="AutoIntegrateHelp.html#knownproblems">
+<b>Known problems and tips</b>
+<span>Common problems and how to solve them.</span>
+</a>
+<a href="AutoIntegrateProcessing.html">
+<b>Processing in depth</b>
+<span>What each processing step does and how to adjust it in expert mode.</span>
+</a>
+</div>
+
+</div>
+
+<div class="docfooter">
+<a href="AutoIntegrateInfo.html">Start</a> &middot;
+<a href="AutoIntegrateGuides.html">Data guides</a> &middot;
+<a href="AutoIntegrateHelp.html">Help</a> &middot;
+<a href="AutoIntegrateOptionsSimple.html">Options</a> &middot;
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a> &middot;
+<a href="https://forums.ruuth.xyz">Forum</a> &middot;
+<a href="https://discord.gg/baqMqmKS3N">Discord</a> &middot;
+<a href="https://ko-fi.com/jarmoruuth">Support development</a>
+</div>
+
+<script>
+function copyRepo(button) {
+    var text = document.getElementById("repourl").textContent;
+    try {
+        navigator.clipboard.writeText(text).then(function() {
+            button.textContent = "Copied";
+            setTimeout(function() { button.textContent = "Copy"; }, 1500);
+        });
+    } catch (e) {
+        // Clipboard not available, the URL can still be selected manually
+    }
+}
+</script>
+
+</body>
+</html>

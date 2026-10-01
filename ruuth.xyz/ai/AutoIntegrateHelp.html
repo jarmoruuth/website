@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<link rel="stylesheet" type="text/css" href="ai_docs.css">
+<title>AutoIntegrate Help</title>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Help and troubleshooting - AutoIntegrate" />
+<meta property="og:url" content="https://ruuth.xyz/AutoIntegrateHelp.html" />
+<meta property="og:image" content="https://ruuth.xyz/autointegratescreen.jpg" />
+<meta property="og:description" content="Known problems, tips and where to ask" />
+<meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+<div class="dropdown">
+<button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+<div class="dropdown-content">
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
+</div>
+</div>
+<div class="h1text">
+<h1>Help and troubleshooting</h1>
+<p class="tagline">Known problems, tips and where to ask</p>
+</div>
+</div>
+
+<!-- Documentation navigation -->
+<nav class="docnav">
+<ul>
+<li><a href="AutoIntegrateInfo.html">Start</a></li>
+<li><a href="AutoIntegrateGettingStarted.html">Getting started</a></li>
+<li><a href="AutoIntegrateGuides.html">Data guides</a></li>
+<li><a href="AutoIntegrateProcessing.html">Processing</a></li>
+<li><a href="AutoIntegrateFiles.html">Files &amp; calibration</a></li>
+<li><a href="AutoIntegrateEnhancements.html">Enhancements</a></li>
+<li><a href="AutoIntegrateSetup.html">Setup</a></li>
+<li><a class="current" href="AutoIntegrateHelp.html">Help</a></li>
+<li><a href="AutoIntegrateOptionsSimple.html">Options</a></li>
+</ul>
+</nav>
+
+<div class="page">
+
+<div class="inshort">
+<p><b>In short:</b> known problems and their fixes, tips for better results, release notes and where to ask for help.</p>
+</div>
+
+<div class="pagetoc">
+<b>On this page</b>
+<ul>
+<li><a href="#asking_help"><b>Getting help</b></a></li>
+<li><a href="#knownproblems"><b>Known problems</b></a></li>
+<li><a href="#tips"><b>Some tips for using AutoIntegrate script</b></a></li>
+<li><a href="#release_notes"><b>Release notes</b></a></li>
+</ul>
+</div>
+
+<h2 id="asking_help">Getting help</h2>
+<p>Ask questions on <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or <a href="https://discord.gg/baqMqmKS3N">Discord</a>. Source code and releases are on <a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a>.</p><p>The <i>AutoIntegrate.log</i> file in the <i>AutoProcessed</i> directory shows all processing steps and is useful when looking for the cause of a problem.</p>
+
+<h2 id="knownproblems">Known problems</h2>
+<ul>
+
+
+<li>
+<i>PixInsight strange errors.</i><br>
+Sometimes you may get strange errors or warning messages that look like references to undefined variables. These
+messages may point to the AutoIntegrate script or to internal PixInsight JavaScript classes. In that case you 
+should reset the PixInsight JavaScript engine by giving the following command to the Process Console:<br><br>
+run --reset
+<br><br>
+</li>
+
+<li>
+<i>AutoIntegrate does not show up in the Script/AutoIntegrate menu.</i><br>
+If AutoIntegrate does not show up in the Script/AutoIntegrate menu you can try to reinstall scripts by deleting the updates.xri file 
+in the PixInsight application folder. Or you can try to repair the PixInsight installation, check for updates, close PixInsight 
+to install updates, and restart PixInsight.
+<br><br>
+</li>
+
+<li>
+<i>AutoIntegrate dialog does not fit on the screen.</i><br>
+AutoIntegrate dialog is quite large so in some cases it is possible that it is not fully visible on the screen and 
+you cannot access the bottom row. In this case the problem can be the preview window size. It is possible to 
+change the preview window size or disable preview in the <i>Interface / Interface settings</i> section. Note that some buttons like
+Exit and Run are duplicated at the top part of the dialog.
+<br><br>
+On MacOS if the PixInsight is not set to full screen mode part of the dialog may not be visible. In that case
+setting the screen to full screen mode helps.
+<br><br>
+</li>
+
+<li><i>include file not found: ../AdP/CommonUIControls.js</i><br>
+Starting from AutoIntegrate version 1.56 there is a dependency to ImageSolver script
+in the PixInsight distribution. This means that ImageSolver files must be in the ../AdP
+directory relative to AutoIntegrate directory. If you have manually downloaded 
+AutoIntegrate from GitHub you need to create ../AdP directory and copy the contents 
+of <i>Pixinsight-install-directory</i>/src/scripts/AdP there. In Windows the default 
+installation path to AdP is C:\Program Files\PixInsight\src\scripts\AdP.
+<br><br>
+</li>
+
+<li>
+<i>Error Zero or insignificant PSF Signal Weight estimate</i><br>
+In some cases like when using starless images you may get an error "Zero or insignificant PSF Signal Weight estimate" in the AutoIntegrate log files. 
+You may get rid of this problem by using an option <i>ImageIntegration use ssweight</i> in the <i>Settings / Image processing parameters</i> section.<br>
+Very bad input image can cause the the problem. In that case you should filter out bad images.<br>
+Another reason can be too small image size caused for example by cropping or binning.
+</li>
+
+</ul>
+
+<p><b>Problems already fixed</b></p>
+
+<ul>
+
+<li>
+<i>SpectrophotometricColorCalibration - fixed in PixInsight version 1.8.9-2 build 1601</i><br>
+Using SpectrophotometricColorCalibration (SPCC) will mess up with the dialog window. Everything 
+still runs fine. This seems to be a problem in the SPCC process. If you use SPCC during processing 
+you need to close the dialog from the upper right corner close button. Using that button is not
+normally recommended as it does not save session settings. But in this case it is the only way to 
+close the dialog.
+<br><br>
+</li>
+
+<li>
+<i>StarXTerminator File I/O error when using an old version - fixed in August 2023</i><br>
+When using an old version of StarXTerminator you may get a File I/O Error and stars are not removed from the image. This error 
+is already fixed in later versions of StarXTerminator (August 2023). When using an older version the fix is to manually start 
+and stop the StarXTerminator process once. After that StarXTerminator works also from AutoIntegrate script.
+<br><br>
+</li>
+ 
+</ul>
+
+<h2 id="tips">Some tips for using AutoIntegrate script</h2>
+<ul>
+<li>
+Very often you get good results by running the script with default
+settings and then continue processing in PixInsight.
+</li>
+<li>
+Always before running the script you should check the quality of the data using the 
+AutoIntegrate preview functionality or using a separate Blink process. You should remove 
+all files that have movement like wind effect or bad clouds.
+</li>
+<li>
+If your data quality is not the best you may want to increase noise reduction.
+</li>
+<li>
+When processing bright galaxy data the image may come out too bright. You can try
+using MaskedStretch or reduce STF targetBackground value.
+</li>
+<li>
+When processing nebulosity data you can try using Histogram stretch.
+</li>
+<li>
+With enhancements options it is possible to do basic enhancements like remove stars using StarNet2 
+or StarXTerminator, increase contrast, run HDRMultiscaleTransform, LocalHistogramEqualization and make 
+smaller stars automatically.
+</li>
+<li>
+When removing stars you often get better star color with unscreen option. When combining stars and starless
+in PixInsight or Photoshop use the screen option.
+</li>
+<li>
+Automatic cropping is very handy. But check LowRejectionMap_ALL and verify that the crop is ok.
+</li>
+</ul>
+<p>See also <a href="AutoIntegrateGuides.html#osc_tips">tips for processing OSC or RAW files</a>.</p>
+
+<h2 id="release_notes">Release notes</h2>
+<p>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-87-small-ui-and-parameter-updates/294">v1.87 - MLDenoise</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-86-v8-javascript-engine/287">v1.86 - V8 JavaScript engine</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-84-calibration-updates/286">v1.84 - Calibration updates</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-83-simple-and-expert-modes/282">v1.83 - Simple and expert modes</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-82-test-standalone-tools-multiscaleadaptivestretch/279">v1.82 - Standalone tools, MultiscaleAdaptiveStretch</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-81-veralux-hypermetric-stretch/274">v1.81 - VeraLux HyperMetric Stretch</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-80-process-icons/272">v1.80 - Process icons</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-79-tutorials/270">v1.79 - Tutorials</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-78-small-updates-and-fixes/267">v1.78 - Small updates and fixes</a><br>
+  <a href="https://forums.ruuth.xyz/t/autointegrate-v1-77-find-files-recursively-from-a-directory/264">v1.77 - Find files recursively from a directory</a><br>
+</p>
+<p>
+For more details on versions see <a href="https://github.com/jarmoruuth/AutoIntegrate/releases">GitHub page</a> or 
+<a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or
+<a href="https://discord.gg/baqMqmKS3N">Discord</a>
+</p>
+
+</div>
+
+<div class="docfooter">
+<a href="AutoIntegrateInfo.html">Start</a> &middot;
+<a href="AutoIntegrateAbout.html">About</a> &middot;
+<a href="AutoIntegrateOptionsSimple.html">Options</a> &middot;
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a> &middot;
+<a href="https://forums.ruuth.xyz">Forum</a> &middot;
+<a href="https://discord.gg/baqMqmKS3N">Discord</a> &middot;
+<a href="https://ko-fi.com/jarmoruuth">Support development</a>
+<p>Feedback: <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or
+<a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></p>
+</div>
+
+</body>
+</html>

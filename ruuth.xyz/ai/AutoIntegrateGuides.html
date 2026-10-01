@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sub3.css">
+<link rel="stylesheet" type="text/css" href="ai_docs.css">
+<title>AutoIntegrate Data Guides</title>
+<link rel="icon" type="image/png" sizes="16x16" href="AMT-favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Data guides - AutoIntegrate" />
+<meta property="og:url" content="https://ruuth.xyz/AutoIntegrateGuides.html" />
+<meta property="og:image" content="https://ruuth.xyz/autointegratescreen.jpg" />
+<meta property="og:description" content="What is specific to your camera, filters and target" />
+<meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+<div class="dropdown">
+<button class="dropbtn"><img src="menu-24px.svg" alt="Home" height="16"></button>
+<div class="dropdown-content">
+<a href="/AstroImageTools.html">Home</a>
+<a href="/AstroMosaicInfo.html">Astro Mosaic</a>
+<a href="/AutoIntegrateInfo.html">AutoIntegrate</a>
+<a href="/DownloadFitInfo.html">Download .fit</a>
+<a href="/FitsPyInfo.html">FITS utility</a>
+</div>
+</div>
+<div class="h1text">
+<h1>Data guides</h1>
+<p class="tagline">What is specific to your camera, filters and target</p>
+</div>
+</div>
+
+<!-- Documentation navigation -->
+<nav class="docnav">
+<ul>
+<li><a href="AutoIntegrateInfo.html">Start</a></li>
+<li><a href="AutoIntegrateGettingStarted.html">Getting started</a></li>
+<li><a class="current" href="AutoIntegrateGuides.html">Data guides</a></li>
+<li><a href="AutoIntegrateProcessing.html">Processing</a></li>
+<li><a href="AutoIntegrateFiles.html">Files &amp; calibration</a></li>
+<li><a href="AutoIntegrateEnhancements.html">Enhancements</a></li>
+<li><a href="AutoIntegrateSetup.html">Setup</a></li>
+<li><a href="AutoIntegrateHelp.html">Help</a></li>
+<li><a href="AutoIntegrateOptionsSimple.html">Options</a></li>
+</ul>
+</nav>
+
+<div class="page">
+
+<div class="inshort">
+<p><b>In short:</b> AutoIntegrate detects the type of your data from the files and picks the right workflow automatically. This page explains what is specific to each kind of data: color cameras, mono LRGB, narrowband, comets, mosaics and Hubble data.</p><p>Settings that are in the <i>Other</i>, <i>Preprocessing</i>, <i>Integration</i> and <i>Postprocessing</i> tabs are visible only in <span class="badge">Expert mode</span>. Settings in the <i>Files</i>, <i>Settings</i>, <i>Tools</i>, <i>Enhancements</i> and <i>Interface</i> tabs are visible also in <span class="badge simple">Simple mode</span>.</p>
+</div>
+
+<div class="pagetoc">
+<b>On this page</b>
+<ul>
+<li><a href="#color_cameras"><b>Color cameras: OSC and DSLR</b></a>: <a href="#osc_tips">Tips for processing One Shot Color (OSC) or RAW files</a> &middot; <a href="#extract_color_channels">Extracting color channels from OSC files</a> &middot; <a href="#banding_reduction">Banding reduction</a></li>
+<li><a href="#mono_lrgb"><b>Mono cameras: LRGB</b></a>: <a href="#rgb">Processing RGB files</a></li>
+<li><a href="#narrowband_settings"><b>Narrowband</b></a>: <a href="#narrowband">Processing narrowband files</a> &middot; <a href="#narrowband_palettes">Narrowband palettes</a> &middot; <a href="#narrowband_auto_mapping">Automatic selection of narrowband palette</a> &middot; <a href="#narrowband_rgbstars">Automatic processing of RGB stars</a> &middot; <a href="#narrowband_allpalettes">Automatic processing of all palettes</a> &middot; <a href="#narrowband_multiplepalettes">Automatic processing of multiple palettes</a> &middot; <a href="#foraxx_palette">Foraxx palette</a> &middot; <a href="#narrowband_enhancements_mapping">Narrowband mapping enhancements options</a> &middot; <a href="#ha_rgb">Ha to RGB mapping</a> &middot; <a href="#narrowband_rgb">Narrowband to RGB mapping</a></li>
+<li><a href="#comets"><b>Comets</b></a>: <a href="#cometprocessing">Comet processing</a></li>
+<li><a href="#mosaics"><b>Mosaics</b></a>: <a href="#creating_mosaics">Creating mosaics</a></li>
+<li><a href="#other_data"><b>Other data</b></a>: <a href="#hubble">Processing Hubble data</a></li>
+</ul>
+</div>
+
+<h2 id="color_cameras">Color cameras: OSC and DSLR</h2>
+<p>Files from color cameras (OSC, DSLR, RAW) are debayered automatically and processed as one color image. The final image is <b>AutoRGB</b>. With narrowband filters on a color camera, color channels can be extracted and processed like mono data.</p>
+
+<h3 id="osc_tips">Tips for processing One Shot Color (OSC) or RAW files</h3>
+
+<ul>
+<li>
+Default options are typically a pretty good start for color images. If there is a strong color cast and/or
+vignetting it is worth trying with <i>Gradient correction on combined images</i> and <i>Use BackgroundNeutralization</i> options. 
+Sometimes also choosing a different setting in the <i>Link RGB channels</i> option helps.
+</li>
+<li>
+For OSC/DSLR files PixInsight should be put into Pure RAW mode. It can be set in Format Explorer by double
+clicking RAW format. AutoIntegrate does debayering of images so no automatic debayering should be done.
+</li>
+</ul>
+
+<h3 id="extract_color_channels">Extracting color channels from OSC files</h3>
+
+<a href="ai_extractchannels.jpg"><img src="ai_extractchannels.jpg"></a>
+
+<p>
+When processing Color/OSC/DSLR files it is possible to extract separate color channels from color data. Channels can be extracted 
+as LRGB, HSO or HOS data. After channels are extracted, processing continues as in mono filter processing.
+</p>
+<p>
+Channels are extracted right after cosmetic correction and debayering. Channel files are saved to disk so they can be 
+used for processing later.
+</p>
+<p>
+Using separate channels enables different narrowband mappings when collecting narrowband data with OSC cameras. Also LRGB 
+data can benefit from separate processing.
+</p>
+<p>
+<a href="extract_channels_image.jpg"><img src="extract_channels_image.jpg" height="300"></a>
+<br>
+<small>
+Thanks to René Bondo Hoffmann for providing OSC camera data using Optolong L-eXtreme filter. 
+Image is processed to emulate the Hubble (SHO) color palette using the <i>L-eXtreme SHO</i> palette option. 
+Additional color processing was done after the AutoIntegrate script run.
+</small>
+</p>
+
+<b>YouTube video for creating Hubble color palette using OSC data</b>
+
+<p>
+<a href="https://youtu.be/0LwtpRrJ_ME">
+<img src="ai_extractchannelsvideo.jpg" alt="Video" height="200" >
+</a>
+<br>
+<small>YouTube video</small>
+</p>
+
+<h3 id="banding_reduction">Banding reduction</h3>
+
+<h4 id="banding_lights">Banding reduction for each light image</h4>
+
+<a href="ai_banding.jpg"><img src="ai_banding.jpg"></a>
+
+<p>
+Optionally it is possible to run Canon Banding Reduction script code inside AutoIntegrate. In section 
+<i>Preprocessing / Banding and binning</i> there are options to enable <i>Banding reduction</i>, 
+select <i>Protect highlights</i> and <i>Amount</i>.
+</p>
+<p>
+Banding reduction can be useful for Canon DSLR data and sometimes also for other OSC data too. Banding reduction
+is run just after debayering so it is run separately for each light image.
+</p>
+
+<h4 id="banding_enhancements">Banding reduction enhancements option</h4>
+
+<a href="ai_bandingextra.jpg"><img src="ai_bandingextra.jpg"></a>
+
+<p>
+There is also an enhancements option to run banding reduction on the final image.
+</p>
+
+<h2 id="mono_lrgb">Mono cameras: LRGB</h2>
+<a class="videolink" href="https://youtu.be/tl_1FS8FvoQ"><img src="ai_lrgb_v156.jpg" alt="Video"><span>&#9654; LRGB processing using AutoIntegrate</span></a><p>Each filter is integrated separately, R, G and B are combined to a color image and the L image is added with LRGB combination. The final image is <b>AutoLRGB</b>, or <b>AutoRGB</b> if there is no L data.</p>
+
+<h3 id="rgb">Processing RGB files</h3>
+
+<p>
+Script automatically detects RGB files. If only LRGB, RGB or OSC/DSLR/color files are present it runs a basic RGB workflow.
+</p>
+
+<h2 id="narrowband_settings">Narrowband</h2>
+<a class="videolink" href="https://youtu.be/O9b5TUeb-as"><img src="ai_narrowband_v165.jpg" alt="Video"><span>&#9654; Narrowband processing using AutoIntegrate</span></a><p>If any Ha, SII or OIII files are present, a narrowband palette maps them to RGB. The default palette <i>Auto</i> picks a palette based on your filters, and uses RGB stars when RGB data is also available.</p>
+
+<h3 id="narrowband">Processing narrowband files</h3>
+
+<a href="ai_narrowband.jpg"><img src="ai_narrowband.jpg"></a>
+
+<p>
+Narrowband images are supported by the script. They are processed mostly the same way as
+other images. Main difference is that you can choose the color palette that is used when mapping
+narrowband images to RGB channels.
+</p>
+<p>
+Note that AutoIntegrate always uses narrowband mapping if any of the H, S, or O filters are present. So for example 
+The HaLRGB workflow always uses narrowband mapping.
+</p>
+<p>
+Below is a sample output from AutoIntegrate script when using narrowband data and SHO color palette. Otherwise it was run
+with default settings but Remove green cast and Fix star colors options were checked.
+</p>
+<p>
+<a href="narrowband.jpg"><img src="narrowband.jpg" height="300"></a>
+<br><small>Thanks to Erik Westermann for providing narrowband data.</small>
+</p>
+
+<h3 id="narrowband_palettes">Narrowband palettes</h3>
+
+<a href="ai_narrowband.jpg"><img src="ai_narrowband.jpg"></a>
+
+<p>
+By default a single narrowband palette is run. It can be selected in the <i>Settings / Narrowband processing</i> section.
+If there are any of the H, S or O files available then a narrowband palette is always used. Note that even if there is just H files with
+LRGB files then a narrowband palette is used.
+</p>
+
+<p>
+Available narrowband palettes are listed below. Actual narrowband mapping is done based on the values in R, G and B
+edit fields. The palettes listed here are just shortcuts to the actual narrowband mapping values. You can also
+define your own narrowband mapping values in the <i>User defined</i> option or just edit the R, G and B mapping
+values before processing. The text in the R, G and B edit fields must be PixelMath compatible expressions.
+</p>
+
+<ul>
+<li>Auto - Automatically selects the best narrowband palette based on the available data.</li>
+<li>SHO</li>
+<li>HOS</li>
+<li>HSO</li>
+<li>OHS</li>
+<li>HOO</li>
+<li>Pseudo RGB</li>
+<li>Natural HOO</li>
+<li>3-channel HOO</li>
+<li>Dynamic SHO</li>
+<li>Dynamic HOO</li>
+<li>max(R,H),G,B - Combine Ha and RGB data</li>
+<li>max(RGB,HOO) - Combine Ha and OIII and RGB data</li>
+<li>HOO Helix</li>
+<li>HSO Mix 1</li>
+<li>HSO Mix 2</li>
+<li>HSO Mix 3</li>
+<li>HSO Mix 4</li>
+<li>L-eXtreme SHO</li>
+<li>RGB - Normal RGB palette</li>
+<li>User defined - Your own mapping written as PixelMath expressions in the R, G and B fields</li>
+<li>All - Process all narrowband palettes</li>
+</ul>
+
+<p>
+To try out different narrowband palettes there is a standalone script Narrowband Combinations in the Script / AutoIntegrate menu.
+</p>
+
+<h3 id="narrowband_auto_mapping">Automatic selection of narrowband palette</h3>
+
+<p>
+The default narrowband palette is <b>Auto</b>. With the Auto option the script automatically selects a narrowband palette 
+based on the available data.
+</p>
+
+<p>
+Below are listed mappings available when using the Auto option.
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>Input Combination</th>
+    <th>Mapping/Output</th>
+  </tr>
+  <tr>
+    <td>SHO</td>
+    <td>SHO</td>
+  </tr>
+  <tr>
+    <td>SHO + LRGB</td>
+    <td>SHO, RGB stars</td>
+  </tr>
+  <tr>
+    <td>SHO + RGB</td>
+    <td>SHO, RGB stars</td>
+  </tr>
+  <tr>
+    <td>HO</td>
+    <td>HOO</td>
+  </tr>
+  <tr>
+    <td>HO + LRGB</td>
+    <td>HOO, RGB stars</td>
+  </tr>
+  <tr>
+    <td>HO + RGB</td>
+    <td>HOO, RGB stars</td>
+  </tr>
+  <tr>
+    <td>H + LRGB</td>
+    <td>max(R,H),G,B</td>
+  </tr>
+  <tr>
+    <td>H + RGB</td>
+    <td>max(R,H),G,B</td>
+  </tr>
+</table>
+
+<h3 id="narrowband_rgbstars">Automatic processing of RGB stars</h3>
+
+<a href="ai_rgbstars.jpg"><img src="ai_rgbstars.jpg"></a>
+
+<p>
+When narrowband palette is used it is possible to automatically process RGB stars if RGB data 
+is available. RGB data is processed separately from the narrowband data to create stars image.
+Stars are removed from the narrowband image and then combined with the RGB stars image to create 
+a final image.
+</p>
+<p>
+Auto narrowband palettes automatically use the RGB stars option if both narrowband and RGB data is available.
+</p>
+
+<h3 id="narrowband_allpalettes">Automatic processing of all palettes</h3>
+
+<p>
+Optionally it is possible to process multiple narrowband palettes in one run.
+</p>
+
+<a href="ai_allpalette.jpg"><img src="ai_allpalette.jpg"></a>
+
+<p>
+Narrowband palette option <i>All</i> automatically processes all HSO palettes it knows. 
+Every image is named with the palette option and automatically saved to disk as a .xisf file. 
+Images are also left open on screen. With Save final image files selection it is possible to 
+save them all for example as 16 bit TIFF files. You can also use enhancements options in images,
+then images with name <i>Auto_</i>+palette-name+<i>_enh</i> are created.
+If you want to just check the output of different palettes then you can use the <i>Fast mode</i> option
+on the <i>Settings / Other</i> section.
+</p>
+<p>
+<a href="AllPalettes.jpg"><img src="AllPalettes.jpg" height="300"></a>
+<br><small>All narrowband palettes known by AutoIntegrate, and two SHO palettes after enhancements processing.</small>
+</p>
+
+<h3 id="narrowband_multiplepalettes">Automatic processing of multiple palettes</h3>
+
+<a href="ai_multiplepalette.jpg"><img src="ai_multiplepalette.jpg"></a>
+
+<p>
+With option <i>Use multiple mappings</i> it is possible to select needed narrowband palette
+mappings instead of all. Multiple mappings run the same way as all palettes option but
+only selected mappings are used.
+</p>
+<p>
+The fastest way to generate all palettes is to first run processing with one palette and
+then use already integrated images for other palettes. For processing multiple palettes open 
+Integration_<i>channel</i> files on the desktop, select All narrowband palette or multiple palettes and 
+use AutoContinue to run palettes from already integrated channel files.
+If you want to just check the output of different palettes then you can use the <i>Fast mode</i> option
+on the <i>Settings / Other</i> section.
+</p>
+
+<h3 id="foraxx_palette">Foraxx palette</h3>
+
+<a href="ai_foraxx.jpg"><img src="ai_foraxx.jpg"></a>
+
+<p>
+To run Foraxx palette during the normal processing you need to select Dynamic narrowband palette like Dynamic SHO and 
+check the option <i>Narrowband mapping using non-linear data</i>.
+</p>
+<p>
+Dynamic narrowband palettes should be run using non-linear data. With dynamic palettes the data is always
+stretched before running the dynamic combinations.
+</p>
+
+<h4>Foraxx enhancements option</h4>
+
+<a href="ai_foraxxextra.jpg"><img src="ai_foraxxextra.jpg"></a>
+
+<p>
+In the <i>Enhancements / Narrowband enhancements</i> section there is also an option to use the Foraxx palette for SHO and HOO images. 
+Foraxx needs nonlinear images so it can be run after other processing. Foraxx palette is the same as Dynamic 
+palettes in the <i>Settings / Narrowband processing</i> section but for SHO images also <i>Remove green cast</i> and <i>Orange/blue colors</i> 
+options are run for the image.
+</p>
+
+<h3 id="narrowband_enhancements_mapping">Narrowband mapping enhancements options</h3>
+
+<a href="ai_extranarrowbandmapping.jpg"><img src="ai_extranarrowbandmapping.jpg"></a>
+
+<p>
+Another way to check different narrowband palettes is with the <i>Narrowband mapping</i> option 
+in the <i>Enhancements / Narrowband enhancements</i> section. If the processed image is a SHO or HOO image then it is possible 
+to try different narrowband mappings. When the <i>Narrowband mapping</i> option is used, channels are extracted 
+from the SHO or HOO image and mapped again to create a new palette image.
+</p>
+
+<h3 id="ha_rgb">Ha to RGB mapping</h3>
+
+<h4>Using narrowband color palette</h4>
+
+<a href="ai_hatorgbcolorpalette.jpg"><img src="ai_hatorgbcolorpalette.jpg"></a>
+
+<p>
+Narrowband <i>Color palette</i> list has a few predefined options to map Ha to RGB.
+It is also possible to create a custom mapping by writing PixelMath expressions
+to the channel boxes.
+</p>
+
+<h4>Using Ha to RGB mapping section</h4>
+
+<a href="ai_hatorgb.jpg"><img src="ai_hatorgb.jpg"></a>
+
+<p>
+<i>Postprocessing / Ha to RGB mapping</i> section is used to map Ha to the RGB red channel. Different mapping
+options can be selected and the mapping can be tested with a test button.
+</p>
+
+<a href="ai_extrahatorgb.jpg"><img src="ai_extrahatorgb.jpg"></a>
+
+<p>
+There is also an enhancements option <i>Ha to RGB mapping</i> to add Ha to RGB. 
+In that case None combine mapping option can be used to skip mapping during processing. 
+Then the mapping can be done using the enhancements option.
+Enhancements option mapping settings are taken from <i>Postprocessing / Ha to RGB mapping</i> section.
+</p>
+<p>
+With the enhancements option it is possible to use a different stretching for the Ha image.
+So if the galaxy image is processed with masked stretch then Ha image can be stretched
+with AutoSTF and combined for example with 'Max 0.7' predefined setting.
+</p>
+
+<h3 id="narrowband_rgb">Narrowband to RGB mapping</h3>
+
+<a href="ai_narrowbandrgbmap.jpg"><img src="ai_narrowbandrgbmap.jpg"></a>
+
+<p>
+A special processing is used for narrowband to (L)RGB image
+mapping. It is used to enhance (L)RGB channels with narrowband data.
+It cannot be used without RGB filters.
+This mapping is similar to the NBRGBCombination script in PixInsight or
+as described in Light Vortex Astronomy tutorial Combining LRGB with Narrowband
+(Light Vortex Astronomy site is no longer available).
+You can find more details on parameters from those sources.
+</p><p>
+If narrowband RGB mapping is used then narrowband Color palette is not used.
+</p><p>
+With narrowband RGB mapping you can choose:<br>
+- Mapping of narrowband channels to (L)RGB channels<br>
+- Boost for (L)RGB channels<br>
+- Bandwidth for each filter<br>
+- Test the mapping with a test button
+</p>
+
+<h2 id="comets">Comets</h2>
+<a class="videolink" href="https://youtu.be/RycFX3J9Rj4"><img src="ai_comet_processing_video.jpg" alt="Video"><span>&#9654; Comet processing using AutoIntegrate</span></a><p>There is also a built-in <i>Comet Processing</i> tutorial in the script.</p>
+
+<h3 id="cometprocessing">Comet processing</h3>
+
+<a href="ai_cometprocessing.jpg"><img src="ai_cometprocessing.jpg"></a>
+
+<p>
+Below is the suggested workflow with comet processing in AutoIntegrate:
+</p>
+
+<ul>
+<li>Run a normal workflow to get correct stars and background objects.</li>
+<li>Load star aligned *_r.xisf files as light files. Those can be found from the AutoOutput directory.</li> 
+<li>Set Window prefix to avoid overwriting files in the first step.</li> 
+<li>Check <i>Comet align</i> in <i>Settings / Image processing parameters</i> section.</li>
+<li>Check star removal option (StarXTerminator or StarNet2) in <i>Settings / Tools</i> section.</li>
+<li>Check <i>Remove stars from lights</i> in <i>Postprocessing / Star stretching and removing</i> section.</li>
+<li>Check <i>No CosmeticCorrection</i> in <i>Other / Other parameters</i> section.</li>
+<li>Go to the <i>Preprocessing / Star and comet alignment</i> section.</li>
+<li>Fill in first and last comet position coordinates. To get the coordinates click the
+  <i>Preview</i> button for the first or last image, go to preview, zoom
+  to 1:1 view and click the comet nucleus with the left mouse button. Note that the
+  first and last images are selected automatically based on image timestamps from the
+  DATE-OBS keyword when images are loaded.</li>
+<li>Copy coordinates from the preview coordinates box and paste them to the comet coordinates box. There are arrow
+  buttons in the preview to automatically copy coordinates.</li>
+<li>Use the <i>Run</i> button to process images.</li>
+</ul> 
+
+<p>
+Comet alignment will automatically skip star alignment and SCNR. Since already star aligned images (*_r.xisf)
+are used then Star alignment could invalidate coordinates given here and thus it is not used.
+</p>
+<p>
+Note that using starless images may cause problems for example with ImageIntegration or BlurXTerminator. In some cases this shows 
+as an error "Zero or insignificant PSF Signal Weight estimate" in the AutoIntegrate log files. With missing PSF error in ImageIntegration 
+you can use an option <i>ImageIntegration use ssweight</i>. Sometimes on starless images PSF value can not be calculated. Then a manual 
+value should be given or BlurXTerminator should not be used.
+</p> 
+<p>
+It is possible to manually run the CometAlignment process. Below are the steps to use AutoIntegrate with manual comet alignment:
+</p> 
+
+<ul> 
+<li>Run a normal workflow to get correct stars and background objects.</li>
+<li>Manually run the CometAlignment on star aligned *_r.xisf files. This will create *_ca.xisf files.</li> 
+<li>Remove stars from *_ca.xisf files. StarXTerminator has a batch mode that makes this easier.</li> 
+<li>Load comet aligned files into AutoIntegrate as lights files.</li> 
+<li>Check <i>Start from ImageIntegration</i> in <i>Other parameters</i>.</li>
+<li>Use the <i>Run</i> button to process images.</li>
+</ul>
+
+<h2 id="mosaics">Mosaics</h2>
+
+<h3 id="creating_mosaics">Creating mosaics</h3>
+
+<h4>Using Photometric Mosaic script</h4>
+
+<p>
+PixInsight has great tools for creating mosaics. One such tool is the PhotometricMosaic script by John Murphy. 
+You prepare linear images with scripts ImageSolver, MosaicByCoordinates and TrimMosaicTile and then create the 
+mosaic using script PhotometricMosaic.
+</p>
+<p>
+Using these tools with AutoIntegrate you first need to run a basic workflow which creates integrated linear 
+images Integration_[LRGBHSO] for separate color channels data or Integration_RGB for OSC data. You can then 
+create a mosaic for each channel or for OSC data.
+</p>
+<p>
+Once you have the mosaic tiles you can load them into PixInsight with names Integration_[LRGBHSO] or 
+Integration_RGB_color. You can then create the final image using the AutoContinue button.
+</p>
+
+<h4>Batch mode for mosaic images</h4>
+
+<a href="ai_batchmode.jpg"><img src="ai_batchmode.jpg"></a>
+
+<p>
+Batch mode is intended to be used with mosaic images. In mosaics there are several sets of images 
+and typically the same basic processing options are used for all images. In Batch mode 
+AutoIntegrate script automatically asks for files for each mosaic panel. You can freely 
+choose the directories for images. Script creates a final processed image which has the same 
+name as the directory where images were read. So if images are from directory P1 then the 
+image name will be P1. At the end of the script only final batch mode images are left open and all 
+intermediate images are closed. Batch mode is enabled with the <i>Batch/mosaic mode</i> option in the <i>Settings / Other</i> section.
+</p>
+<p>
+When batch completed is it possible to save all files in a different formats by clicking 
+a button in the section <i>Settings / Save final image files</i>. Batch mode adds a keyword to each image and it is 
+used to find files for saving. It is possible to save images in PixInsight .xisf format, 16-bit TIFF 
+format or 8-bit TIFF format. If you want to assemble the final image in Photoshop, save images in 
+16-bit TIFF format.
+</p>
+<p>
+Batch mode keyword is saved on disk with .xisf format but not with TIFF format. If you want to 
+process images later and use batch save then you should save files also in .xisf format.
+</p>
+<p>
+Note that batch mode does not create the actual mosaic image. It only creates panel images for further mosaic processing.
+</p>
+
+<h2 id="other_data">Other data</h2>
+
+<h3 id="hubble">Processing Hubble data</h3>
+
+<p>
+A YouTube video shows how to process Hubble data using AutoIntegrate script. It includes basic steps to download 
+Hubble data and shows how to do basic processing using AutoIntegrate script.
+</p>
+
+<p>
+<a href="https://youtu.be/tXtN6buU1E4">
+<img src="hubblevideo.jpg" alt="Video" height="200" >
+</a>
+</p>
+
+</div>
+
+<div class="docfooter">
+<a href="AutoIntegrateInfo.html">Start</a> &middot;
+<a href="AutoIntegrateAbout.html">About</a> &middot;
+<a href="AutoIntegrateOptionsSimple.html">Options</a> &middot;
+<a href="https://github.com/jarmoruuth/AutoIntegrate">GitHub</a> &middot;
+<a href="https://forums.ruuth.xyz">Forum</a> &middot;
+<a href="https://discord.gg/baqMqmKS3N">Discord</a> &middot;
+<a href="https://ko-fi.com/jarmoruuth">Support development</a>
+<p>Feedback: <a href="https://forums.ruuth.xyz">forums.ruuth.xyz</a> or
+<a href="mailto:info@astroimagetools.net">info@astroimagetools.net</a></p>
+</div>
+
+</body>
+</html>
