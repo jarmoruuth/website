@@ -128,16 +128,18 @@ all images, finding an area where all images are contributing and cropping chann
 Automatic cropping makes it easier to get an image with only good data in it. It also helps automatic processes such as stretching
 because only real data is included in the image.
 </p><p>
-To check how much cropping was an image file LowRejectionMap_ALL is left minimized on the screen.
+To check how much cropping was done, an image AutoCropInfo is left minimized on the screen together with the integrated images.
+It is also saved to the AutoProcessed directory.
 </p><p>
-Automatic cropping can be used also during AutoContinue. Cropping requires that the LowRejectionMap_ALL file is open in the PixInsight desktop. 
+Automatic cropping can be used also during AutoContinue. Cropping requires that the AutoCropInfo file is open in the PixInsight desktop.
 Cropping can be done only if starting from Integration_[LRGBHSO] or Integration_RGB_color files.
+In older versions of AutoIntegrate this image was called LowRejectionMap_ALL, and AutoContinue still accepts that name.
 </p><p>
-In the case of AutoContinue it is possible to edit the crop preview area in the LowRejectionMap_ALL image. AutoContinue will use the crop preview
-from LowRejectionMap_ALL. In this way it is possible to rerun the processing using a different crop if needed.
+In the case of AutoContinue it is possible to edit the crop preview area in the AutoCropInfo image. AutoContinue will use the crop preview
+from AutoCropInfo. In this way it is possible to rerun the processing using a different crop if needed.
 </p><p>
-Below is an example that shows the difference between non-cropped image (left) and cropped image (middle). 
-On the right is a LowRejectionMap_ALL file showing the cropped area.
+Below is an example that shows the difference between non-cropped image (left) and cropped image (middle).
+On the right is an AutoCropInfo image showing the cropped area.
 </p>
 
 <a href="ai_califormia_crop.jpg"><img src="ai_califormia_crop.jpg" height="300"></a>
