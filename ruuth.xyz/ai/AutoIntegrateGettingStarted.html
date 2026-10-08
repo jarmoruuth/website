@@ -318,7 +318,7 @@ simple mode options to try first. All of them are on the <i>Settings</i> tab unl
 <tr>
 <td>Background is uneven or has a light pollution gradient</td>
 <td>Check <i>Gradient correction on combined images</i>. Gradient correction is off by default.
-    GraXpert can be used instead, see the <i>Tools</i> tab.</td>
+    GraXpert can be used instead, see the <i>Settings / Tools</i> section.</td>
 <td><a href="AutoIntegrateProcessing.html#gradientcorrection">Gradient correction</a>,
     <a href="AutoIntegrateOptionsSimple.html#gradient">options</a></td>
 </tr>
@@ -335,7 +335,8 @@ simple mode options to try first. All of them are on the <i>Settings</i> tab unl
 </tr>
 <tr>
 <td>Image is noisy</td>
-<td>Use NoiseXTerminator, MLDenoise, GraXpert denoise or DeepSNR if you have them.</td>
+<td>Install an AI noise reduction tool or set the MLDenoise model file. With the default <i>Auto</i> tool selection
+    MLDenoise, NoiseXTerminator, DeepSNR or GraXpert denoise is used automatically.</td>
 <td><a href="AutoIntegrateProcessing.html#noisereduction">Noise reduction</a>,
     <a href="AutoIntegrateOptionsSimple.html#noise">options</a></td>
 </tr>
@@ -347,13 +348,14 @@ simple mode options to try first. All of them are on the <i>Settings</i> tab unl
 </tr>
 <tr>
 <td>Image could be sharper</td>
-<td>Use BlurXTerminator or GraXpert deconvolution.</td>
+<td>Install BlurXTerminator or set up GraXpert. With the default <i>Auto</i> tool selection
+    they are used automatically.</td>
 <td><a href="AutoIntegrateProcessing.html#rcastrotools">RC Astro tools</a>,
     <a href="AutoIntegrateProcessing.html#graxpertsupport">GraXpert</a></td>
 </tr>
 <tr>
 <td>You want a starless image or separate star image</td>
-<td>Use StarXTerminator or StarNet2.</td>
+<td>Install StarXTerminator or StarNet2 and check one of the <i>Remove stars</i> options.</td>
 <td><a href="AutoIntegrateProcessing.html#removing_stars">Removing stars</a>,
     <a href="AutoIntegrateOptionsSimple.html#stars">options</a></td>
 </tr>
@@ -386,9 +388,9 @@ go back to default settings.
 
 <table class="simple">
 <tr><th>Tab</th><th>What it is for</th></tr>
-<tr><td><b>Files</b></td><td>Light and calibration files, debayering, file sorting and filtering.</td></tr>
-<tr><td><b>Settings</b></td><td>Main processing options, external tools, narrowband palettes and saving the final image.</td></tr>
-<tr><td><b>Tools</b></td><td>GraXpert settings.</td></tr>
+<tr><td><b>Files</b></td><td>Light and calibration files.</td></tr>
+<tr><td><b>Settings</b></td><td>Main processing options, tool selection, narrowband palettes and saving the final image.</td></tr>
+<tr><td><b>Tools</b></td><td>MLDenoise model file and GraXpert path.</td></tr>
 <tr><td><b>Enhancements</b></td><td>Improve the final image after processing: stars, colors, sharpening, curves and more.</td></tr>
 <tr><td><b>Interface</b></td><td>Preview, flowchart and dialog settings.</td></tr>
 </table>

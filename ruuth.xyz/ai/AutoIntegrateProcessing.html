@@ -59,10 +59,11 @@
 <b>On this page</b>
 <ul>
 <li><a href="#processing_settings"><b>Alignment and integration</b></a>: <a href="#reference_images">Reference images</a> &middot; <a href="#fastintegration">FastIntegration</a> &middot; <a href="#crop_to_common">Crop to common area</a></li>
-<li><a href="#linear_processing"><b>Linear processing</b></a>: <a href="#backgroundneutralization">Background neutralization</a> &middot; <a href="#gradientcorrection">Gradient correction</a> &middot; <a href="#exclusionarea">Exclusion area for DBE</a> &middot; <a href="#colorcalibration">Color calibration</a> &middot; <a href="#imagesolving">Image solving</a> &middot; <a href="#noisereduction">Noise reduction</a></li>
+<li><a href="#linear_processing"><b>Linear processing</b></a>: <a href="#backgroundneutralization">Background neutralization</a> &middot; <a href="#gradientcorrection">Gradient correction</a> &middot; <a href="#exclusionarea">Exclusion area for DBE</a> &middot; <a href="#colorcalibration">Color calibration</a> &middot; <a href="#imagesolving">Image solving</a> &middot; <a href="#sharpening">Sharpening and deconvolution</a> &middot; <a href="#noisereduction">Noise reduction</a></li>
 <li><a href="#stretching_group"><b>Stretching</b></a>: <a href="#stretching">Image stretching</a></li>
 <li><a href="#stars"><b>Stars</b></a>: <a href="#removing_stars">Removing and stretching stars</a> &middot; <a href="#reducing_stars">Reducing stars</a> &middot; <a href="#combining_starless_and_star_images">Combining starless and star images</a></li>
 <li><a href="#autocontinue"><b>AutoContinue</b></a></li>
+<li><a href="#toolselection"><b>Selecting tools</b></a></li>
 <li><a href="#external_tools"><b>External tools</b></a>: <a href="#rcastrotools">RC Astro tools support</a> &middot; <a href="#graxpertsupport">GraXpert support</a> &middot; <a href="#starnetsupport">StarNet and DeepSNR support</a></li>
 </ul>
 </div>
@@ -200,7 +201,8 @@ To try out different gradient correction methods there is a standalone script Gr
 </p>
 
 <p>
-Gradient correction is selected in the <i>Settings / Tools</i> section.
+The gradient correction tool is selected in the <i>Settings / Tools</i> section. The default <i>Auto</i> option
+uses GradientCorrection, see <a href="#toolselection">Selecting tools</a>.
 </p>
 
 <p>
@@ -216,8 +218,8 @@ Notes on different gradient correction methods:
 </ul>
   
 <p>
-For setting the parameters for the gradient correction processes, see <i>Postprocessing / Gradient correction, ABE settings, DBE settings</i> section 
-and <i>Tools / GraXpert</i> section.
+For setting the parameters for the gradient correction processes, see <i>Postprocessing / Gradient correction</i> section.
+It has a separate sub-section for each gradient correction process.
 </p>
 
 <h4>When to run gradient correction</h4>
@@ -248,7 +250,7 @@ nebulosity with low brightness in the image. Exclusion area is used also when se
 neutralization.
 </p>
 <p>
-Exclusion area is set in the <i>Postprocessing / Gradient correction, ABE settings, DBE settings</i> section. It opens a new dialog 
+Exclusion area is set in the <i>DBE settings</i> sub-section of the <i>Postprocessing / Gradient correction</i> section. It opens a new dialog 
 where you can select the exclusion area. From the drop down list is is possible to select the image that is used for selecting the 
 exclusion area. If the image is non-linear it is auto stretched for the exclusion area dialog.
 </p>
@@ -310,6 +312,22 @@ online database (Sesame). Image solving needs correct focal length to work prope
 is not embedded into image metadata it can be given in the <i>Focal length</i> field.
 </p>
 
+<h3 id="sharpening">Sharpening and deconvolution</h3>
+
+<a href="ai_sharpening.jpg"><img src="ai_sharpening.jpg"></a>
+
+<p>
+Deconvolution and sharpening is done by default. The tool is selected in the <i>Settings / Tools</i> section.
+With the default <i>Auto</i> option BlurXTerminator or GraXpert deconvolution is used if available. Deconvolution
+is run on the linear image just before stretching. If no deconvolution tool is available, MultiscaleLinearTransform
+sharpening is run on the non-linear image using a luminance and star mask to target light parts of the image.
+</p>
+<p>
+Settings are in the <i>Postprocessing / Sharpening and deconvolution</i> section. Option <i>No sharpening</i> skips
+all deconvolution and sharpening. The section also has settings for
+<a href="#rcastrotools">BlurXTerminator</a> and <a href="#graxpertsupport">GraXpert deconvolution</a>.
+</p>
+
 <h3 id="noisereduction">Noise reduction</h3>
 
 <a href="ai_noisereduction.jpg"><img src="ai_noisereduction.jpg"></a>
@@ -342,12 +360,13 @@ other possible options are <i>Processed linear image</i> and <i>Non-linear image
 best for your own data.
 </p>
 <p>
-By default noise reduction uses MultiscaleLinerTransform. There are also several AI tools available for noise reduction:
-NoiseXTerminator, GraXpert denoise, DeepSNR or MLDenoise.
+The noise reduction tool is selected in the <i>Settings / Tools</i> section. By default the <i>Auto</i> option uses the
+best available AI tool in the order MLDenoise, NoiseXTerminator, DeepSNR and GraXpert denoise. If none of them is available,
+MultiscaleLinearTransform is used. Any of these tools can also be selected explicitly, see <a href="#toolselection">Selecting tools</a>.
 </p>
 <p>
 MLDenoise is a noise reduction process that is included in PixInsight starting from version 1.9.5 so it does
-not need to be installed separately. It is selected in the <i>Settings / Tools</i> section.
+not need to be installed separately. <i>Auto</i> uses it when the model file is set.
 </p>
 <p>
 MLDenoise needs a model file that must be downloaded separately. Model files have a .xmlm extension and they can
@@ -471,7 +490,7 @@ in the narrowband guide.
 <h4>Steps to remove stars.</h4>
 
 <ul>
-<li>In the <i>Settings</i> / <i>Tools</i> section choose either StarXTerminator or StarNet2 for star removal.</li>
+<li>In the <i>Settings</i> / <i>Tools</i> section keep <i>Auto</i> to use StarXTerminator or StarNet2, whichever is installed, or select one of them explicitly.</li>
 <li>In the <i>Postprocessing</i> / <i>Star stretching and removing</i> section select when to remove stars.</li>
 <li>Run a normal processing.</li>
 </ul>
@@ -730,16 +749,64 @@ Select processing options and click AutoContinue.
 </li>
 </ol>
 
+<h2 id="toolselection">Selecting tools</h2>
+
+<p>
+The <i>Settings / Tools</i> section selects which tool is used for gradient correction, noise removal, star removal
+and deconvolution/sharpening. Only one tool can be selected for each step. The tools are listed in the order
+of preference, and the first option <i>Auto</i> is the default.
+</p>
+<p>
+<i>Auto</i> selects the best available tool automatically when processing starts. AI based tools are preferred
+when they are clearly better. Both tools included in PixInsight, like MLDenoise, and installed external tools
+are used. The selected tool is printed to the log, for example <i>Auto noise removal tool: MLDenoise</i>.
+Auto selection is done again on every run, so a newly installed tool is used automatically.
+If a tool is selected explicitly but it is not installed, a warning is given and <i>Auto</i> selection is used instead.
+</p>
+
+<table class="simple">
+<tr><th>Step</th><th>Auto checks tools in this order</th><th>If none is available</th></tr>
+<tr><td>Gradient correction</td><td>GradientCorrection</td><td>ABE on old PixInsight versions</td></tr>
+<tr><td>Noise removal</td><td>MLDenoise, NoiseXTerminator, DeepSNR, GraXpert denoise</td><td>MultiscaleLinearTransform</td></tr>
+<tr><td>Star removal</td><td>StarXTerminator, StarNet2</td><td>Stars cannot be removed</td></tr>
+<tr><td>Deconvolution/sharpening</td><td>BlurXTerminator, GraXpert deconvolution</td><td>MultiscaleLinearTransform sharpening</td></tr>
+</table>
+
+<p>
+MLDenoise is used by <i>Auto</i> only if the model file is set in the <i>Tools / MLDenoise</i> section, and GraXpert only if
+the GraXpert path is set in the <i>Tools / GraXpert</i> section. For gradient correction <i>Auto</i> always uses
+GradientCorrection, other gradient correction tools must be selected explicitly.
+</p>
+<p>
+Selecting a tool does not turn the processing step on or off. That is done with the options of each step.
+Settings for each tool are in the section of the processing step where the tool is used. The <i>Tools</i> tab
+has only tool setup like the GraXpert path and the MLDenoise model file.
+</p>
+
+<table class="simple">
+<tr><th>Step</th><th>Done by default</th><th>Turned on or off with</th></tr>
+<tr><td>Gradient correction</td><td>No</td><td>Gradient correction options in the <i>Settings / Image processing parameters</i> section</td></tr>
+<tr><td>Noise removal</td><td>Yes</td><td><i>No noise reduction</i> and other options in the <i>Postprocessing / Noise reduction</i> section</td></tr>
+<tr><td>Star removal</td><td>No</td><td><i>Remove stars</i> options in the <i>Postprocessing / Star stretching and removing</i> section</td></tr>
+<tr><td>Deconvolution/sharpening</td><td>Yes</td><td><i>No sharpening</i> in the <i>Postprocessing / Sharpening and deconvolution</i> section</td></tr>
+</table>
+
+<p>
+Note that with <i>Auto</i> deconvolution is done automatically if BlurXTerminator is installed. Use the <i>No sharpening</i>
+option to skip deconvolution and sharpening, or select <i>MultiscaleLinearTransform</i> to use only the non-linear sharpening.
+</p>
+
 <h2 id="external_tools">External tools</h2>
-<p>These tools are not part of PixInsight and must be installed separately. AutoIntegrate uses them automatically when they are selected.</p>
+<p>These tools are not part of PixInsight and must be installed separately. AutoIntegrate uses them automatically when they are installed and the <a href="#toolselection">tool selection</a> is <i>Auto</i>, or when they are selected explicitly.</p>
 
 <h3 id="rcastrotools">RC Astro tools support</h3>
 
 <a href="ai_rcastrotools.jpg"><img src="ai_rcastrotools.jpg"></a>
 
 <p>
-In the <i>Settings / Tools</i> section there are options to use RC Astro tools. 
-In the <i>Tools</i> tab there are some configuration settings for RC Astro tools which are described below.
+RC Astro tools are selected in the <i>Settings / Tools</i> section. With the default <i>Auto</i> option they are used
+automatically when installed, see <a href="#toolselection">Selecting tools</a>.
+Settings for RC Astro tools are in the processing step sections which are described below.
 </p>
 
 <h4>BlurXTerminator</h4>
@@ -747,7 +814,7 @@ In the <i>Tools</i> tab there are some configuration settings for RC Astro tools
 <a href="ai_blurxterminator.jpg"><img src="ai_blurxterminator.jpg"></a>
 
 <p>
-In the <i>Tools / StarXTerminator, BlurXTerminator, NoiseXTerminator</i> section there are settings for BlurXTerminator. 
+In the <i>Postprocessing / Sharpening and deconvolution</i> section there are settings for BlurXTerminator. The <i>No sharpening</i> option there skips BlurXTerminator. 
 </p>
   
 <h4>NoiseXTerminator</h4>
@@ -763,7 +830,7 @@ In the <i>Postprocessing / Noise reduction</i> section there are settings for No
 <a href="ai_starxterminator.jpg"><img src="ai_starxterminator.jpg"></a>
 
 <p>
-In the <i>Tools / StarXTerminator, BlurXTerminator, NoiseXTerminator</i> section there are settings for StarXTerminator.
+In the <i>Postprocessing / Star stretching and removing</i> section there are settings for StarXTerminator.
 </p>
 <p>
 There it is possible to select other than the default AI model. You can see the default AI model in the tooltip.
@@ -788,8 +855,9 @@ It is possible to use GraXpert for gradient correction, denoising or deconvoluti
 
 <p>
 For gradient correction GraXpert can be used instead of default gradient correction.
-GraXpert can be used by checking the <i>GraXpert</i> option in the <i>Settings / Tools</i> section.
-Smoothing and correction settings can be configured. When GraXpert is used from the script it 
+GraXpert can be used by selecting the <i>GraXpert</i> option in the <i>Settings / Tools</i> section.
+Smoothing and correction settings can be configured in the <i>GraXpert settings</i> sub-section of the
+<i>Postprocessing / Gradient correction</i> section. When GraXpert is used from the script it 
 always uses the AI model when removing gradients.
 </p>
 By default no gradient correction is done. To use GraXpert for gradient correction you need to also check one of
@@ -800,8 +868,8 @@ the gradient correction options in the <i>Settings / Image processing parameters
 
 <a href="ai_graxpertdenoise.jpg"><img src="ai_graxpertdenoise.jpg"></a>
 <p>
-For denoising GraXpert can be used instead of default noise reduction. GraXpert can be used by checking 
-the <i>GraXpert denoise</i> option in the <i>Settings / Tools</i>> section. Smoothing and batch size 
+For denoising GraXpert can be used instead of default noise reduction. GraXpert can be used by selecting
+the <i>GraXpert denoise</i> option in the <i>Settings / Tools</i> section. <i>Auto</i> uses it if no other AI noise reduction tool is available. Smoothing and batch size 
 settings can be configured in the <i>Postprocessing / Noise reduction</i> section.
 </p>
 
@@ -810,9 +878,9 @@ settings can be configured in the <i>Postprocessing / Noise reduction</i> sectio
 <a href="ai_graxpertdeconvolution.jpg"><img src="ai_graxpertdeconvolution.jpg"></a>
 <p>
 GraXpert deconvolution can be used to improve start quality and sharpen the image. It is used is used instead of 
-the default image sharpening. GraXpert deconvolution can be used by checking the <i>GraXpert deconvolution</i> 
-option in the <i>Settings / Tools</i>> section. Strength and FWHM settings can be configured in the 
-<i>Tools / GraXpert</i> section for both stars and objects (non-stars). 
+the default image sharpening. GraXpert deconvolution can be used by selecting the <i>GraXpert deconvolution</i>
+option in the <i>Settings / Tools</i> section. <i>Auto</i> uses it if BlurXTerminator is not available. Strength and FWHM settings can be configured in the 
+<i>Postprocessing / Sharpening and deconvolution</i> section for both stars and objects (non-stars). 
 </p>
 <p>
 Option <i>Use median FWHM</i> uses median FWHM from the subframe selector as the FWHM value. This value is calculated during
