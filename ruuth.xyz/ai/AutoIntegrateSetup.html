@@ -78,8 +78,12 @@ The image in the preview window can be zoomed and moved.
 Files in the file list have a checked flag. Using image preview functionality bad files can be unchecked. 
 Only checked files are used for processing.
 </p><p>
-Image preview window is also used to show image files during different steps of processing. During processing
-images are not shown in stretched mode.
+Image preview window is also used to show image files during different steps of processing.
+</p><p>
+By default linear images are shown stretched with AutoSTF in the preview. Option <i>AutoSTF during processing</i>
+controls stretching of preview images during processing and option <i>AutoSTF when browsing</i> controls stretching
+when browsing files in the <i>Files</i> tab. Both options are in the <i>Interface / Interface settings</i> section.
+The blink window is always stretched.
 </p><p>
 Preview window can be disabled in the <i>Interface / Interface settings</i> section. Also preview window size can be changed there.
 </p>
@@ -258,6 +262,11 @@ It is possible to save all settings into PixInsight persistent module settings. 
 All saved parameters, persistent module settings, process icon and setup file, will include only those values that are different from default values.
 </p><p>
 There is also a button to reset all parameters to default values.
+</p><p>
+Preferences in the <i>Preferences</i> box in the <i>Interface / Interface settings</i> section, like preview size,
+histogram and startup image, are handled separately. They are saved automatically when the script exits, or with the
+<i>Save</i> button in the box. They are not reset to default values with other parameters. Other options in the
+<i>Interface</i> tab, like preview AutoSTF and resample options, are normal parameters that are saved with the wrench button.
 </p>
 
 <h3 id="save_icon">Saving settings to script icon</h3>
