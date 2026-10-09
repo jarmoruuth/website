@@ -395,6 +395,7 @@ AutoIntegrate offers a few options to stretch an image from linear to non-linear
 </p>
 
 <ul>
+<li>Auto - Selects the stretching method automatically, this is the default.</li>
 <li>Auto STF - Uses Auto Screen Transfer Function.</li>
 <li>MultiscaleAdaptiveStretch - Uses MultiscaleAdaptiveStretch.</li>
 <li>Masked Stretch - Uses MaskedStretch to stretch an image.</li>
@@ -408,9 +409,24 @@ AutoIntegrate offers a few options to stretch an image from linear to non-linear
 To try out different stretching methods there is a standalone script Image Stretching in the Script / AutoIntegrate menu.
 </p>
 
+<h4><i>Auto</i></h4>
+<p>
+Auto is the default option. It selects the stretching method when processing starts:
+</p>
+<ul>
+<li>If a <a href="AutoIntegrateGettingStarted.html#target">target type</a> is given, it selects the method.
+Galaxy and Star cluster use MultiscaleAdaptiveStretch, or Masked Stretch if MultiscaleAdaptiveStretch is not available. Nebula uses Auto STF.</li>
+<li>Otherwise MultiscaleAdaptiveStretch is used if it is available in PixInsight, and Auto STF if it is not.</li>
+</ul>
+<p>
+The selected method is printed to the log. If a stretching method is selected explicitly, it is always used and
+the target type does not change it. Auto is available only for the main <i>Image stretching</i> option, not for star
+stretching or the standalone Image Stretching script.
+</p>
+
 <h4><i>Auto STF</i></h4>
 <p>
-Auto STF is the default stretch. It is good in most cases. It can be fine tuned with STF targetBackground parameter.
+Auto STF is good in most cases. It can be fine tuned with STF targetBackground parameter.
 If you get too bright an image you can try lowering targetBackground value.
 </p>
 
