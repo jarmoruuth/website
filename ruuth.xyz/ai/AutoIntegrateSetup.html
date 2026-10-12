@@ -349,8 +349,19 @@ info calibration file lists. If only one calibration file is present then the sc
 <a href="ai_fastmode.jpg"><img src="ai_fastmode.jpg"></a>
 
 <p>
-For faster processing for example when checking out some options or narrowband palettes it is possible to use the <i>Fast mode</i> option.
-Fast mode is enabled on the <i>Settings / Other</i> section. Fast mode reduces the number of images processed and uses binning to reduce image size.
+For faster processing for example when checking if a data set is good, or when checking out some options or narrowband palettes it is possible to use the <i>Fast mode</i> option.
+Fast mode is enabled on the <i>Settings / Other</i> section. Fast mode reduces the number of images processed and optionally uses binning to reduce image size.
+</p>
+<ul>
+<li><i>Subset</i> uses 10%, or at least 10 light files for each filter with full image size. Calibration files are not changed so master files are
+created using all files. Only the selected light files are calibrated and processed. This is the default option.</li>
+<li><i>S</i> uses 10%, or at least 3 light and calibration files, and downsamples images so that the longest side is at most 2048 pixels.</li>
+<li><i>M</i> uses 10%, or at least 3 light and calibration files, and downsamples images so that the shortest side is at most 2048 pixels.</li>
+</ul>
+<p>
+Light files are picked evenly from the whole list so they cover the whole session. Fast mode works with both calibrated and uncalibrated light files.
+Image quality checks like SubframeSelector see only the selected files, so fast mode does not tell which individual files in the full data set are bad.
+With AutoContinue, options S and M downsample integrated images. Option Subset and other AutoContinue starting points ignore fast mode.
 </p>
 
 <h3 id="processinghistory">Embedding processing history</h3>
