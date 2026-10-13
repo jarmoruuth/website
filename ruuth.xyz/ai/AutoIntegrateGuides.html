@@ -58,7 +58,7 @@
 <div class="pagetoc">
 <b>On this page</b>
 <ul>
-<li><a href="#color_cameras"><b>Color cameras: OSC and DSLR</b></a>: <a href="#osc_tips">Tips for processing One Shot Color (OSC) or RAW files</a> &middot; <a href="#extract_color_channels">Extracting color channels from OSC files</a> &middot; <a href="#banding_reduction">Banding reduction</a></li>
+<li><a href="#color_cameras"><b>Color cameras: OSC and DSLR</b></a>: <a href="#osc_tips">Tips for processing One Shot Color (OSC) or RAW files</a> &middot; <a href="#seestar">Tips for processing Seestar files</a> &middot; <a href="#extract_color_channels">Extracting color channels from OSC files</a> &middot; <a href="#banding_reduction">Banding reduction</a></li>
 <li><a href="#mono_lrgb"><b>Mono cameras: LRGB</b></a>: <a href="#rgb">Processing RGB files</a></li>
 <li><a href="#narrowband_settings"><b>Narrowband</b></a>: <a href="#narrowband">Processing narrowband files</a> &middot; <a href="#narrowband_palettes">Narrowband palettes</a> &middot; <a href="#narrowband_auto_mapping">Automatic selection of narrowband palette</a> &middot; <a href="#narrowband_rgbstars">Automatic processing of RGB stars</a> &middot; <a href="#narrowband_allpalettes">Automatic processing of all palettes</a> &middot; <a href="#narrowband_multiplepalettes">Automatic processing of multiple palettes</a> &middot; <a href="#foraxx_palette">Foraxx palette</a> &middot; <a href="#narrowband_enhancements_mapping">Narrowband mapping enhancements options</a> &middot; <a href="#ha_rgb">Ha to RGB mapping</a> &middot; <a href="#narrowband_rgb">Narrowband to RGB mapping</a></li>
 <li><a href="#comets"><b>Comets</b></a>: <a href="#cometprocessing">Comet processing</a></li>
@@ -81,6 +81,34 @@ Sometimes also choosing a different setting in the <i>Link RGB channels</i> opti
 <li>
 For OSC/DSLR files PixInsight should be put into Pure RAW mode. It can be set in Format Explorer by double
 clicking RAW format. AutoIntegrate does debayering of images so no automatic debayering should be done.
+</li>
+</ul>
+
+<h3 id="seestar">Tips for processing Seestar files</h3>
+
+<p>
+Seestar and other smart telescopes take hundreds of short exposures on an alt-az mount, often from bright skies.
+Default options usually work but the result may have a strong gradient. Some tips:
+</p>
+
+<ul>
+<li>
+With a large number of files <i>Fast integration</i> is much faster than ImageIntegration. With FastIntegration
+the reference image is picked from the middle of the files when possible. Because of field rotation on an alt-az mount
+this leaves less low coverage area at the image edges.
+</li>
+<li>
+If the result has a strong gradient, try <i>Use BackgroundNeutralization</i> together with one of the gradient correction options:
+<ul>
+<li><i>Gradient correction on combined images</i> corrects the gradient while the image is still linear.</li>
+<li><i>Gradient correction on stretched images</i> corrects the gradient after stretching. Note that this option
+should not be used with the GradientCorrection process, select for example ABE as the gradient correction tool.</li>
+</ul>
+Which one works better depends on the data, so it is worth trying both.
+</li>
+<li>
+GradientCorrection process may fail on Seestar images with an error like <i>Insufficient data to sample gradient</i>.
+AutoIntegrate then uses ABE instead and prints a warning at the end of processing.
 </li>
 </ul>
 
