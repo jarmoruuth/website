@@ -86,7 +86,7 @@ tr:hover td { background: #fafcfc; }
 <body>
 <div class="header">
   <h1>AutoIntegrate Enhancement Options</h1>
-  <p>The 116 enhancement options of AutoIntegrate v1.88.0 test1, used after the image has been processed.</p>
+  <p>The 117 enhancement options of AutoIntegrate v1.88.0 test1, used after the image has been processed.</p>
   <p class="crosslink"><a href="AutoIntegrateOptions.html">All processing options &rarr;</a> <a href="AutoIntegrateOptionsSimple.html">Simple mode options &rarr;</a></p>
 </div>
 <div class="wrap">
@@ -104,7 +104,7 @@ tr:hover td { background: #fafcfc; }
   show only the options of a certain kind. Selecting several buttons shows the options that have all
   of the selected tags.</p>
   <ul class="legend"><li><span class="tag t-processing">Processing</span> Changes the processed image.</li><li><span class="tag t-interface">Interface</span> Affects only the user interface, files on disk or logging, not the image.</li><li><span class="tag t-color">Color image</span> Applies to color images, both OSC/DSLR data and RGB combined from mono channels.</li><li><span class="tag t-osc">OSC / RAW</span> Applies only to undebayered OSC, DSLR or RAW data.</li><li><span class="tag t-narrowband">Narrowband</span> Applies to narrowband data or narrowband palettes.</li><li><span class="tag t-mono">Mono / LRGB</span> Applies to mono data with separate filter channels.</li><li><span class="tag t-tool">External tool</span> Needs a separate PixInsight process or program: BlurXTerminator, NoiseXTerminator, StarXTerminator, StarNet2, DeepSNR or GraXpert.</li></ul>
-  <p class="stats">112 options change processing, 4 options affect only the interface,
+  <p class="stats">112 options change processing, 5 options affect only the interface,
   files or logging. 19 options apply to color images and 15 options are
   specific to narrowband data.</p>
 </div>
@@ -115,7 +115,7 @@ tr:hover td { background: #fafcfc; }
 <a href="#enh_light">Contrast, stretch and light<span>34</span></a>
 <a href="#enh_color">Color<span>30</span></a>
 <a href="#enh_detail">Noise reduction and sharpening<span>18</span></a>
-<a href="#enh_other">Background, geometry and annotation<span>20</span></a></div>
+<a href="#enh_other">Background, geometry and annotation<span>21</span></a></div>
 </div>
 
 <div class="tools">
@@ -241,10 +241,11 @@ tr:hover td { background: #fafcfc; }
 <tr data-tags="processing" data-search="enh clarity amount enh clarity amount amount enhancements_clarity_amount add clarity to the image using a luminance mask. clarity is a local contrast enhancement. clarity uses unsharpmask process where stddev should be large and amount should be small. if a mask is used then clarity is applied only to the light parts of the image."><td class="c-opt"><span class="oname">Enh clarity amount</span><span class="tag t-processing">Processing</span><code class="key">enhancements_clarity_amount</code><span class="setting">Shown in the dialog as: Amount</span></td><td class="c-meta"><span class="ty">integer</span><span class="df">0.3</span></td><td class="c-desc"><p>Add clarity to the image using a luminance mask. Clarity is a local contrast enhancement.</p><p>Clarity uses UnsharpMask process where stddev should be large and amount should be small.</p><p>If a mask is used then clarity is applied only to the light parts of the image.</p></td></tr>
 <tr data-tags="processing" data-search="mask enh clarity mask mask enhancements_clarity_mask add clarity to the image using a luminance mask. clarity is a local contrast enhancement. clarity uses unsharpmask process where stddev should be large and amount should be small. if a mask is used then clarity is applied only to the light parts of the image."><td class="c-opt"><span class="oname">Mask</span><span class="tag t-processing">Processing</span><code class="key">enhancements_clarity_mask</code><span class="setting">Setting name: Enh clarity mask</span></td><td class="c-meta"><span class="ty">checkbox</span><span class="df">unchecked</span></td><td class="c-desc"><p>Add clarity to the image using a luminance mask. Clarity is a local contrast enhancement.</p><p>Clarity uses UnsharpMask process where stddev should be large and amount should be small.</p><p>If a mask is used then clarity is applied only to the light parts of the image.</p></td></tr>
 </tbody></table></section>
-<section class="group" id="enh_other" data-count="20">
-<h2>Background, geometry and annotation <span class="count">20</span></h2>
+<section class="group" id="enh_other" data-count="21">
+<h2>Background, geometry and annotation <span class="count">21</span></h2>
 <p class="blurb">Gradient correction, background smoothing, rotation, signature and annotation.</p>
 <table><thead><tr><th class="c-opt">Option</th><th class="c-meta">Type / default</th><th class="c-desc">Description</th></tr></thead><tbody>
+<tr data-tags="interface" data-search="downsample live preview enh live preview downsample downsample live preview enhancements_live_preview_downsample use a downsampled copy of the target image for live preview. the longest side of the downsampled image is 2000 pixels. this can make live preview faster with large images or slower computers. the downsampled copy is created once and reused until the target image changes. apply always uses the full size image."><td class="c-opt"><span class="oname">Downsample live preview</span><span class="tag t-interface">Interface</span><code class="key">enhancements_live_preview_downsample</code><span class="setting">Setting name: Enh live preview downsample</span></td><td class="c-meta"><span class="ty">checkbox</span><span class="df">unchecked</span></td><td class="c-desc"><p>Use a downsampled copy of the target image for live preview. The longest side of the downsampled image is 2000 pixels.</p><p>This can make live preview faster with large images or slower computers. The downsampled copy is created once and reused until the target image changes. Apply always uses the full size image.</p></td></tr>
 <tr data-tags="processing" data-search="background neutralization enh background neutralization background neutralization enhancements_backgroundneutralization run background neutralization to the image."><td class="c-opt"><span class="oname">Background neutralization</span><span class="tag t-processing">Processing</span><code class="key">enhancements_backgroundneutralization</code><span class="setting">Setting name: Enh background neutralization</span></td><td class="c-meta"><span class="ty">checkbox</span><span class="df">unchecked</span></td><td class="c-desc"><p>Run background neutralization to the image.</p></td></tr>
 <tr data-tags="processing" data-search="gradient correction enh gc gradient correction enhancements_gc do gradient correction to the image using the selected gradient correction method."><td class="c-opt"><span class="oname">Gradient correction</span><span class="tag t-processing">Processing</span><code class="key">enhancements_GC</code><span class="setting">Setting name: Enh GC</span></td><td class="c-meta"><span class="ty">checkbox</span><span class="df">unchecked</span></td><td class="c-desc"><p>Do gradient correction to the image using the selected gradient correction method.</p></td></tr>
 <tr data-tags="processing" data-search="enh gc method enh gc method enhancements_gc_method gradient correction method to be used."><td class="c-opt"><span class="oname">Enh GC method</span><span class="tag t-processing">Processing</span><code class="key">enhancements_GC_method</code></td><td class="c-meta"><span class="ty">text or list</span><span class="df">Auto</span></td><td class="c-desc"><p>Gradient correction method to be used.</p><p class="vals"><span>Values:</span> <code>Auto</code>, <code>ABE</code>, <code>DBE</code>, <code>GradientCorrection</code>, <code>GraXpert</code></p></td></tr>
