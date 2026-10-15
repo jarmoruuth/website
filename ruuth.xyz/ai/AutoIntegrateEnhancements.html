@@ -58,7 +58,7 @@
 <div class="pagetoc">
 <b>On this page</b>
 <ul>
-<li><a href="#enhancements_processing"><b>Image enhancements</b></a>: <a href="#annotateimage">Annotate images</a> &middot; <a href="#addsignature">Add signature</a></li>
+<li><a href="#enhancements_processing"><b>Image enhancements</b></a>: <a href="#livepreview">Live preview</a> &middot; <a href="#annotateimage">Annotate images</a> &middot; <a href="#addsignature">Add signature</a></li>
 <li><a href="#standalone_tools"><b>Standalone tools</b></a>: <a href="#standalone_imagestretching">Image stretching</a> &middot; <a href="#standalone_gradientcorrection">Gradient correction</a> &middot; <a href="#standalone_narrowbandcombinations">Narrowband combinations</a> &middot; <a href="#standalone_imageenhancements">Image enhancements</a> &middot; <a href="#standalone_selectivecolor">Selective color</a></li>
 </ul>
 </div>
@@ -113,6 +113,75 @@ enhancements after the final image is created.
 From a drop down list it is possible to select an image into which enhancements are applied. 
 With the Apply button enhancements are by default run on a copy of the image.
 There is also a simple undo and redo mechanism to iterate with different enhancements options.
+</p>
+
+<h4 id="livepreview">Live preview</h4>
+
+<p>
+Enhancements options that have a slider show their effect directly in the preview while the slider is moved.
+The live preview is applied to a copy of the target image, the target image itself is not changed.
+Use the Apply button to make the changes to the image.
+</p>
+<p>
+Options with live preview are:
+</p>
+<ul>
+<li>Leave some green (only with narrowband images)</li>
+<li>Apply curves</li>
+<li>Adjust shadows</li>
+<li>Gamma</li>
+<li>Adjust channels</li>
+<li>ExponentialTransform</li>
+<li>UnsharpMask</li>
+<li>Clarity</li>
+</ul>
+<p>
+Other options do not have a live preview. They are either slow, like AI based tools, or they
+do not have a single value to adjust. Their effect is seen after Apply.
+</p>
+<p>
+How to use live preview:
+</p>
+<ul>
+<li>Select the target image from the drop down list.</li>
+<li>Move a slider. The option is checked automatically when its slider is moved, so the live preview
+and Apply use the same options.</li>
+<li>The preview is updated shortly after the slider stops moving. The preview title shows
+<i>[Live preview: ...]</i> with the names of the options shown.</li>
+<li>When the result looks good, press Apply.</li>
+</ul>
+<p>
+Live preview shows all checked options that have a slider, in the same order as Apply runs them.
+Checked options without a slider are not included in the live preview, so the final result after Apply
+can be different if other options are checked too. Unchecking an option removes it from the live preview.
+When no live preview option is checked the preview shows the target image.
+</p>
+<p>
+It is usually easiest to fine tune one option at a time and Apply it before moving to the next one.
+Each Apply can be undone, so it is easy to go back and try again. Multiple checked options work too,
+but the live preview gets slower with each option.
+</p>
+<p>
+Options that use a lightness mask, like ExponentialTransform and UnsharpMask, use a lightness mask
+created from the preview image. If a range mask is used with Apply, the live preview still uses a lightness mask,
+so the result may differ a bit.
+</p>
+<p>
+Live preview is controlled with two checkboxes in the <i>Misc options</i> section:
+</p>
+<ul>
+<li><i>Live preview</i> turns live preview on or off. It is on by default. When it is off,
+sliders only change option values and the effect is seen after Apply. Moving a slider does not
+check the option either.</li>
+<li><i>Downsample live preview</i> uses a smaller copy of the target image for the live preview,
+the longest side is 2000 pixels. This makes the live preview faster with large images or slower
+computers. The smaller copy is created once and reused until the target image changes.
+Apply always uses the full size image. Pixel based values like UnsharpMask StdDev are scaled
+so that the downsampled preview looks similar to the full size result.</li>
+</ul>
+<p>
+The preview can be zoomed up to 8:1 to check fine details, and a zoomed image can be moved by
+dragging it with the left mouse button.
 </p>
 
 <h4>Narrowband specific enhancements</h4>
