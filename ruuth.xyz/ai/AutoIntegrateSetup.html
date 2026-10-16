@@ -60,7 +60,7 @@
 <ul>
 <li><a href="#interface_group"><b>Interface and preview</b></a>: <a href="#image_preview">Image preview and interface configuration</a> &middot; <a href="#flowchart">Processing Flowchart</a> &middot; <a href="#window_prefix">Window name prefix</a> &middot; <a href="#startupimage">Startup image</a></li>
 <li><a href="#setup_options"><b>Saving settings</b></a>: <a href="#save_persistent">Saving settings to persistent module settings</a> &middot; <a href="#save_icon">Saving settings to script icon</a> &middot; <a href="#save_and_restore_setup">Save and restore script setup</a> &middot; <a href="#autosave_setup">Autosave setup</a> &middot; <a href="#use_processed_files">Use already processed files</a></li>
-<li><a href="#automation"><b>Outputs and automation</b></a>: <a href="#fastmode">Fast mode</a> &middot; <a href="#processinghistory">Embedding processing history</a> &middot; <a href="#process_icons">Process icons</a> &middot; <a href="#astrobin">Astrobin session information</a> &middot; <a href="#command_line">Running AutoIntegrate from the Command Line</a> &middot; <a href="#embedding">Embedding AutoIntegrate engine</a></li>
+<li><a href="#automation"><b>Outputs and automation</b></a>: <a href="#fastmode">Fast mode</a> &middot; <a href="#processinghistory">Embedding processing history</a> &middot; <a href="#autodecisions">Auto decisions</a> &middot; <a href="#process_icons">Process icons</a> &middot; <a href="#astrobin">Astrobin session information</a> &middot; <a href="#command_line">Running AutoIntegrate from the Command Line</a> &middot; <a href="#embedding">Embedding AutoIntegrate engine</a></li>
 </ul>
 </div>
 
@@ -199,6 +199,13 @@ If <i>Flowchart settings</i> option <i>Get flowchart data before processing</i> 
 before processing. This is useful if you want to see the full flowchart during processing. Note that this option is not
 selected by default. Full flowchart is not available with AutoContinue or
 batch processing.
+</p>
+<p>
+Some steps are decided during processing by <a href="AutoIntegrateProcessing.html#auto_options">Auto options</a>, for example
+after the images are measured. In the flowchart collected before processing these steps are shown as <i>Auto color calibration</i>,
+<i>Auto stretching</i>, <i>Auto local normalization</i> or <i>Auto drizzle</i>. When the decision is made during processing,
+the step is renamed to the selected process, like <i>SpectrophotometricColorCalibration</i> or <i>LocalNormalization</i>,
+or removed from the flowchart if it is not used.
 </p>
   
 <div class="video-container" style="background-color: white;">
@@ -384,6 +391,20 @@ Processing history can be viewed using PixInsight File/FITS header selection.
 It is also possible to view the processing history by loading 
 the image as a target image in the AutoIntegrate script <i>Enhancements</i> tab. Then the processing history is printed to the process console
 using the <i>AutoIntegrate processing history</i> button.
+</p>
+
+<h4 id="autodecisions">Auto decisions</h4>
+
+<a href="ai_autodecisions.jpg"><img src="ai_autodecisions.jpg"></a>
+
+<p>
+Choices made by <a href="AutoIntegrateProcessing.html#auto_options">Auto options</a> are listed in the <i>Auto decisions</i> list
+at the end of processing. Each line tells what was decided, the selected value and the reason, for example
+<i>Auto color calibration: SPCC (RGB data)</i> or <i>Auto local normalization R: not used (images from one night)</i>.
+</p>
+<p>
+The list is printed to the process console after the processing steps, so it is also in the log file. It is saved to the
+final image as HISTORY keywords, and it is printed with the processing history in the <i>Enhancements</i> tab.
 </p>
 
 <h3 id="process_icons">Process icons</h3>

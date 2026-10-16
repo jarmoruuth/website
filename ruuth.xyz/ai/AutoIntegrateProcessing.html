@@ -58,7 +58,8 @@
 <div class="pagetoc">
 <b>On this page</b>
 <ul>
-<li><a href="#processing_settings"><b>Alignment and integration</b></a>: <a href="#reference_images">Reference images</a> &middot; <a href="#fastintegration">FastIntegration</a> &middot; <a href="#crop_to_common">Crop to common area</a></li>
+<li><a href="#auto_options"><b>Auto options</b></a></li>
+<li><a href="#processing_settings"><b>Alignment and integration</b></a>: <a href="#reference_images">Reference images</a> &middot; <a href="#fastintegration">FastIntegration</a> &middot; <a href="#localnormalization">Local normalization</a> &middot; <a href="#drizzle">Drizzle</a> &middot; <a href="#crop_to_common">Crop to common area</a></li>
 <li><a href="#linear_processing"><b>Linear processing</b></a>: <a href="#backgroundneutralization">Background neutralization</a> &middot; <a href="#gradientcorrection">Gradient correction</a> &middot; <a href="#exclusionarea">Exclusion area for DBE</a> &middot; <a href="#colorcalibration">Color calibration</a> &middot; <a href="#imagesolving">Image solving</a> &middot; <a href="#sharpening">Sharpening and deconvolution</a> &middot; <a href="#noisereduction">Noise reduction</a></li>
 <li><a href="#stretching_group"><b>Stretching</b></a>: <a href="#stretching">Image stretching</a></li>
 <li><a href="#stars"><b>Stars</b></a>: <a href="#removing_stars">Removing and stretching stars</a> &middot; <a href="#reducing_stars">Reducing stars</a> &middot; <a href="#combining_starless_and_star_images">Combining starless and star images</a></li>
@@ -67,6 +68,40 @@
 <li><a href="#external_tools"><b>External tools</b></a>: <a href="#rcastrotools">RC Astro tools support</a> &middot; <a href="#graxpertsupport">GraXpert support</a> &middot; <a href="#starnetsupport">StarNet and DeepSNR support</a></li>
 </ul>
 </div>
+
+<h2 id="auto_options">Auto options</h2>
+
+<p>
+Several processing choices have an <i>Auto</i> option that makes the choice based on the data. Auto decides during processing,
+for example after SubframeSelector has measured the images, so the decision can be different for different data sets.
+If an option is selected explicitly, it is always used and Auto does not change it.
+</p>
+
+<table class="simple">
+<tr><th>Auto option</th><th>Default</th><th>What it decides</th></tr>
+<tr><td><a href="#toolselection">Tool selection</a></td><td>On</td><td>Best installed tool for gradient correction, noise removal, star removal and deconvolution</td></tr>
+<tr><td><a href="#stretching">Image stretching</a></td><td>On</td><td>Stretching method from target type or from sky analysis of the image</td></tr>
+<tr><td><a href="#spcc">Auto SPCC</a></td><td>On</td><td>SPCC for RGB data, ColorCalibration if image solving or SPCC fails</td></tr>
+<tr><td><a href="#localnormalization">Auto local normalization</a></td><td>On</td><td>Local normalization for each filter that has images from several nights</td></tr>
+<tr><td><a href="#drizzle">Auto drizzle</a></td><td>Off</td><td>Drizzle when images are undersampled and there are enough images</td></tr>
+</table>
+
+<p>
+All decisions are listed with the reason in the <i>Auto decisions</i> list at the end of processing. The list is in the
+process console, in the log file and in the <a href="AutoIntegrateSetup.html#autodecisions">image processing history</a>.
+</p>
+
+<a href="ai_autodecisions.jpg"><img src="ai_autodecisions.jpg"></a>
+
+<p>
+The <a href="AutoIntegrateSetup.html#flowchart">flowchart</a> generated before processing shows steps that are decided during
+processing with names like <i>Auto color calibration</i>, <i>Auto stretching</i>, <i>Auto local normalization</i> and
+<i>Auto drizzle</i>. When the decision is made, the step is renamed to the selected process, or removed if it is not used.
+</p>
+<p>
+In test mode Auto SPCC, Auto local normalization and Auto drizzle are not used so test results do not depend on the data
+or on installed databases.
+</p>
 
 <h2 id="processing_settings">Alignment and integration</h2>
 
@@ -116,6 +151,55 @@ section.
 FastIntegration also supports drizzle integration. Drizzle integration is useful when you have undersampled data and you want to increase the 
 resolution of the image. Note that drizzle integration uses the normal DrizzleIntegration process so some performance benefits of
 FastIntegration are lost.
+</p>
+
+<h3 id="localnormalization">Local normalization</h3>
+
+<a href="ai_autolocalnormalization.jpg"><img src="ai_autolocalnormalization.jpg"></a>
+
+<p>
+LocalNormalization matches the background level and gradients of each image to a reference image before ImageIntegration.
+It helps when images are taken on different nights, with different sky conditions or with the moon at different
+positions. Local normalization is selected with the <i>Local Normalization</i> option in the <i>Settings</i> tab.
+Settings are in the <i>Integration / LocalNormalization</i> section.
+</p>
+<p>
+The <i>Auto</i> option next to <i>Local Normalization</i> is on by default. When <i>Local Normalization</i> is not checked,
+local normalization is used for a filter if its images are from several nights. Nights are found from the DATE-OBS keyword:
+a gap of more than 8 hours between images starts a new night. The decision is made separately for each filter, so
+for example L images from three nights use local normalization and R images from one night do not.
+</p>
+<p>
+Auto local normalization is not used in fast mode or with FastIntegration, and not if DATE-OBS is missing.
+If LocalNormalization cannot normalize an image, for example a very bad image with few stars, the image is not used in
+ImageIntegration and a warning is given.
+</p>
+
+<h3 id="drizzle">Drizzle</h3>
+
+<a href="ai_autodrizzle.jpg"><img src="ai_autodrizzle.jpg"></a>
+
+<p>
+Drizzle integration can increase the resolution of undersampled images, where stars are only a few pixels wide.
+Drizzle is selected with the <i>Drizzle, scale</i> option in the <i>Settings</i> tab. Scale 2 doubles the image width and height.
+Settings are in the <i>Integration / Drizzle</i> section.
+</p>
+<p>
+Drizzle needs dithered images, where the telescope moves a few pixels between images. Without dithering drizzle can
+create pattern artifacts.
+</p>
+<p>
+The <i>Auto</i> option next to <i>Drizzle, scale</i> is off by default. When it is checked and <i>Drizzle</i> is not checked,
+drizzle is used with the selected scale if all of the following are true:
+</p>
+<ul>
+<li>The median FWHM measured by SubframeSelector is less than 2 pixels.</li>
+<li>Every filter has at least 20 images.</li>
+<li>The drizzled image is not larger than 150 megapixels.</li>
+</ul>
+<p>
+Auto drizzle is not used in fast mode, with FastIntegration, with comet alignment or when SubframeSelector is not run.
+Use Auto drizzle only with dithered images.
 </p>
 
 <h3 id="crop_to_common">Crop to common area</h3>
@@ -266,25 +350,41 @@ This will align the images before the exclusion area is selected. Autocontinue c
 <a href="ai_colorcalibration.jpg"><img src="ai_colorcalibration.jpg"></a>
 
 <p>
-By default color calibration is done using the ColorCalibration process. It is run on the linear RGB image before 
-the image is stretched to non-linear.
+By default RGB data is color calibrated using SpectrophotometricColorCalibration (SPCC) with the <i>Auto SPCC</i> option,
+see below. Narrowband data, and RGB data when SPCC cannot be used, is color calibrated using the ColorCalibration process.
+ColorCalibration is run on the linear RGB image before the image is stretched to non-linear, and by default again on the
+stretched image.
 </p>
 
-<h4>SpectrophotometricColorCalibration</h4>
+<h4 id="spcc">SpectrophotometricColorCalibration</h4>
 
 <a href="ai_spcc.jpg"><img src="ai_spcc.jpg"></a>
 
 <p>
-Optionally SpectrophotometricColorCalibration (SPCC) can be used for color calibration. Option 
-<i>Color calibration using SPCC</i> is used to enable SPCC. SPCC is run on linear RGB image. 
+SpectrophotometricColorCalibration (SPCC) uses star colors from the Gaia DR3/SP database for color calibration.
+SPCC is run on the linear RGB image. The Gaia DR3/SP database must be installed in PixInsight.
 Some configuration options are available for SPCC.
+</p>
+<p>
+The <i>Auto</i> option next to <i>Color calibration using SPCC</i> is on by default. When <i>Color calibration using SPCC</i>
+is not checked, SPCC is used for RGB data, including OSC and DSLR data. It is not used for narrowband data, but when the
+<i>RGB stars</i> option creates the stars image from RGB channels, SPCC is used for the RGB stars image.
+If image solving or SPCC fails, for example when the Gaia DR3/SP database is not installed, ColorCalibration is used
+instead, a warning is given and processing continues. The reason is shown in the <a href="#auto_options">Auto decisions</a> list.
+</p>
+<p>
+When <i>Color calibration using SPCC</i> is checked, SPCC is always used and a failure in image solving
+or SPCC stops processing. With narrowband data SPCC narrowband mode is used when the <i>Narrowband auto mode</i> option
+in the SPCC settings is checked, which is the default. Uncheck both <i>Color calibration using SPCC</i> and <i>Auto</i> to always use ColorCalibration.
 </p>
 
 <a href="ai_spcc_config.jpg"><img src="ai_spcc_config.jpg"></a>  
 
 <p> 
-SPCC requires that the image is plate solved. Plate solving is run automatically on Integration_RGB image which is 
-also saved to disk. Some sources say that you should use Drizzle with scale 1 or 2 when using SPCC.
+SPCC requires that the image is plate solved. Plate solving is run automatically on Integration_RGB image which is
+also saved to disk. When the <i>RGB stars</i> option is used with SPCC, the RGB stars image is also plate solved before SPCC.
+An RGB stars image that is color calibrated with SPCC is not color calibrated again after stretching.
+Some sources say that you should use Drizzle with scale 1 or 2 when using SPCC.
 </p>
 
 <h4>Sample narrowband color calibration output</h4>
@@ -414,14 +514,22 @@ To try out different stretching methods there is a standalone script Image Stret
 Auto is the default option. It selects the stretching method when processing starts:
 </p>
 <ul>
-<li>If a <a href="AutoIntegrateGettingStarted.html#target">target type</a> is given, it selects the method.
-Galaxy and Star cluster use MultiscaleAdaptiveStretch, or Masked Stretch if MultiscaleAdaptiveStretch is not available. Nebula uses Auto STF.</li>
-<li>Otherwise MultiscaleAdaptiveStretch is used if it is available in PixInsight, and Auto STF if it is not.</li>
+<li>With target types Galaxy and Star cluster, MultiscaleAdaptiveStretch is used, or Masked Stretch if MultiscaleAdaptiveStretch is not available.</li>
+<li>With target types Default and Nebula, the method is selected with sky analysis of the image, see below.</li>
+<li>If sky analysis is not used, MultiscaleAdaptiveStretch is used if it is available in PixInsight, and Auto STF if it is not.</li>
 </ul>
 <p>
-The selected method is printed to the log. If a stretching method is selected explicitly, it is always used and
-the target type does not change it. Auto is available only for the main <i>Image stretching</i> option, not for star
-stretching or the standalone Image Stretching script.
+Sky analysis is on by default. It is controlled with the <i>Use in Auto</i> option in the <i>Postprocessing / Stretching</i> section.
+Sky analysis measures the contrast of the image. MultiscaleAdaptiveStretch is used when the image has a small and bright target
+like a galaxy, star cluster or bright nebula. Auto STF is used when the image looks flat, like a frame filling nebula or a dark nebula.
+The decision is made once per run on the first stretched image, which is the luminance image in LRGB processing, so all
+images use the same stretching method. The <i>Sky analysis</i> button next to the option analyzes the current preview image
+and prints the result to the process console.
+</p>
+<p>
+The selected method and the reason are shown in the <a href="#auto_options">Auto decisions</a> list. If a stretching method is selected
+explicitly, it is always used and the target type or sky analysis does not change it. Auto is available only for the main
+<i>Image stretching</i> option, not for star stretching or the standalone Image Stretching script.
 </p>
 
 <h4><i>Auto STF</i></h4>
@@ -775,7 +883,8 @@ of preference, and the first option <i>Auto</i> is the default.
 <p>
 <i>Auto</i> selects the best available tool automatically when processing starts. AI based tools are preferred
 when they are clearly better. Both tools included in PixInsight, like MLDenoise, and installed external tools
-are used. The selected tool is printed to the log, for example <i>Auto noise removal tool: MLDenoise</i>.
+are used. The selected tool is shown in the <a href="#auto_options">Auto decisions</a> list, for example
+<i>Auto noise removal tool: MLDenoise (best available tool)</i>.
 Auto selection is done again on every run, so a newly installed tool is used automatically.
 If a tool is selected explicitly but it is not installed, a warning is given and <i>Auto</i> selection is used instead.
 </p>
