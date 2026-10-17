@@ -392,6 +392,11 @@ If you know your filters or camera sensor, select them to get more accurate colo
 Curves are read from the PixInsight filters database. If the database is not found, a built-in copy of the curves is used.
 The filter set and QE curve are also used with SpectrophotometricFluxCalibration before MultiscaleGradientCorrection.
 </p>
+<p>
+SPCC calibrates colors against star catalog data and keeps the real colors of the target. Targets near the Milky Way
+with a lot of dust can look warm or yellow because interstellar dust makes the starlight redder. To neutralize the overall color,
+set <i>When to run color calibration</i> to <i>nonlinear</i>. Then ColorCalibration is run on the stretched image after SPCC.
+</p>
 
 <a href="ai_spcc_config.jpg"><img src="ai_spcc_config.jpg"></a>  
 
