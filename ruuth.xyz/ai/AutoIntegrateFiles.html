@@ -181,7 +181,9 @@ Output directories are created to the <a href="#root_directory">processing root 
       For this image channel combination or narrowband mapping is done.</li>
   <li>Processed images: <b><i>Integration_L_processed and Integration_RGB_processed</i></b>
       <br>Processed images that are still in the linear stage.</li>
-  <li>Stretched images: <b><i>Integration_L_HT</i></b> and <b><i>Integration_RGB_HT</i></b>, and <b><i>Integration_LRGB_HT</i></b> if there is L image</li>
+  <li>Stretched images: <b><i>Integration_L_HT</i></b> and <b><i>Integration_RGB_HT</i></b>, and <b><i>Integration_LRGB_HT</i></b> if there is L image<br>
+      With L image, Integration_L_HT and Integration_RGB_HT are saved to disk. They are the stretched images used in
+      LRGB combination, so they can be used for a manual LRGB combination or for AutoContinue.</li>
   <li>Final images: <b><i>AutoLRGB</i></b> or <b><i>AutoRGB</i></b></li>
 </ul>
 
