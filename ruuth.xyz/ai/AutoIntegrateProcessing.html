@@ -99,8 +99,9 @@ processing with names like <i>Auto color calibration</i>, <i>Auto stretching</i>
 <i>Auto drizzle</i>. When the decision is made, the step is renamed to the selected process, or removed if it is not used.
 </p>
 <p>
-In test mode Auto SPCC, Auto local normalization and Auto drizzle are not used so test results do not depend on the data
-or on installed databases.
+In test mode Auto SPCC, Auto local normalization and Auto drizzle are not used and Auto tool selection skips AI tools
+so test results do not depend on the data, installed tools or databases. The <i>Auto: options in test mode</i> option
+in the <i>Other</i> tab enables them in test mode for testing the Auto options.
 </p>
 
 <h2 id="processing_settings">Alignment and integration</h2>
@@ -376,6 +377,20 @@ instead, a warning is given and processing continues. The reason is shown in the
 When <i>Color calibration using SPCC</i> is checked, SPCC is always used and a failure in image solving
 or SPCC stops processing. With narrowband data SPCC narrowband mode is used when the <i>Narrowband auto mode</i> option
 in the SPCC settings is checked, which is the default. Uncheck both <i>Color calibration using SPCC</i> and <i>Auto</i> to always use ColorCalibration.
+</p>
+<p>
+SPCC filter and sensor curves are selected with the <i>Filter set</i> and <i>QE curve</i> options. <i>Mono</i> filter sets
+are for mono cameras with separate R, G and B filters, <i>OSC</i> filter sets are for color cameras.
+With <i>Auto</i>, data from mono camera RGB filters uses Chroma R, G and B filter curves with the QE curve of
+Sony IMX411/455/461/533/571 sensors. These are close to typical mono RGB filters and sensors.
+Color camera (OSC and DSLR) data uses Sony Color Sensor R, G and B UV/IR cut curves with an ideal QE curve.
+Seestar data is detected from the image keywords. With the LP filter Seestar LP curves are used, otherwise
+Sony IMX462/662/585 UV/IR cut curves that match the Seestar sensors are used.
+If you know your filters or camera sensor, select them to get more accurate colors.
+</p>
+<p>
+Curves are read from the PixInsight filters database. If the database is not found, a built-in copy of the curves is used.
+The filter set and QE curve are also used with SpectrophotometricFluxCalibration before MultiscaleGradientCorrection.
 </p>
 
 <a href="ai_spcc_config.jpg"><img src="ai_spcc_config.jpg"></a>  
