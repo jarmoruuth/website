@@ -83,7 +83,7 @@ If an option is selected explicitly, it is always used and Auto does not change 
 <tr><td><a href="#stretching">Image stretching</a></td><td>On</td><td>Stretching method from target type or from sky analysis of the image</td></tr>
 <tr><td><a href="#spcc">Auto SPCC</a></td><td>On</td><td>SPCC for RGB data, ColorCalibration if image solving or SPCC fails</td></tr>
 <tr><td><a href="#localnormalization">Auto local normalization</a></td><td>On</td><td>Local normalization for each filter that has images from several nights</td></tr>
-<tr><td><a href="#drizzle">Auto drizzle</a></td><td>Off</td><td>Drizzle when images are undersampled and there are enough images</td></tr>
+<tr><td><a href="#drizzle">Auto drizzle</a></td><td>Off</td><td>Drizzle when images are undersampled and there are enough images. Off by default since dithering cannot be detected</td></tr>
 </table>
 
 <p>
@@ -190,7 +190,8 @@ Drizzle needs dithered images, where the telescope moves a few pixels between im
 create pattern artifacts.
 </p>
 <p>
-The <i>Auto</i> option next to <i>Drizzle, scale</i> is off by default. When it is checked and <i>Drizzle</i> is not checked,
+The <i>Auto</i> option next to <i>Drizzle, scale</i> is off by default. Drizzle should be used only with dithered images,
+and Auto drizzle cannot detect from the images whether they are dithered. When it is checked and <i>Drizzle</i> is not checked,
 drizzle is used with the selected scale if all of the following are true:
 </p>
 <ul>
@@ -200,7 +201,7 @@ drizzle is used with the selected scale if all of the following are true:
 </ul>
 <p>
 Auto drizzle is not used in fast mode, with FastIntegration, with comet alignment or when SubframeSelector is not run.
-Use Auto drizzle only with dithered images.
+Check Auto drizzle only when your images are dithered.
 </p>
 
 <h3 id="crop_to_common">Crop to common area</h3>
