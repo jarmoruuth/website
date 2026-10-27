@@ -807,6 +807,12 @@ If fixed image names are not found, option <i>Integrated lights</i> in Files tab
 and light files have only one image for a filter then it is considered
 as an integrated light image.
 </p><p>
+Integrated master images, for example WBPP master lights, can also be processed with the Run button.
+Master images are detected from a file name starting with <i>master</i> or from an IMAGETYP keyword
+like <i>Master Light</i>. With master images steps meant for single light frames, CosmeticCorrection,
+Debayer and gradient correction on light images, are skipped and ImageIntegration is not run.
+Master images from different filters are still aligned with StarAlignment.
+</p><p>
 Image names are based on intermediate images created by the script but they have a special extension to 
 separate them from automatically generated images. An exception is integrated channel or RGB images which can be 
 used as a starting point to run different processing on automatically created images. They are useful for 
