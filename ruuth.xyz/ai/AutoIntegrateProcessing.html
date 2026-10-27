@@ -913,7 +913,9 @@ of preference, and the first option <i>Auto</i> is the default.
 <i>Auto</i> selects the best available tool automatically when processing starts. AI based tools are preferred
 when they are clearly better. Both tools included in PixInsight, like MLDenoise, and installed external tools
 are used. The selected tool is shown in the <a href="#auto_options">Auto decisions</a> list, for example
-<i>Auto noise removal tool: MLDenoise (best available tool)</i>.
+<i>Auto noise removal tool: MLDenoise (best available tool, used if noise removal is enabled)</i>.
+The tool is selected for every category, but selecting a tool does not enable the processing. For example
+star removal is run only if some star removal option is checked.
 Auto selection is done again on every run, so a newly installed tool is used automatically.
 If a tool is selected explicitly but it is not installed, a warning is given and <i>Auto</i> selection is used instead.
 </p>
