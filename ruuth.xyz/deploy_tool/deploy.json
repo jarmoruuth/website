@@ -1,0 +1,94 @@
+{
+  "server": {
+    "host": "replace-with-your-server-host",
+    "user": "replace-with-your-server-user",
+    "port": 22,
+    "ssh_key": "/replace-path-to-your-ssh-key"
+  },
+  "environments": {
+    "product": {
+      "local_root": "/replace-path-to-your-local-ai_release",
+      "remote_root": "/replace-path-to-your-remote-ai_release",
+      "manifest_path": "/replace-path-to-your-local-ai_release/product.json"
+    },
+    "test": {
+      "local_root": "/replace-path-to-your-local-ai_test",
+      "remote_root": "/replace-path-to-your-remote-ai_test",
+      "manifest_path": "/replace-path-to-your-local-ai_test/test.json"
+    }
+  },
+  "components": {
+    "website": {
+      "files": [
+        "*.html",
+        "*.css",
+        "*.js",
+        "*.json",
+        "*.jpg",
+        "*.png",
+        "*.svg",
+        "*.txt",
+        "*.glb",
+        "*.kml",
+        "*.kmz",
+        "*.geojson",
+        "*.sh",
+        "FitsPy.py",
+        "getdownloads.py",
+        "DownloadFit-master.zip"
+      ]
+    },
+    "autointegrate": {
+      "files": [
+        "autointegrate/*.zip",
+        "autointegrate/index.html",
+        "autointegrate/updates.xri"
+      ]
+    },
+    "sm": {
+      "files": [
+        "autointegrate/autointegrate-sm.zip"
+      ]
+    },
+    "v8": {
+      "files": [
+        "autointegrate/autointegrate-v8.zip"
+      ]
+    }
+  },
+  "pixinsight": {
+    "template": "autointegrate/updates.xri.template",
+    "xri": "autointegrate/updates.xri",
+    "packages": {
+      "sm": {
+        "placeholder": "SM",
+        "zip": "autointegrate/autointegrate-sm.zip",
+        "version_source": "autointegrate/sm/src/scripts/AutoIntegrate/AutoIntegrateGlobal.js"
+      },
+      "v8": {
+        "placeholder": "V8",
+        "zip": "autointegrate/autointegrate-v8.zip",
+        "version_source": "autointegrate/v8/src/scripts/AutoIntegrate/AutoIntegrateGlobal.js"
+      }
+    }
+  },
+  "transforms": [
+    {
+      "source": "map.html",
+      "destinations": [
+        "map.html",
+        "map2.html"
+      ],
+      "replacements": [
+        {
+          "find": "XXX API_KEY XXX",
+          "file": "/replace-path-to-your-map.key"
+        },
+        {
+          "find": "MML_API_KEY",
+          "file": "/replace-path-to-your-mml.key"
+        }
+      ]
+    }
+  ]
+}
