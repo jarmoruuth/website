@@ -393,8 +393,9 @@ def extract_version(path, spec=None):
     version = assignment(spec.get('version_var', 'autointegrate_version'))
     info_var = spec.get('info_var', 'autointegrate_info')
     info = assignment(info_var) if info_var else ''
-    m = re.search(r'(?<!\w)v\d[^\s"\']*', version)
-    return (m.group(0) if m else version), info
+    # Keep everything from the version number on: "AutoIntegrate v1.88.3 test1" -> "v1.88.3 test1".
+    m = re.search(r'(?<!\w)v\d', version)
+    return (version[m.start():].strip() if m else version), info
 
 
 def render_xri(root, repo, existing_entries, now=None):
