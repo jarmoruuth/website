@@ -62,8 +62,18 @@ python deploy.py prepare --env test
 | `verify` | Ignores the manifest and compares the real remote file hashes with the local ones. |
 | `prepare` | Generates the PixInsight `updates.xri` from its template (see below). |
 
+By default the output lists only files that will be uploaded (`publish`/`status`) or that are
+missing or different (`init`/`verify`), followed by counts. Add `--verbose` (`-v`) to list every
+file, including unchanged ones and each transfer step.
+
 Remote hashes are computed with `sha256sum` on the server in one SSH command, which is fast. If
 that isn't allowed, the tool falls back to reading the files over SFTP.
+
+Local hashes are cached in `.deploy-hash-cache.json` in each `local_root`. A file is hashed again
+only when its size or modification time changes, which keeps large image sites fast. The cache is
+updated even on `--dry-run`/`status`, is never deployed (`.deploy-` prefix), and can be deleted at
+any time. Use `--no-hash-cache` to rehash everything, for example if a tool edits files while
+keeping their timestamps.
 
 ## PixInsight release workflow
 

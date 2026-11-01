@@ -39,6 +39,64 @@ def digest(path, algorithm='sha256'):
     return h.hexdigest()
 
 
+class HashCache:
+    """Local SHA-256 cache in <local_root>/.deploy-hash-cache.json.
+
+    A cached hash is reused while the file's size and modification time are unchanged, so
+    only new or edited files are read. Files outside local_root (rendered transforms) are
+    always hashed. Use --no-hash-cache to rehash everything.
+    """
+    FILE = '.deploy-hash-cache.json'
+
+    def __init__(self, root, enabled=True):
+        self.root = Path(root)
+        self.path = self.root / self.FILE
+        self.enabled = enabled
+        self.dirty = False
+        self.hits = self.misses = 0
+        try:
+            data = read_json(self.path, {}) if enabled else {}
+            self.entries = data.get('files', {}) if isinstance(data, dict) else {}
+        except (OSError, ValueError):
+            self.entries = {}
+
+    def _key(self, path):
+        try:
+            return Path(path).resolve().relative_to(self.root.resolve()).as_posix()
+        except ValueError:
+            return None
+
+    def get(self, path):
+        key = self._key(path)
+        if key is None:
+            return digest(path)
+        st = os.stat(path)
+        entry = self.entries.get(key)
+        if self.enabled and entry and entry.get('size') == st.st_size and entry.get('mtime_ns') == st.st_mtime_ns:
+            self.hits += 1
+            return entry['sha256']
+        self.misses += 1
+        value = digest(path)
+        self.entries[key] = {'size': st.st_size, 'mtime_ns': st.st_mtime_ns, 'sha256': value}
+        self.dirty = True
+        return value
+
+    def save(self):
+        if self.hits or self.misses:
+            print(f'Local hashes: {self.misses} computed, {self.hits} from cache.')
+        if not self.dirty:
+            return
+        # Drop entries for files that no longer exist.
+        self.entries = {k: v for k, v in self.entries.items() if (self.root / k).is_file()}
+        tmp = self.path.with_name(self.path.name + '.tmp')
+        try:
+            tmp.write_text(json.dumps({'files': self.entries}, indent=1, sort_keys=True) + '\n', encoding='utf-8')
+            os.replace(tmp, self.path)
+            self.dirty = False
+        except OSError as e:
+            print(f'WARNING: cannot save local hash cache {self.path}: {e}', file=sys.stderr)
+
+
 def read_json(path, default=None):
     path = Path(path)
     if not path.exists():
@@ -104,7 +162,7 @@ def load_config(value):
 class Site:
     """One site configuration bound to one environment."""
 
-    def __init__(self, config, env_name):
+    def __init__(self, config, env_name, hash_cache=True):
         envs = config.get('environments', {})
         if env_name not in envs:
             raise ValueError(f'Unknown environment {env_name!r}; choices: {", ".join(envs) or "(none)"}')
@@ -119,6 +177,12 @@ class Site:
         self.remote_root = self.env['remote_root'].rstrip('/') or '/'
         if not self.remote_root.startswith('/'):
             raise ValueError(f'remote_root must be absolute: {self.remote_root}')
+        self.hashes = HashCache(self.root, enabled=hash_cache)
+
+    def local_hashes(self, chosen):
+        hashes = {rel: self.hashes.get(path) for rel, path in chosen.items()}
+        self.hashes.save()
+        return hashes
 
     @property
     def repo(self):
@@ -579,7 +643,7 @@ def deploy(args, site):
             chosen[xri_rel] = site.root / xri_rel
         if repo and xri_rel in chosen:
             check_release(site.root, repo, strict=not args.dry_run)
-        local_hashes = {rel: digest(path) for rel, path in chosen.items()}
+        local_hashes = site.local_hashes(chosen)
 
         def publish(client, sftp, server):
             mpath = site.manifest_path(server)
@@ -589,12 +653,15 @@ def deploy(args, site):
                       f'Run "init" first to avoid re-uploading identical files.')
             changes = [rel for rel in chosen if args.force or manifest.get(rel) != local_hashes[rel]]
             for rel in sorted(chosen):
-                print(f'{"UPLOAD" if rel in changes else "SAME  "}  {rel}')
+                if rel in changes:
+                    print(f'UPLOAD  {rel}')
+                elif args.verbose:
+                    print(f'SAME    {rel}')
             print(f'{len(changes)} file(s) to upload, {len(chosen) - len(changes)} unchanged.')
             # A shared XRI must never announce a package version that is not on the server.
             if repo and xri_rel in changes:
                 for zip_rel in sorted(all_zips):
-                    if zip_rel not in changes and manifest.get(zip_rel) != digest(site.root / zip_rel):
+                    if zip_rel not in changes and manifest.get(zip_rel) != site.hashes.get(site.root / zip_rel):
                         raise ValueError(f'Cannot publish XRI: {zip_rel} differs from deployed state. '
                                          f'Publish the whole autointegrate component.')
             if args.dry_run or not changes:
@@ -607,16 +674,19 @@ def deploy(args, site):
                     final = site.remote_file(rel)
                     remote_mkdirs(sftp, str(PurePosixPath(final).parent))
                     tmp = final + '.deploy-' + uuid.uuid4().hex + '.tmp'
-                    print(f'TRANSFER {rel}')
+                    if args.verbose:
+                        print(f'TRANSFER {rel}')
                     pending.append((rel, tmp, final))
                     sftp.put(str(chosen[rel]), tmp, confirm=True)
                 hashes = remote_hashes(client, sftp, [tmp for _, tmp, _ in pending])
                 for rel, tmp, _ in pending:
                     if hashes.get(tmp) != local_hashes[rel]:
                         raise ValueError(f'Uploaded file hash mismatch: {rel}')
+                print(f'Transferred and verified {len(pending)} file(s); publishing.')
                 while pending:
                     rel, tmp, final = pending[0]
-                    print(f'PUBLISH  {rel}')
+                    if args.verbose:
+                        print(f'PUBLISH  {rel}')
                     sftp.posix_rename(tmp, final)
                     pending.pop(0)
                     manifest[rel] = local_hashes[rel]
@@ -636,14 +706,15 @@ def deploy(args, site):
         for_each_server(site, args, publish)
 
 
-def classify_initial_files(chosen, remote_hashes_by_rel, local_hashes=None):
+def classify_initial_files(chosen, remote_hashes_by_rel, local_hashes=None, verbose=False):
     """Return matching hashes only; never trust stale manifest values."""
     matches = {}
     for rel, path in sorted(chosen.items()):
         local_hash = local_hashes[rel] if local_hashes else digest(path)
         actual = remote_hashes_by_rel.get(rel)
         state = 'MISSING' if actual is None else ('SAME' if actual == local_hash else 'DIFF')
-        print(f'{state:<7} {rel}')
+        if state != 'SAME' or verbose:
+            print(f'{state:<7} {rel}')
         if state == 'SAME':
             matches[rel] = local_hash
     print(f'{len(matches)} matching file(s); {len(chosen) - len(matches)} missing/different.')
@@ -654,13 +725,14 @@ def init_manifest(args, site):
     """Seed deployment state from existing identical remote files, without uploading."""
     with tempfile.TemporaryDirectory(prefix='website-deploy-') as staging:
         chosen = collect(site, args.component, staging)
-        local_hashes = {rel: digest(path) for rel, path in chosen.items()}
+        local_hashes = site.local_hashes(chosen)
 
         def init(client, sftp, server):
             mpath = site.manifest_path(server)
             existing, _ = load_manifest(sftp, mpath)
             by_path = remote_hashes(client, sftp, [site.remote_file(rel) for rel in chosen])
-            matches = classify_initial_files(chosen, {rel: by_path[site.remote_file(rel)] for rel in chosen}, local_hashes)
+            matches = classify_initial_files(chosen, {rel: by_path[site.remote_file(rel)] for rel in chosen},
+                                             local_hashes, args.verbose)
             for rel in chosen:  # Drop stale entries for scanned files; keep other components.
                 existing.pop(rel, None)
             existing.update(matches)
@@ -677,21 +749,23 @@ def init_manifest(args, site):
 def verify(args, site):
     with tempfile.TemporaryDirectory(prefix='website-deploy-') as staging:
         chosen = collect(site, args.component, staging)
+        local_hashes = site.local_hashes(chosen)
 
         def check(client, sftp, server):
             by_path = remote_hashes(client, sftp, [site.remote_file(rel) for rel in chosen])
             failures = 0
-            for rel, local in sorted(chosen.items()):
+            for rel in sorted(chosen):
                 actual = by_path[site.remote_file(rel)]
                 if actual is None:
                     print('MISSING ' + rel)
                     failures += 1
-                elif actual != digest(local):
+                elif actual != local_hashes[rel]:
                     print('DIFF    ' + rel)
                     failures += 1
-                else:
+                elif args.verbose:
                     print('OK      ' + rel)
-            print(f'{failures} file(s) missing or different.' if failures else 'All selected remote files match local content.')
+            print(f'{failures} of {len(chosen)} file(s) missing or different.' if failures
+                  else f'All {len(chosen)} selected remote files match local content.')
             return failures
 
         failures = for_each_server(site, args, check)
@@ -708,9 +782,11 @@ def main(argv=None):
     p.add_argument('--server', default=None, help='Limit to one configured server')
     p.add_argument('--dry-run', action='store_true', help='Preview only; no file changes')
     p.add_argument('--force', action='store_true', help='publish: upload selected files even if the manifest says unchanged')
+    p.add_argument('-v', '--verbose', action='store_true', help='List every file, including unchanged/matching ones')
+    p.add_argument('--no-hash-cache', action='store_true', help='Rehash all local files instead of using the local hash cache')
     args = p.parse_args(argv)
     try:
-        site = Site(load_config(args.config), args.env)
+        site = Site(load_config(args.config), args.env, hash_cache=not args.no_hash_cache)
         if not site.root.is_dir():
             raise ValueError(f'Local directory not found: {site.root}')
         if args.command != 'prepare' and not args.component:
