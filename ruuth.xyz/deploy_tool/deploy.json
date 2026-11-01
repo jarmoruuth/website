@@ -1,20 +1,19 @@
 {
-  "server": {
-    "host": "replace-with-your-server-host",
-    "user": "replace-with-your-server-user",
-    "port": 22,
-    "ssh_key": "/replace-path-to-your-ssh-key"
-  },
+  "include": "servers.json",
+  "name": "ai",
   "environments": {
     "product": {
-      "local_root": "/replace-path-to-your-local-ai_release",
-      "remote_root": "/replace-path-to-your-remote-ai_release",
-      "manifest_path": "/replace-path-to-your-local-ai_release/product.json"
+      "local_root": "/replace-path-to-your-local-product-root",
+      "remote_root": "/replace-path-to-your-remote-product-root"
     },
     "test": {
-      "local_root": "/replace-path-to-your-local-ai_test",
-      "remote_root": "/replace-path-to-your-remote-ai_test",
-      "manifest_path": "/replace-path-to-your-local-ai_test/test.json"
+      "local_root": "/replace-path-to-your-local-test-root",
+      "remote_root": "/replace-path-to-your-remote-test-root"
+    },
+    "debug": {
+      "local_root": "/replace-path-to-your-local-test-root",
+      "remote_root": "/replace-path-to-your-remote-debug-root",
+      "components": ["autointegrate", "sm", "v8"]
     }
   },
   "components": {
@@ -40,20 +39,17 @@
     },
     "autointegrate": {
       "files": [
-        "autointegrate/*.zip",
+        "autointegrate/autointegrate-sm.zip",
+        "autointegrate/autointegrate-v8.zip",
         "autointegrate/index.html",
         "autointegrate/updates.xri"
       ]
     },
     "sm": {
-      "files": [
-        "autointegrate/autointegrate-sm.zip"
-      ]
+      "files": ["autointegrate/autointegrate-sm.zip"]
     },
     "v8": {
-      "files": [
-        "autointegrate/autointegrate-v8.zip"
-      ]
+      "files": ["autointegrate/autointegrate-v8.zip"]
     }
   },
   "pixinsight": {
@@ -63,32 +59,17 @@
       "sm": {
         "placeholder": "SM",
         "zip": "autointegrate/autointegrate-sm.zip",
-        "version_source": "autointegrate/sm/src/scripts/AutoIntegrate/AutoIntegrateGlobal.js"
+        "version_source": "autointegrate/sm/src/scripts/AutoIntegrate/AutoIntegrateGlobal.js",
+        "version_var": "autointegrate_version",
+        "info_var": "autointegrate_info"
       },
       "v8": {
         "placeholder": "V8",
         "zip": "autointegrate/autointegrate-v8.zip",
-        "version_source": "autointegrate/v8/src/scripts/AutoIntegrate/AutoIntegrateGlobal.js"
+        "version_source": "autointegrate/v8/src/scripts/AutoIntegrate/AutoIntegrateGlobal.js",
+        "version_var": "autointegrate_version",
+        "info_var": "autointegrate_info"
       }
     }
-  },
-  "transforms": [
-    {
-      "source": "map.html",
-      "destinations": [
-        "map.html",
-        "map2.html"
-      ],
-      "replacements": [
-        {
-          "find": "XXX API_KEY XXX",
-          "file": "/replace-path-to-your-map.key"
-        },
-        {
-          "find": "MML_API_KEY",
-          "file": "/replace-path-to-your-mml.key"
-        }
-      ]
-    }
-  ]
+  }
 }

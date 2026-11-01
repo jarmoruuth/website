@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "server1": {
+      "host": "replace-with-server1-host",
+      "user": "replace-with-server1-user",
+      "port": 22,
+      "ssh_key": "/replace-path-to-server1-ssh-key"
+    },
+    "server2": {
+      "host": "replace-with-server2-host",
+      "user": "replace-with-server2-user",
+      "port": 22,
+      "ssh_key": "/replace-path-to-server2-ssh-key"
+    }
+  }
+}

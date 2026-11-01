@@ -1,56 +1,100 @@
-# Windows-to-Ubuntu website deployment
+# Website and PixInsight repository deployment
 
-One script for the main site and `/test`, with explicit components. SSH public-key authentication, remote SHA-256 deployment manifests, and `--dry-run`.
+One Python script deploys a local site copy to one or more Ubuntu servers over SSH/SFTP. Each site
+(ai, am, main, map, ...) has its own JSON file. Changes are detected with SHA-256 hashes stored in a
+manifest on each server, and every command supports `--dry-run`.
 
 ## Install
 
-1. Install Python 3.10 or newer and run `python -m pip install -r requirements.txt`.
-2. Edit `deploy.json` with **actual** local roots, SSH host/user/key, remote roots, and private `manifest_path` entries. The sample paths are placeholders.
-3. Ensure SSH can log in noninteractively and **the server's host key is trusted in OpenSSH's known_hosts**. Paramiko rejects unknown host keys deliberately. If PuTTY's `.ppk` key is not accepted, use an OpenSSH private key or convert it via PuTTYgen.
-4. The SSH user must be allowed to write the website folders and the private manifest directory; make sure `/home/<user>/deploy-state/` exists or can be created.
-5. Put `deploy.py`, `deploy.json`, and the batch files together. The source XRI template and ZIPs remain in each environment's local directory, as configured.
+1. Python 3.10+ and `python -m pip install -r requirements.txt` (Paramiko).
+2. SSH keys must be in OpenSSH format (Paramiko can't read PuTTY `.ppk`). Each server's host key
+   must be in `%USERPROFILE%\.ssh\known_hosts`; unknown hosts are rejected.
+3. The JSON files here are templates with placeholder values. Copy the tool to your working
+   location and fill in real hosts, users, key paths and folders there. Don't commit real values.
+
+## Configuration
+
+- `servers.json` holds the shared servers. Site files pull it in with `"include": "servers.json"`.
+- `deploy.json` is the default config, an example AutoIntegrate site with environments `product`,
+  `test` and `debug`. Its `"name"` (`ai`) keeps its server manifests separate from other sites.
+  - `debug` is limited to the `autointegrate`, `sm` and `v8` components by its `"components"` list.
+- For other sites, copy it (e.g. `am.json`) and pick it with `--config am`, which means `am.json`
+  next to `deploy.py`, or give a full path. Without `--config`, `deploy.json` is used.
+
+Environment keys:
+
+| Key | Meaning |
+|---|---|
+| `local_root` | Local folder of this environment |
+| `remote_root` | Absolute folder on the server |
+| `servers` | Optional subset of server names (default: all) |
+| `components` | Optional allow-list of components for this environment |
+| `manifest_path` | Optional; default `deploy-state/<site>-<env>.json` in the SSH user's home |
+
+Components list `files`, which can be exact names or wildcards (`*.html` is top level only; use
+`dir/**/*.html` for nested files), plus optional `exclude` patterns. **Name release files exactly.**
+The server is case-sensitive, so exact names in the config are always published with the config's
+spelling, whatever their case on the Windows disk. For example, the local `AutoIntegrate-v8.zip` is
+published as `autointegrate-v8.zip`, the name the XRI uses.
+
+Optional `transforms` render a file with secrets before upload without changing the local source,
+e.g. map.html to map.html + map2.html with API keys from key files (absolute path or relative to
+`local_root`) or environment variables. Never list key files in components. Keys embedded in HTML
+are public anyway, so restrict them by domain.
 
 ## Commands
 
 ```bat
+python deploy.py status  --env test --component all
 python deploy.py publish --env test --component website --dry-run
 python deploy.py publish --env test --component website
-python deploy.py publish --env test --component v8 --dry-run
-python deploy.py publish --env test --component autointegrate
-python deploy.py init --env product --component all --dry-run
-python deploy.py init --env product --component all
-python deploy.py init --env test --component all
-python deploy.py status --env product --component all
-python deploy.py verify --env product --component website
-python deploy.py prepare --env test --component autointegrate --dry-run
-python deploy.py prepare --env test --component autointegrate
+python deploy.py publish --env product --component autointegrate --server server1
+python deploy.py init    --env product --component all
+python deploy.py verify  --env product --component website
+python deploy.py prepare --env test
 ```
 
-`init` hashes the actual existing remote files and adds **only exact matches** to the deployment manifest; missing/different files stay pending. `--dry-run` previews and does not write the manifest or upload anything. Run it independently for product and test. If a manifest already exists, `init` preserves other components and updates only the selected files. Generated map pages are compared after applying the same transformations used during publication. Unlike `publish`, `init` never uploads website files.
+| Command | What it does |
+|---|---|
+| `publish` | Uploads files whose hash differs from the server manifest, on every server of the environment. `--force` uploads all selected files. |
+| `status` | `publish --dry-run`. It still connects to read the manifests. |
+| `init` | Hashes the existing remote files and records **exact matches only** in the manifest. Uploads nothing. Run it once per environment before the first publish. |
+| `verify` | Ignores the manifest and compares the real remote file hashes with the local ones. |
+| `prepare` | Generates the PixInsight `updates.xri` from its template (see below). |
 
-`status` is the same read-only comparison as `publish --dry-run`. **It still connects to the server to retrieve its manifest**. `verify` bypasses the manifest and reads remote file contents, comparing their SHA-256 hashes directly to the local ones. No remote deletion is performed: removing a local file does not delete it from the server.
+Remote hashes are computed with `sha256sum` on the server in one SSH command, which is fast. If
+that isn't allowed, the tool falls back to reading the files over SFTP.
 
-An example product batch wrapper accepts the component as `%1`, so `deploy-product.bat website --dry-run` previews production. `deploy-test.bat` is intentionally preview-only by default; edit it to remove `--dry-run` when you want it to publish.
+## PixInsight release workflow
 
-## PixInsight signing workflow
+1. Build the signed ZIPs as before.
+2. Run `prepare --env <env>`. It reads versions from `version_source`
+   (`autointegrate_version`/`autointegrate_info`, configurable with `version_var`/`info_var`),
+   computes the ZIP SHA-1s and renders the template.
+   - A package whose ZIP SHA-1 equals the one in the current XRI keeps its `releaseDate`. Changed
+     packages get the current local time (`yyyymmddhhmmss`, as before).
+   - If the result is the same XML as the current XRI, the file is **left untouched**, so its
+     PixInsight signature survives. The comparison ignores the whitespace and layout changes
+     PixInsight makes when signing.
+   - Otherwise the XRI is rewritten unsigned.
+3. Sign `updates.xri` in PixInsight.
+4. `publish --component autointegrate`. Publishing refuses an XRI that is unsigned or whose SHA-1s
+   don't match the ZIPs (`--dry-run` only warns). ZIPs are always published before the XRI.
 
-1. Your existing batch process builds and signs each ZIP in PixInsight.
-2. `python deploy.py prepare --env test --component autointegrate` reads versions and ZIP hashes, generates XRI from the local template, and stores release dates in `.deploy-release-state.json` in the local root. **It overwrites the existing XRI when content differs, so sign after prepare.** When a ZIP's SHA-256 hasn't changed, prepare preserves its releaseDate from that state file.
-3. Use PixInsight to sign/update the prepared XRI. Python does not sign XRI or ZIP files.
-4. Run `publish --env test --component autointegrate --dry-run`, then without `--dry-run`.
-5. Repeat preparation/signing for product if its release source files or metadata differ. Publication never edits the signed XRI.
+`--component v8` (or `sm`) also publishes the shared XRI, but only if the other package on the
+server already matches its local ZIP. Otherwise use `--component autointegrate`. The PixInsight
+signature itself is not cryptographically verified.
 
-`publish` validates each configured ZIP's **SHA-1** against its entry in XRI, but **does not cryptographically verify PixInsight signatures**. You must sign with PixInsight and check that operation yourself. Avoid modifying an XRI after signing. The XRI is always published after ZIP packages in a deployment.
+In the example, test and debug share one local folder, so they use the same signed XRI.
 
-Partial deployment `--component v8` includes the shared XRI. It will reject an XRI update if a different package differs from the hashes recorded as published on that server. Use `--component autointegrate` to deploy both packages when necessary. The initial deployment should use `autointegrate` to establish both ZIPs. If you add a third package, add it to `pixinsight.packages`, add its placeholders and platform entry to the XRI template, and optionally define a new component.
+## Safety and limitations
 
-## Operational details and limitations
-
-- Uploaded files are first transferred to a temporary filename, SHA-256 verified, then published using an SFTP rename. The XRI is published **last**. The remote manifest is written last, after publication.
-- Each environment's manifest is distinct and should be **outside** the public website document root. If the server has existing files but no manifest, run `init --env <env> --component all` before the first publish to avoid reuploading identical files.
-- A deployment is **not a multi-file atomic transaction**. A disconnect during the rename phase may leave some files published before the manifest is updated. The next run retries safely. For an XRI release, ZIPs are always renamed before the XRI.
-- `--dry-run` shows hash-based differences, but does not test upload permissions. Manifests represent the last completed tool deployment; manual server edits require `verify` to detect.
-- `map.html` transformations are configured in `transforms`: when `map.html` is selected, read the Google key from local `map.key`, then replace `MML_API_KEY` using local mml.key file. **Do not deploy `map.key`**. Any keys embedded in HTML are public: restrict them to the required domains and APIs. If you change the template token, update the transform rule.
-- Wildcards in the example website component match the *top level* only. Add `subdirectory/**/*.html` etc. explicitly for nested assets.
-- The `prepare` command updates all package metadata in the shared XRI rather than doing partial preparation; it must be followed by PixInsight signing. Separate ZIP components work for publishing.
-- The tool does not delete remote files, does not automate PixInsight signing, and does not identify a cryptographically valid PixInsight signature.
+- Each upload goes to a temporary name, is hash-checked on the server, then renamed into place. Any
+  leftover temp files are removed on failure. The manifest is written last, and also after a
+  partial failure, so it records whatever was published.
+- Servers are deployed one after another. A deployment is not atomic across files or servers. Rerun
+  to continue.
+- Remote files are never deleted.
+- Manifests describe the last deployment by this tool. Use `verify` to detect manual server edits,
+  and `publish --force` or `init` to resync.
+- Local files whose names start with `.deploy-` are never deployed.
