@@ -179,6 +179,10 @@ class Site:
         if not self.remote_root.startswith('/'):
             raise ValueError(f'remote_root must be absolute: {self.remote_root}')
         self.hashes = HashCache(self.root, enabled=hash_cache)
+        self.tag = f'[{env_name}]'
+
+    def target(self, server):
+        return f'{self.env_name} ({server["host"]}:{self.remote_root})'
 
     def local_hashes(self, chosen):
         hashes = {rel: self.hashes.get(path) for rel, path in chosen.items()}
@@ -655,10 +659,10 @@ def deploy(args, site):
             changes = [rel for rel in chosen if args.force or manifest.get(rel) != local_hashes[rel]]
             for rel in sorted(chosen):
                 if rel in changes:
-                    print(f'UPLOAD  {rel}')
+                    print(f'UPLOAD  {site.tag} {rel}')
                 elif args.verbose:
-                    print(f'SAME    {rel}')
-            print(f'{len(changes)} file(s) to upload, {len(chosen) - len(changes)} unchanged.')
+                    print(f'SAME    {site.tag} {rel}')
+            print(f'{len(changes)} file(s) to upload to {site.target(server)}, {len(chosen) - len(changes)} unchanged.')
             # A shared XRI must never announce a package version that is not on the server.
             if repo and xri_rel in changes:
                 for zip_rel in sorted(all_zips):
@@ -676,7 +680,7 @@ def deploy(args, site):
                     remote_mkdirs(sftp, str(PurePosixPath(final).parent))
                     tmp = final + '.deploy-' + uuid.uuid4().hex + '.tmp'
                     if args.verbose:
-                        print(f'TRANSFER {rel}')
+                        print(f'TRANSFER {site.tag} {rel}')
                     pending.append((rel, tmp, final))
                     sftp.put(str(chosen[rel]), tmp, confirm=True)
                 hashes = remote_hashes(client, sftp, [tmp for _, tmp, _ in pending])
@@ -687,7 +691,7 @@ def deploy(args, site):
                 while pending:
                     rel, tmp, final = pending[0]
                     if args.verbose:
-                        print(f'PUBLISH  {rel}')
+                        print(f'PUBLISH  {site.tag} {rel}')
                     sftp.posix_rename(tmp, final)
                     pending.pop(0)
                     manifest[rel] = local_hashes[rel]
@@ -701,13 +705,13 @@ def deploy(args, site):
                 if published:
                     # Record whatever was published, even after a partial failure.
                     write_manifest(sftp, mpath, manifest, site)
-            print('Deployment completed successfully.')
+            print(f'Deployment to {site.target(server)} completed successfully.')
             return 0
 
         for_each_server(site, args, publish)
 
 
-def classify_initial_files(chosen, remote_hashes_by_rel, local_hashes=None, verbose=False):
+def classify_initial_files(chosen, remote_hashes_by_rel, local_hashes=None, verbose=False, tag=''):
     """Return matching hashes only; never trust stale manifest values."""
     matches = {}
     for rel, path in sorted(chosen.items()):
@@ -715,7 +719,7 @@ def classify_initial_files(chosen, remote_hashes_by_rel, local_hashes=None, verb
         actual = remote_hashes_by_rel.get(rel)
         state = 'MISSING' if actual is None else ('SAME' if actual == local_hash else 'DIFF')
         if state != 'SAME' or verbose:
-            print(f'{state:<7} {rel}')
+            print(f'{state:<7} {tag + " " if tag else ""}{rel}')
         if state == 'SAME':
             matches[rel] = local_hash
     print(f'{len(matches)} matching file(s); {len(chosen) - len(matches)} missing/different.')
@@ -733,7 +737,7 @@ def init_manifest(args, site):
             existing, _ = load_manifest(sftp, mpath)
             by_path = remote_hashes(client, sftp, [site.remote_file(rel) for rel in chosen])
             matches = classify_initial_files(chosen, {rel: by_path[site.remote_file(rel)] for rel in chosen},
-                                             local_hashes, args.verbose)
+                                             local_hashes, args.verbose, site.tag)
             for rel in chosen:  # Drop stale entries for scanned files; keep other components.
                 existing.pop(rel, None)
             existing.update(matches)
@@ -741,7 +745,8 @@ def init_manifest(args, site):
                 print('DRY RUN: no manifest changes and no uploads.')
                 return 0
             write_manifest(sftp, mpath, existing, site)
-            print(f'Initialized manifest {mpath} ({len(matches)} matching file(s)). No website files were changed.')
+            print(f'Initialized manifest {mpath} for {site.target(server)} ({len(matches)} matching file(s)). '
+                  f'No website files were changed.')
             return 0
 
         for_each_server(site, args, init)
@@ -758,15 +763,15 @@ def verify(args, site):
             for rel in sorted(chosen):
                 actual = by_path[site.remote_file(rel)]
                 if actual is None:
-                    print('MISSING ' + rel)
+                    print(f'MISSING {site.tag} {rel}')
                     failures += 1
                 elif actual != local_hashes[rel]:
-                    print('DIFF    ' + rel)
+                    print(f'DIFF    {site.tag} {rel}')
                     failures += 1
                 elif args.verbose:
-                    print('OK      ' + rel)
-            print(f'{failures} of {len(chosen)} file(s) missing or different.' if failures
-                  else f'All {len(chosen)} selected remote files match local content.')
+                    print(f'OK      {site.tag} {rel}')
+            print(f'{failures} of {len(chosen)} file(s) missing or different on {site.target(server)}.' if failures
+                  else f'All {len(chosen)} selected files match on {site.target(server)}.')
             return failures
 
         failures = for_each_server(site, args, check)
