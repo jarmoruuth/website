@@ -125,14 +125,15 @@ def is_local_state(rel):
 # ---------------------------------------------------------------------------
 
 def resolve_config_path(value):
-    """--config accepts a path, or a bare site name such as 'am' meaning am.json next to deploy.py."""
+    """--config accepts a path, or a bare file name (am or am.json) found in the current directory
+    or next to deploy.py."""
     if value is None:
         return SCRIPT_DIR / DEFAULT_CONFIG
     p = Path(value).expanduser()
     if p.exists():
         return p
-    if not p.suffix and len(p.parts) == 1:
-        candidate = SCRIPT_DIR / (value + '.json')
+    if len(p.parts) == 1:  # Bare name: ai or ai.json next to deploy.py.
+        candidate = SCRIPT_DIR / (value if p.suffix else value + '.json')
         if candidate.exists():
             return candidate
     return p

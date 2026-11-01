@@ -44,14 +44,20 @@ are public anyway, so restrict them by domain.
 
 ## Commands
 
+Every command takes `--config` to choose the site file. A bare file name (`--config ai.json`, or
+just `--config ai`) is looked for in the current directory first, then next to `deploy.py`, so it
+works from any folder. A path such as `--config ..\deploy_tool\ai.json` also works. If `--config`
+is left out, `deploy.json` next to `deploy.py` is used. Folders inside the config (`local_root`)
+are absolute, so the current directory doesn't matter for them.
+
 ```bat
-python deploy.py status  --env test --component all
-python deploy.py publish --env test --component website --dry-run
-python deploy.py publish --env test --component website
-python deploy.py publish --env product --component autointegrate --server server1
-python deploy.py init    --env product --component all
-python deploy.py verify  --env product --component website
-python deploy.py prepare --env test
+python deploy.py status  --config ai.json --env test --component all
+python deploy.py publish --config ai.json --env test --component website --dry-run
+python deploy.py publish --config ai.json --env test --component website
+python deploy.py publish --config ai.json --env product --component autointegrate --server server1
+python deploy.py init    --config ai.json --env product --component all
+python deploy.py verify  --config ai.json --env product --component website
+python deploy.py prepare --config ai.json --env test
 ```
 
 | Command | What it does |
