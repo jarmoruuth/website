@@ -37,10 +37,30 @@ The server is case-sensitive, so exact names in the config are always published 
 spelling, whatever their case on the Windows disk. For example, the local `AutoIntegrate-v8.zip` is
 published as `autointegrate-v8.zip`, the name the XRI uses.
 
-Optional `transforms` render a file with secrets before upload without changing the local source,
-e.g. map.html to map.html + map2.html with API keys from key files (absolute path or relative to
-`local_root`) or environment variables. Never list key files in components. Keys embedded in HTML
-are public anyway, so restrict them by domain.
+Optional `transforms` render a file before upload without changing the local source. Each
+`replacements` entry swaps a token for the contents of a key file (absolute path, or relative to
+`local_root`) or of an environment variable (`"env": "NAME"`). Replacements run in the listed
+order. `destinations` publishes the result under one or more names. Example for a map site, where
+`map.html` is also published as `map2.html` for historical reasons:
+
+```json
+"transforms": [
+  {
+    "source": "map.html",
+    "destinations": ["map.html", "map2.html"],
+    "replacements": [
+      { "find": "GOOGLE_API_KEY", "file": "/replace-path-to-your-map.key" },
+      { "find": "MML_API_KEY",    "file": "/replace-path-to-your-mml.key" }
+    ]
+  }
+]
+```
+
+The source must be matched by a component (`*.html` does it). Both names are tracked separately in
+the manifest, and `verify` compares the rendered content. If a token isn't in the file, the tool
+prints a note and leaves that part unchanged. Leave out `replacements` to only publish copies.
+Never list key files in components. Keys embedded in HTML are public anyway, so restrict them by
+domain.
 
 ## Commands
 
